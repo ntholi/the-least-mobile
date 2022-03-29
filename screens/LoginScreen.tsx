@@ -16,15 +16,15 @@ export default function LoginScreen() {
   const [password, setPassword] = React.useState('');
   const [error, setError] = React.useState('');
 
-  function handleLogin() {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        console.log('Successful => ', userCredential.user.displayName);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      });
+  async function handleLogin() {
+    try {
+      console.log(`logins with '${email}' and '${password}'`);
+      const user = await createUserWithEmailAndPassword(auth, email, password);
+      console.log('user', user.user.uid);
+    } catch (error: any) {
+      console.log('Error=>', error);
+      setError(error.message);
+    }
   }
 
   return (
@@ -35,14 +35,14 @@ export default function LoginScreen() {
           style={styles.input}
           placeholder='Email'
           value={email}
-          onChangeText={(text) => setEmail(text)}
+          onChangeText={(text) => setEmail(text.trim())}
         />
         <TextInput
           style={styles.input}
           placeholder='Password'
           secureTextEntry
           value={password}
-          onChangeText={(text) => setPassword(text)}
+          onChangeText={(text) => setPassword(text.trim())}
         />
       </View>
       <View style={styles.buttonContainer}>
