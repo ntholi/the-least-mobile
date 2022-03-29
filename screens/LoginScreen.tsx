@@ -7,23 +7,34 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import { auth } from '../components/firebase/config';
+import { login } from '../components/user/user-service';
+import { NavigationProp, ParamListBase } from '@react-navigation/native';
 
-export default function LoginScreen() {
+type Props = {
+  navigation: NavigationProp<ParamListBase>;
+};
+
+export default function LoginScreen({ navigation }: Props) {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const [error, setError] = React.useState('');
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        navigation.navigate('Home');
+      }
+    });
+    return unsubscribe;
+  }, []);
 
   async function handleLogin() {
     try {
-      console.log(`logins with '${email}' and '${password}'`);
-      const user = await createUserWithEmailAndPassword(auth, email, password);
-      console.log('user', user.user.uid);
+      const user = login(email, password);
     } catch (error: any) {
-      console.log('Error=>', error);
-      setError(error.message);
+      alert(error.message);
     }
   }
 
