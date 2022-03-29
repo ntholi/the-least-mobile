@@ -12,6 +12,7 @@ import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import { auth } from '../components/firebase/config';
 import { login } from '../components/user/user-service';
 import { NavigationProp, ParamListBase } from '@react-navigation/native';
+import colors from '../components/common/colors';
 
 type Props = {
   navigation: NavigationProp<ParamListBase>;
@@ -40,7 +41,7 @@ export default function LoginScreen({ navigation }: Props) {
 
   return (
     <KeyboardAvoidingView style={styles.container}>
-      <Text>LoginScreen</Text>
+      <Text>TheLeast</Text>
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
@@ -56,14 +57,9 @@ export default function LoginScreen({ navigation }: Props) {
           onChangeText={(text) => setPassword(text.trim())}
         />
       </View>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={handleLogin}>
-          <Text style={styles.button}>Login</Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text style={[styles.button, styles.buttonOutline]}>Register</Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity onPress={handleLogin} style={styles.buttonContainer}>
+        <Text style={styles.button}>Login</Text>
+      </TouchableOpacity>
     </KeyboardAvoidingView>
   );
 }
@@ -73,10 +69,32 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#212121',
   },
-  inputContainer: {},
-  input: {},
-  buttonContainer: {},
-  button: {},
-  buttonOutline: {},
+  inputContainer: {
+    width: '70%',
+    marginTop: 20,
+  },
+  input: {
+    borderColor: '#ccc',
+    borderWidth: 1,
+    paddingHorizontal: 15,
+    paddingVertical: 5,
+    marginBottom: 10,
+    borderRadius: 20,
+    backgroundColor: '#fff',
+  },
+  buttonContainer: {
+    marginTop: 20,
+    width: '70%',
+  },
+  button: {
+    width: '100%',
+    textAlign: 'center',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 20,
+    backgroundColor: colors.primary,
+    color: '#fff',
+  },
 });
