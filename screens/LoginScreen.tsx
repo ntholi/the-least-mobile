@@ -3,16 +3,15 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  Touchable,
   TouchableOpacity,
   View,
 } from 'react-native';
 import React, { useEffect } from 'react';
-import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import { auth } from '../components/firebase/config';
 import { login } from '../components/user/user-service';
 import { NavigationProp, ParamListBase } from '@react-navigation/native';
 import colors from '../components/common/colors';
+import Logo from '../components/common/Logo';
 
 type Props = {
   navigation: NavigationProp<ParamListBase>;
@@ -41,7 +40,7 @@ export default function LoginScreen({ navigation }: Props) {
 
   return (
     <KeyboardAvoidingView style={styles.container}>
-      <Text>TheLeast</Text>
+      <Logo style={styles.logo} />
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
@@ -71,6 +70,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#212121',
   },
+  logo: {
+    marginBottom: 20,
+  },
   inputContainer: {
     width: '70%',
     marginTop: 20,
@@ -92,7 +94,7 @@ const styles = StyleSheet.create({
     width: '100%',
     textAlign: 'center',
     paddingHorizontal: 20,
-    paddingVertical: 10,
+    paddingVertical: 12,
     borderRadius: 20,
     backgroundColor: colors.primary,
     color: '#fff',
