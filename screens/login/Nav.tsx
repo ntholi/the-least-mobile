@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import colors from '../../components/ui/colors';
+import colors from '../utils/colors';
 
 export default function Nav() {
   return (

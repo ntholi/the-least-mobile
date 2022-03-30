@@ -5,16 +5,17 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  ActivityIndicator,
 } from 'react-native';
 import React, { useEffect } from 'react';
 import { auth } from '../../components/firebase/config';
 import { login } from '../../components/user/user-service';
 import { NavigationProp, ParamListBase } from '@react-navigation/native';
-import colors from '../../components/ui/colors';
-import Logo from '../../components/ui/Logo';
-import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 import Nav from './Nav';
+import LoadingScreen from '../utils/LoadingScreen';
+import Logo from '../utils/Logo';
+import colors from '../utils/colors';
 
 type Props = {
   navigation: NavigationProp<ParamListBase>;
@@ -46,7 +47,7 @@ export default function LoginScreen({ navigation }: Props) {
   });
 
   if (!fontsLoaded) {
-    return <AppLoading />;
+    return <LoadingScreen />;
   }
 
   return (
