@@ -7,13 +7,14 @@ import {
   View,
 } from 'react-native';
 import React, { useEffect } from 'react';
-import { auth } from '../components/firebase/config';
-import { login } from '../components/user/user-service';
+import { auth } from '../../components/firebase/config';
+import { login } from '../../components/user/user-service';
 import { NavigationProp, ParamListBase } from '@react-navigation/native';
-import colors from '../components/common/colors';
-import Logo from '../components/common/Logo';
+import colors from '../../components/ui/colors';
+import Logo from '../../components/ui/Logo';
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
+import Nav from './Nav';
 
 type Props = {
   navigation: NavigationProp<ParamListBase>;
@@ -41,7 +42,7 @@ export default function LoginScreen({ navigation }: Props) {
   }
 
   let [fontsLoaded] = useFonts({
-    Righteous: require('../assets/fonts/Righteous-Regular.ttf'),
+    Righteous: require('../../assets/fonts/Righteous-Regular.ttf'),
   });
 
   if (!fontsLoaded) {
@@ -51,6 +52,7 @@ export default function LoginScreen({ navigation }: Props) {
   return (
     <KeyboardAvoidingView style={styles.container}>
       <Logo style={styles.logo} />
+      <Nav />
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
@@ -77,7 +79,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop: '50%',
     backgroundColor: '#212121',
   },
   logo: {
