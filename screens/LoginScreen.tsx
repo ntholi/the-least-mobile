@@ -12,6 +12,8 @@ import { login } from '../components/user/user-service';
 import { NavigationProp, ParamListBase } from '@react-navigation/native';
 import colors from '../components/common/colors';
 import Logo from '../components/common/Logo';
+import AppLoading from 'expo-app-loading';
+import { useFonts } from 'expo-font';
 
 type Props = {
   navigation: NavigationProp<ParamListBase>;
@@ -36,6 +38,14 @@ export default function LoginScreen({ navigation }: Props) {
     } catch (error: any) {
       alert(error.message);
     }
+  }
+
+  let [fontsLoaded] = useFonts({
+    Righteous: require('../assets/fonts/Righteous-Regular.ttf'),
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
   }
 
   return (

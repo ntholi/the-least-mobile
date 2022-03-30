@@ -5,6 +5,9 @@ import colors from './colors';
 type Props = {
   style?: any;
 };
+
+const fontFamily = 'Righteous';
+
 export default function Logo({ style }: Props) {
   return (
     <View style={[styles.container, style]}>
@@ -22,13 +25,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#212121',
   },
   the: {
-    fontSize: 50,
+    fontSize: 40,
     color: '#fff',
-    fontWeight: 'bold',
+    fontFamily: fontFamily,
   },
   least: {
-    fontSize: 50,
+    fontSize: 40,
     color: colors.primary,
-    fontWeight: 'bold',
+    fontFamily: fontFamily,
   },
 });
