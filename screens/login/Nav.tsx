@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     width: '60%',
   },
   navText: {
-    color: colors.white,
+    color: colors.light,
     textTransform: 'uppercase',
     fontSize: 16,
     marginVertical: 15,

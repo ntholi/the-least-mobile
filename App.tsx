@@ -1,8 +1,8 @@
 import { StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/login/LoginScreen';
+import HomeScreen from './screens/home/HomeScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,7 +17,11 @@ export default function App() {
             name='Login'
             component={LoginScreen}
           />
-          <Stack.Screen name='Home' component={HomeScreen} />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name='Home'
+            component={HomeScreen}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </>
