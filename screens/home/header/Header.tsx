@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import AvatarWrapper from './AvatarWrapper';
 import Filter from './Filter';
+import colors from '../../utils/colors';
 
 export default function Header() {
   return (
@@ -16,7 +17,7 @@ const styles = StyleSheet.create({
   container: {
     padding: 15,
     paddingTop: 40,
-    borderBottomColor: '#080808',
+    borderBottomColor: colors.darker,
     borderBottomWidth: 2,
     elevation: 2,
   },
