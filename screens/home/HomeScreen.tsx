@@ -1,13 +1,13 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import colors from '../utils/colors';
-import Header from './Header';
+import Header from './header/Header';
 
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <Header />
-      <Text>HomeScreen</Text>
+      <Text></Text>
     </View>
   );
 }
