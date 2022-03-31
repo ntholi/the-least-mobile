@@ -1,21 +1,23 @@
-import {
-  KeyboardAvoidingView,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import colors from '../utils/colors';
 
-export default function Nav() {
+type Props = {
+  showSignup: boolean;
+  setShowSignup: (showSignup: boolean) => void;
+};
+
+export default function Nav({ showSignup, setShowSignup }: Props) {
   return (
     <View style={styles.nav}>
-      <TouchableOpacity>
-        <Text style={[styles.navText, styles.active]}>Sing In</Text>
+      <TouchableOpacity onPress={() => setShowSignup(false)}>
+        <Text style={[styles.navText, !showSignup && styles.active]}>
+          Sing In
+        </Text>
       </TouchableOpacity>
-      <TouchableOpacity>
-        <Text style={styles.navText}>Sign Up</Text>
+      <TouchableOpacity onPress={() => setShowSignup(true)}>
+        <Text style={[styles.navText, showSignup && styles.active]}>
+          Sign Up
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -35,6 +37,6 @@ const styles = StyleSheet.create({
   },
   active: {
     borderBottomColor: colors.primary,
-    borderWidth: 2,
+    borderBottomWidth: 2,
   },
 });
