@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import colors from '../../utils/colors';
 import { House } from '../../../components/house/house';
@@ -11,7 +11,7 @@ type Props = {
 
 export default function Item({ house }: Props) {
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container}>
       <Text style={styles.title}>{house.name}</Text>
       <View style={styles.location}>
         <MaterialIcons name='location-on' size={15} color={'#fff'} />
@@ -27,7 +27,7 @@ export default function Item({ house }: Props) {
           <Text style={styles.moneyLabel}>Target</Text>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     padding: 20,
     paddingTop: 10,
     marginVertical: 8,
-    backgroundColor: '#346751',
+    backgroundColor: '#455A64',
     borderRadius: 10,
   },
   title: {

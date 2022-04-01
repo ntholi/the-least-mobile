@@ -1,9 +1,23 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import colors from '../../utils/colors';
 import { FontAwesome } from '@expo/vector-icons';
+import { auth } from '../../../components/firebase/config';
+import { UserInfo } from 'firebase/auth';
+
+function getFirstName(displayName: string | null | undefined) {
+  if (displayName) {
+    const name = displayName.split(' ');
+    return name[0];
+  }
+  return '';
+}
 
 export default function AvatarWrapper() {
+  const [user, setUser] = useState<UserInfo | null>(null);
+  useEffect(() => {
+    return auth.onAuthStateChanged(setUser);
+  }, []);
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.button}>
@@ -12,7 +26,7 @@ export default function AvatarWrapper() {
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.avatar}>
-        <Text style={styles.avatarText}>Thabo</Text>
+        <Text style={styles.avatarText}>{getFirstName(user?.displayName)}</Text>
         <Image
           source={require('../../../assets/images/avatar.jpg')}
           style={styles.avatarImage}
