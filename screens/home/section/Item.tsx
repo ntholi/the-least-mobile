@@ -4,14 +4,19 @@ import colors from '../../utils/colors';
 import { House } from '../../../components/house/house';
 import { MaterialIcons } from '@expo/vector-icons';
 import { money } from '../../../components/utils/format';
+import { NavigationProp, ParamListBase } from '@react-navigation/native';
 
 type Props = {
   house: House;
+  navigation: NavigationProp<ParamListBase>;
 };
 
-export default function Item({ house }: Props) {
+export default function Item({ house, navigation }: Props) {
+  function handlePress() {
+    navigation.navigate('House', { house });
+  }
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={handlePress}>
       <Text style={styles.title}>{house.name}</Text>
       <View style={styles.location}>
         <MaterialIcons name='location-on' size={15} color={'#fff'} />

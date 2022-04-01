@@ -5,11 +5,17 @@ import Header from './header/Header';
 import Nav from '../nav/Nav';
 import Section from './section/Section';
 
-export default function HomeScreen() {
+import { NavigationProp, ParamListBase } from '@react-navigation/native';
+
+type Props = {
+  navigation: NavigationProp<ParamListBase>;
+};
+
+export default function HomeScreen({ navigation }: Props) {
   return (
     <View style={styles.container}>
       <Header />
-      <Section />
+      <Section navigation={navigation} />
       <Nav />
     </View>
   );

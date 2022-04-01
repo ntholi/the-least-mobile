@@ -12,16 +12,17 @@ import Item from './Item';
 import { getHouses } from '../../../components/house/house-service';
 import { House } from '../../../components/house/house';
 import LoadingScreen from '../../utils/LoadingScreen';
+import { NavigationProp, ParamListBase } from '@react-navigation/native';
 
-function renderItem({ item }: { item: House }) {
-  return <Item house={item} />;
-}
+type Props = {
+  navigation: NavigationProp<ParamListBase>;
+};
 
 // const wait = (timeout: number) => {
 //   return new Promise((resolve) => setTimeout(resolve, timeout));
 // };
 
-export default function Section() {
+export default function Section({ navigation }: Props) {
   const [houses, setHouses] = useState<House[]>([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = React.useState(false);
@@ -30,6 +31,10 @@ export default function Section() {
   //   setRefreshing(true);
   //   wait(2000).then(() => setRefreshing(false));
   // }, []);
+
+  function renderItem({ item }: { item: House }) {
+    return <Item house={item} navigation={navigation} />;
+  }
 
   const refreshControl = (
     <RefreshControl
