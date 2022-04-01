@@ -14,7 +14,7 @@ export default function Item({ house }: Props) {
     <View style={styles.container}>
       <Text style={styles.title}>{house.name}</Text>
       <View style={styles.location}>
-        <MaterialIcons name='location-on' size={24} color={'#fff'} />
+        <MaterialIcons name='location-on' size={20} color={'#fff'} />
         <Text style={styles.locationText}>{house.address}</Text>
       </View>
       <View style={styles.goal}>
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     padding: 20,
     paddingTop: 10,
     marginVertical: 8,
-    backgroundColor: '#607D8B',
+    backgroundColor: '#00695C', //800
     borderRadius: 10,
   },
   title: {
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   },
   locationText: {
     color: colors.light,
-    marginLeft: 5,
+    marginLeft: 3,
   },
   goal: {
     flexDirection: 'row',
@@ -58,11 +58,12 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   moneyValue: {
-    color: '#A5D6A7',
+    color: '#fff',
     fontSize: 16,
-    fontWeight: 'bold',
   },
   moneyLabel: {
     color: colors.dim,
+    fontSize: 12,
+    fontWeight: 'bold',
   },
 });

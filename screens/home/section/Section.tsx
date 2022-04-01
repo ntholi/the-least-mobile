@@ -1,10 +1,14 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { FlatList, ScrollView, StyleSheet, Text, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import colors from '../../utils/colors';
 import Item from './Item';
 import { getHouses } from '../../../components/house/house-service';
 import { House } from '../../../components/house/house';
 import LoadingScreen from '../../utils/LoadingScreen';
+
+function renderItem({ item }: { item: House }) {
+  return <Item house={item} />;
+}
 
 export default function Section() {
   const [houses, setHouses] = useState<House[]>([]);
@@ -21,13 +25,12 @@ export default function Section() {
   }
 
   return (
-    <View>
-      <ScrollView contentContainerStyle={styles.contentContainer}>
-        {houses.map((house) => (
-          <Item house={house} />
-        ))}
-      </ScrollView>
-    </View>
+    <FlatList
+      contentContainerStyle={styles.contentContainer}
+      data={houses}
+      renderItem={renderItem}
+      keyExtractor={(item) => item.id}
+    />
   );
 }
 
