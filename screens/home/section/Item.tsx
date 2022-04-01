@@ -9,14 +9,14 @@ type Props = {
 
 export default function Item({ house }: Props) {
   return (
-    <View style={styles.item}>
+    <View style={styles.container}>
       <Text style={styles.title}>{house.name}</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  item: {
+  container: {
     padding: 20,
     marginVertical: 8,
     color: colors.light,

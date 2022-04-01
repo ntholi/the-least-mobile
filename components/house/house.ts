@@ -4,4 +4,5 @@ export interface House {
   address: string; // village
   region: string; // district
   country: string;
+  target: number;
 }
