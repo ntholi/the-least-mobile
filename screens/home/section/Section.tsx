@@ -34,6 +34,7 @@ export default function Section() {
 const styles = StyleSheet.create({
   contentContainer: {
     paddingVertical: 20,
+    paddingHorizontal: 20,
   },
   container: {
     flex: 1,
