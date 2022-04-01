@@ -1,15 +1,16 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import colors from '../../utils/colors';
+import { House } from '../../../components/house/house';
 
 type Props = {
-  title: string;
+  house: House;
 };
 
-export default function Item({ title }: Props) {
+export default function Item({ house }: Props) {
   return (
     <View style={styles.item}>
-      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.title}>{house.name}</Text>
     </View>
   );
 }

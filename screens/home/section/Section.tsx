@@ -1,33 +1,30 @@
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import colors from '../../utils/colors';
 import Item from './Item';
-
-const DATA = [
-  {
-    title: 'Main dishes',
-    data: ['Pizza', 'Burger', 'Risotto'],
-  },
-  {
-    title: 'Sides',
-    data: ['French Fries', 'Onion Rings', 'Fried Shrimps'],
-  },
-  {
-    title: 'Drinks',
-    data: ['Water', 'Coke', 'Beer'],
-  },
-  {
-    title: 'Desserts',
-    data: ['Cheese Cake', 'Ice Cream'],
-  },
-];
+import { getHouses } from '../../../components/house/house-service';
+import { House } from '../../../components/house/house';
+import LoadingScreen from '../../utils/LoadingScreen';
 
 export default function Section() {
+  const [houses, setHouses] = useState<House[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getHouses()
+      .then(setHouses)
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (loading) {
+    return <LoadingScreen />;
+  }
+
   return (
     <View>
       <ScrollView contentContainerStyle={styles.contentContainer}>
-        {DATA.map((item, index) => (
-          <Item title={item.title} />
+        {houses.map((house) => (
+          <Item house={house} />
         ))}
       </ScrollView>
     </View>

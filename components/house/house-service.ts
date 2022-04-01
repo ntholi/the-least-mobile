@@ -1,5 +1,12 @@
+import { collection, getDocs } from 'firebase/firestore';
+import { firestore } from '../firebase/config';
 import { House } from './house';
 
-export function getAllHouses(): Promise<House[]> {
-  return fetch('/api/houses').then((res) => res.json());
+export async function getHouses() {
+  const snapshot = await getDocs(collection(firestore, 'houses'));
+  const houses: House[] = [];
+  snapshot.forEach((doc) => {
+    houses.push(doc.data() as House);
+  });
+  return houses;
 }
