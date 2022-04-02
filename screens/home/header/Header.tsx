@@ -17,6 +17,8 @@ const styles = StyleSheet.create({
   container: {
     padding: 15,
     paddingTop: 40,
-    elevation: 2,
+    elevation: 5,
+    borderBottomColor: colors.darker,
+    borderBottomWidth: 2,
   },
 });

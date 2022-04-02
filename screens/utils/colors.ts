@@ -1,7 +1,8 @@
 export default {
   primary: '#4CAF50',
-  dark: '#212121',
-  darker: '#191919',
+  primary200: '#81C784',
+  dark: '#121212',
+  darker: '#090909',
   light: '#FFFFFF',
   dim: '#BDBDBD',
 };

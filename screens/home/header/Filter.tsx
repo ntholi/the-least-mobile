@@ -40,6 +40,6 @@ const styles = StyleSheet.create({
   },
   active: {
     backgroundColor: colors.primary,
-    borderBottomColor: colors.primary,
+    borderColor: colors.primary,
   },
 });

@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     padding: 20,
     paddingTop: 10,
     marginVertical: 8,
-    backgroundColor: '#455A64',
+    backgroundColor: '#212121',
     borderRadius: 10,
   },
   title: {
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   moneyValue: {
-    color: colors.primary,
+    color: colors.primary200,
     fontSize: 16,
   },
   moneyLabel: {
