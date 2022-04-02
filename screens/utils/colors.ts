@@ -5,3 +5,6 @@ export default {
   light: '#FFFFFF',
   dim: '#BDBDBD',
 };
+
+// dark: '#292929',
+// darker: '#090909',
