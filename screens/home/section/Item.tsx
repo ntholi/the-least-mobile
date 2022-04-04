@@ -47,7 +47,9 @@ const styles = StyleSheet.create({
   },
   title: {
     color: colors.light,
-    textTransform: 'uppercase',
+    // textTransform: 'uppercase',
+    fontSize: 18,
+    letterSpacing: 1,
   },
   location: {
     flexDirection: 'row',

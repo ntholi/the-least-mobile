@@ -1,5 +1,5 @@
 export const money = (value: number | undefined) => {
-  const cur = 'R';
+  const cur = 'M';
   if (value) {
     return (
       cur +
