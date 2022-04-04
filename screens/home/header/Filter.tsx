@@ -5,8 +5,8 @@ import colors from '../../utils/colors';
 export default function Filter() {
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={[styles.button, styles.active]}>
-        <Text style={styles.buttonText}>All</Text>
+      <TouchableOpacity style={[styles.button, styles.activeButton]}>
+        <Text style={[styles.buttonText, styles.activeText]}>All</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>Favorites</Text>
@@ -38,8 +38,10 @@ const styles = StyleSheet.create({
     color: colors.light,
     fontSize: 12,
   },
-  active: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary,
+  activeButton: {
+    backgroundColor: colors.light,
+  },
+  activeText: {
+    color: colors.darker,
   },
 });

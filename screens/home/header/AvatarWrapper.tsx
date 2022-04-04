@@ -21,7 +21,7 @@ export default function AvatarWrapper() {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.button}>
-        <FontAwesome name='money' size={20} color={'white'} />
+        <FontAwesome name='money' size={20} color={colors.black} />
         <Text style={styles.buttonText}>Donate Now</Text>
       </TouchableOpacity>
 
@@ -48,10 +48,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 8,
     borderRadius: 5,
-    backgroundColor: '#455A64',
+    backgroundColor: colors.primary200,
   },
   buttonText: {
-    color: colors.light,
+    color: colors.darker,
+    // color: colors.light,
     marginLeft: 10,
     fontSize: 12,
   },

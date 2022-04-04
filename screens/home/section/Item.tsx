@@ -19,7 +19,7 @@ export default function Item({ house, navigation }: Props) {
     <TouchableOpacity style={styles.container} onPress={handlePress}>
       <Text style={styles.title}>{house.name}</Text>
       <View style={styles.location}>
-        <MaterialIcons name='location-on' size={15} color={'#fff'} />
+        <MaterialIcons name='location-on' size={15} color={colors.light} />
         <Text style={styles.locationText}>{house.address}</Text>
       </View>
       <View style={styles.goal}>
@@ -41,8 +41,9 @@ const styles = StyleSheet.create({
     padding: 20,
     paddingTop: 10,
     marginVertical: 8,
-    backgroundColor: '#212121',
+    backgroundColor: colors.overlay,
     borderRadius: 10,
+    elevation: 5,
   },
   title: {
     color: colors.light,

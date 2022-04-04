@@ -60,7 +60,7 @@ export const loginStyles = StyleSheet.create({
     paddingVertical: 5,
     marginBottom: 10,
     borderRadius: 20,
-    backgroundColor: '#fff',
+    backgroundColor: colors.light,
   },
   buttonContainer: {
     marginTop: 20,
@@ -74,6 +74,6 @@ export const loginStyles = StyleSheet.create({
     borderRadius: 20,
     backgroundColor: colors.primary,
     textTransform: 'uppercase',
-    color: '#fff',
+    color: colors.light,
   },
 });

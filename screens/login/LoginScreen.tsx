@@ -8,6 +8,7 @@ import LoadingScreen from '../utils/LoadingScreen';
 import Logo from '../utils/Logo';
 import Login from './Login';
 import Signup from './Signup';
+import colors from '../utils/colors';
 
 type Props = {
   navigation: NavigationProp<ParamListBase>;
@@ -47,7 +48,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     paddingTop: '50%',
-    backgroundColor: '#212121',
+    backgroundColor: colors.overlay,
   },
   logo: {
     marginBottom: 20,
