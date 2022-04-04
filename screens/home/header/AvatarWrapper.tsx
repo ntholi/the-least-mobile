@@ -52,7 +52,6 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: colors.darker,
-    // color: colors.light,
     marginLeft: 10,
     fontSize: 12,
   },

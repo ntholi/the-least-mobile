@@ -24,12 +24,12 @@ export default function Item({ house, navigation }: Props) {
       </View>
       <View style={styles.goal}>
         <View>
-          <Text style={styles.moneyValue}>{money(0)}</Text>
+          <Text style={[{ color: colors.primary200 }]}>{money(0)}</Text>
           <Text style={styles.moneyLabel}>Donated</Text>
         </View>
         <View>
-          <Text style={styles.moneyValue}>{money(0)}</Text>
-          <Text style={styles.moneyLabel}>Target</Text>
+          <Text style={[{ color: '#B0BEC5' }]}>{money(0)}</Text>
+          <Text style={[styles.moneyLabel]}>Target</Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -64,13 +64,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginTop: 10,
   },
-  moneyValue: {
-    color: colors.primary200,
-    fontSize: 16,
-  },
   moneyLabel: {
     color: colors.dim,
     fontSize: 12,
-    // fontWeight: 'bold',
   },
 });

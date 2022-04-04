@@ -3,8 +3,8 @@ import React from 'react';
 import { FontAwesome5 } from '@expo/vector-icons';
 import colors from '../utils/colors';
 
-const inactive = '#8e8e93';
-const active = '#f5f5f5';
+const inactive = colors.dim;
+const active = colors.light;
 
 export default function Nav() {
   return (
@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: 10,
     paddingVertical: 5,
-    borderRightColor: '#9E9E9E',
   },
   buttonText: {
     color: colors.light,
