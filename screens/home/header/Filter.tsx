@@ -24,7 +24,7 @@ export default function Filter() {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    marginTop: 25,
+    marginTop: 30,
   },
   button: {
     paddingVertical: 8,
