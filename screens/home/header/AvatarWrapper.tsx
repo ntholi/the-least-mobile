@@ -1,9 +1,9 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import colors from '../../utils/colors';
-import { FontAwesome } from '@expo/vector-icons';
 import { auth } from '../../../components/firebase/config';
 import { UserInfo } from 'firebase/auth';
+import Logo from '../../utils/Logo';
 
 function getFirstName(displayName: string | null | undefined) {
   if (displayName) {
@@ -20,10 +20,7 @@ export default function AvatarWrapper() {
   }, []);
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.button}>
-        <FontAwesome name='money' size={20} color={colors.black} />
-        <Text style={styles.buttonText}>Donate Now</Text>
-      </TouchableOpacity>
+      <Logo size={20} />
 
       <TouchableOpacity style={styles.avatar}>
         <Text style={styles.avatarText}>{getFirstName(user?.displayName)}</Text>
@@ -60,8 +57,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   avatarImage: {
-    width: 39,
-    height: 39,
+    width: 28,
+    height: 28,
     borderRadius: 20,
     justifyContent: 'center',
   },

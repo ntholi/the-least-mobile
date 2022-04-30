@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     paddingTop: '50%',
-    backgroundColor: colors.overlay,
+    backgroundColor: colors.dark,
   },
   logo: {
     marginBottom: 20,
