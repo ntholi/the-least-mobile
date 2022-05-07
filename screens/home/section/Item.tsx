@@ -2,9 +2,10 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import colors from '../../utils/colors';
 import { House } from '../../../components/house/house';
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { money } from '../../../components/utils/format';
 import { NavigationProp, ParamListBase } from '@react-navigation/native';
+import { LinearGradient } from 'expo-linear-gradient';
 
 type Props = {
   house: House;
@@ -16,34 +17,66 @@ export default function Item({ house, navigation }: Props) {
     navigation.navigate('House', { house });
   }
   return (
-    <TouchableOpacity style={styles.container} onPress={handlePress}>
-      <Text style={styles.title}>{house.name}</Text>
-      <View style={styles.location}>
-        <MaterialIcons name='location-on' size={15} color={colors.light} />
-        <Text style={styles.locationText}>{house.address}</Text>
-      </View>
-      <View style={styles.goal}>
-        <View>
-          <Text style={[{ color: colors.primary200 }]}>{money(0)}</Text>
-          <Text style={styles.moneyLabel}>Donated</Text>
+    <TouchableOpacity onPress={handlePress}>
+      <LinearGradient style={styles.container} colors={['#212121', '#212121']}>
+        <View style={styles.icon}>
+          <MaterialCommunityIcons
+            name='folder-home-outline'
+            size={56}
+            color='white'
+          />
         </View>
-        <View>
-          <Text style={[{ color: '#B0BEC5' }]}>{money(0)}</Text>
-          <Text style={[styles.moneyLabel]}>Target</Text>
+        <View style={styles.content}>
+          <View>
+            <Text style={styles.title}>{house.name}</Text>
+            <View style={styles.location}>
+              <MaterialIcons
+                name='location-on'
+                size={15}
+                color={colors.light}
+              />
+              <Text style={styles.locationText}>{house.address}</Text>
+            </View>
+          </View>
+          <View>
+            <View style={styles.donatedContainer}>
+              <Text style={[{ color: colors.primary200 }]}>{money(0)}</Text>
+              <Text style={styles.moneyLabel}>Donated</Text>
+            </View>
+            <View>
+              <Text style={[{ color: '#B0BEC5' }]}>{money(0)}</Text>
+              <Text style={[styles.moneyLabel]}>Target</Text>
+            </View>
+          </View>
         </View>
-      </View>
+      </LinearGradient>
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
-    paddingTop: 10,
+    flexDirection: 'row',
     marginVertical: 8,
     backgroundColor: colors.overlay,
     borderRadius: 10,
     elevation: 5,
+  },
+  icon: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    backgroundColor: '#191919',
+  },
+  content: {
+    flex: 1,
+    padding: 20,
+    paddingTop: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  donatedContainer: {
+    marginBottom: 10,
   },
   title: {
     color: colors.light,
@@ -68,6 +101,6 @@ const styles = StyleSheet.create({
   },
   moneyLabel: {
     color: colors.dim,
-    fontSize: 12,
+    fontSize: 11,
   },
 });
