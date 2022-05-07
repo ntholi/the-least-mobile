@@ -1,11 +1,4 @@
-import {
-  FlatList,
-  RefreshControl,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import { FlatList, RefreshControl, StyleSheet } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import colors from '../../utils/colors';
 import Item from './Item';

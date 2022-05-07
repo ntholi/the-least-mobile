@@ -3,9 +3,9 @@ import React from 'react';
 import colors from '../../utils/colors';
 import { House } from '../../../components/house/house';
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
-import { money } from '../../../components/utils/format';
 import { NavigationProp, ParamListBase } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
+import Progress from './Progress';
 
 type Props = {
   house: House;
@@ -22,8 +22,8 @@ export default function Item({ house, navigation }: Props) {
         <View style={styles.icon}>
           <MaterialCommunityIcons
             name='folder-home-outline'
-            size={56}
-            color='white'
+            size={40}
+            color={getColor()}
           />
         </View>
         <View style={styles.content}>
@@ -38,21 +38,18 @@ export default function Item({ house, navigation }: Props) {
               <Text style={styles.locationText}>{house.address}</Text>
             </View>
           </View>
-          <View>
-            <View style={styles.donatedContainer}>
-              <Text style={[{ color: colors.primary200 }]}>{money(0)}</Text>
-              <Text style={styles.moneyLabel}>Donated</Text>
-            </View>
-            <View>
-              <Text style={[{ color: '#B0BEC5' }]}>{money(0)}</Text>
-              <Text style={[styles.moneyLabel]}>Target</Text>
-            </View>
-          </View>
+          <Progress donated={100} target={200} />
         </View>
       </LinearGradient>
     </TouchableOpacity>
   );
 }
+
+const getColor = () => {
+  const colorList = ['#CFD8DC'];
+  const random = Math.floor(Math.random() * colorList.length);
+  return colorList[random];
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -72,15 +69,10 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     paddingTop: 10,
-    flexDirection: 'row',
     justifyContent: 'space-between',
-  },
-  donatedContainer: {
-    marginBottom: 10,
   },
   title: {
     color: colors.light,
-    // textTransform: 'uppercase',
     fontSize: 18,
     letterSpacing: 1,
   },
@@ -93,14 +85,5 @@ const styles = StyleSheet.create({
     color: colors.light,
     marginLeft: 3,
     fontSize: 12,
-  },
-  goal: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 10,
-  },
-  moneyLabel: {
-    color: colors.dim,
-    fontSize: 11,
   },
 });
