@@ -16,6 +16,7 @@ export default function Item({ house, navigation }: Props) {
   function handlePress() {
     navigation.navigate('House', { house });
   }
+
   return (
     <TouchableOpacity onPress={handlePress}>
       <LinearGradient style={styles.container} colors={['#212121', '#212121']}>
@@ -38,7 +39,7 @@ export default function Item({ house, navigation }: Props) {
               <Text style={styles.locationText}>{house.address}</Text>
             </View>
           </View>
-          <Progress donated={100} target={200} />
+          <Progress donated={house.donated} target={house.target} />
         </View>
       </LinearGradient>
     </TouchableOpacity>

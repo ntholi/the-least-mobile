@@ -17,11 +17,11 @@ export default function Progress({ donated, target }: Props) {
       </View>
       <View style={styles().goal}>
         <View>
-          <Text style={[{ color: colors.primary200 }]}>{money(0)}</Text>
+          <Text style={[{ color: colors.primary200 }]}>{money(donated)}</Text>
           <Text style={styles().moneyLabel}>Donated</Text>
         </View>
         <View>
-          <Text style={[{ color: '#B0BEC5' }]}>{money(0)}</Text>
+          <Text style={[{ color: '#B0BEC5' }]}>{money(target)}</Text>
           <Text style={[styles().moneyLabel]}>Target</Text>
         </View>
       </View>

@@ -5,4 +5,5 @@ export interface House {
   region: string; // district
   country: string;
   target: number;
+  donated: number;
 }
