@@ -6,7 +6,9 @@ export async function getHouses() {
   const snapshot = await getDocs(collection(firestore, 'houses'));
   const houses: House[] = [];
   snapshot.forEach((doc) => {
-    houses.push(doc.data() as House);
+    const house = doc.data() as House;
+    house.id = doc.id;
+    houses.push(house);
   });
   return houses;
 }
