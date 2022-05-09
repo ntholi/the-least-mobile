@@ -22,7 +22,9 @@ export default function Progress({ donated, target }: Props) {
         </View>
         <View>
           <Text style={[{ color: '#B0BEC5' }]}>{money(target)}</Text>
-          <Text style={[styles().moneyLabel]}>Target</Text>
+          <Text style={[styles().moneyLabel, styles().targetLabel]}>
+            Target
+          </Text>
         </View>
       </View>
     </View>
@@ -54,5 +56,8 @@ const styles = (percent?: number) =>
     moneyLabel: {
       color: colors.dim,
       fontSize: 10,
+    },
+    targetLabel: {
+      textAlign: 'right',
     },
   });

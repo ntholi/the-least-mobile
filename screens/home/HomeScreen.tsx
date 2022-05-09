@@ -1,11 +1,10 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { NavigationProp, ParamListBase } from '@react-navigation/native';
 import React from 'react';
 import colors from '../utils/colors';
 import Header from './header/Header';
 import Nav from '../nav/Nav';
 import Section from './section/Section';
-
-import { NavigationProp, ParamListBase } from '@react-navigation/native';
 
 type Props = {
   navigation: NavigationProp<ParamListBase>;

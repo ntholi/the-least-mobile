@@ -5,13 +5,20 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { NavigationProp, ParamListBase } from '@react-navigation/native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import colors from '../../utils/colors';
 
+type Props = {
+  navigation: NavigationProp<ParamListBase>;
+};
 export default function Filter() {
   return (
     <ScrollView style={styles.container} horizontal={true}>
-      <TouchableOpacity style={styles.donateBtn}>
+      <TouchableOpacity
+        style={styles.donateBtn}
+        // onPress={() => navigation.navigate('Details')}
+      >
         <FontAwesome5 name='money-bill' size={18} color='white' />
         <Text style={[styles.buttonText, { marginLeft: 6 }]}>Donate</Text>
       </TouchableOpacity>

@@ -13,7 +13,7 @@ function getFirstName(displayName: string | null | undefined) {
   return '';
 }
 
-export default function AvatarWrapper() {
+export default function TopSection() {
   const [user, setUser] = useState<UserInfo | null>(null);
   useEffect(() => {
     return auth.onAuthStateChanged(setUser);
