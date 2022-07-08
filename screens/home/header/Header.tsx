@@ -4,11 +4,15 @@ import TopSection from './TopSection';
 import Filter from './Filter';
 import colors from '../../utils/colors';
 
-export default function Header() {
+type Props = {
+  navigation: NavigationProp<ParamListBase>;
+};
+
+export default function Header({ navigation }): Props {
   return (
     <View style={styles.container}>
       <TopSection />
-      <Filter />
+      <Filter navigation={navigation} />
     </View>
   );
 }

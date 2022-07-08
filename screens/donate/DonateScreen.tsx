@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import colors from '../utils/colors';
-import { Header } from 'react-native/Libraries/NewAppScreen';
 import Nav from '../nav/Nav';
+import Header from '../home/header/Header';
 
 export default function DonateScreen() {
   return (

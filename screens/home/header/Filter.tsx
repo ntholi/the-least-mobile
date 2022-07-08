@@ -12,12 +12,13 @@ import colors from '../../utils/colors';
 type Props = {
   navigation: NavigationProp<ParamListBase>;
 };
-export default function Filter() {
+
+export default function Filter({ navigation }: Props) {
   return (
     <ScrollView style={styles.container} horizontal={true}>
       <TouchableOpacity
         style={styles.donateBtn}
-        // onPress={() => navigation.navigate('Details')}
+        onPress={() => navigation.navigate('Donate')}
       >
         <FontAwesome5 name='money-bill' size={18} color='white' />
         <Text style={[styles.buttonText, { marginLeft: 6 }]}>Donate</Text>

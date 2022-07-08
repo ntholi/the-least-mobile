@@ -13,7 +13,7 @@ type Props = {
 export default function HomeScreen({ navigation }: Props) {
   return (
     <View style={styles.container}>
-      <Header />
+      <Header navigation={navigation} />
       <Section navigation={navigation} />
       <Nav />
     </View>
