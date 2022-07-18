@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:theleast/colors.dart';
 import 'package:theleast/firebase_options.dart';
-import 'package:theleast/screen/home_page.dart';
+import 'package:theleast/screen/auth/landing_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: AppColors.primaryColor,
       ),
-      home: const HomePage(),
+      home: const LandingPage(),
     );
   }
 }
