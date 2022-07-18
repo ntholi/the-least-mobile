@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:theleast/config/firebase_options.dart';
+import 'package:theleast/colors.dart';
+import 'package:theleast/firebase_options.dart';
 import 'package:theleast/screen/home_page.dart';
 
 Future<void> main() async {
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'TheLeast',
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: AppColors.primaryColor,
       ),
       home: const HomePage(),
     );
