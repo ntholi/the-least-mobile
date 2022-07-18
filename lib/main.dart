@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:theleast/colors.dart';
+import 'package:theleast/ui/colors.dart';
 import 'package:theleast/firebase_options.dart';
 import 'package:theleast/screen/auth/landing_page.dart';
 

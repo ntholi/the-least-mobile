@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:theleast/colors.dart';
+import 'package:theleast/ui/button.dart';
 import 'package:theleast/utils/validations.dart';
 
 class SignInForm extends StatefulWidget {
@@ -38,26 +38,12 @@ class _SignInFormState extends State<SignInForm> {
             validator: (value) => validatePassword(value),
             controller: _password,
           ),
-          Container(
-            margin: const EdgeInsets.only(top: 20),
-            width: MediaQuery.of(context).size.width / 1.4,
-            decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(Radius.circular(20)),
-              color: AppColors.primaryColor,
-            ),
-            child: MaterialButton(
-              child: const Text(
-                "SIGN IN",
-                style: TextStyle(color: Colors.white),
-              ),
-              onPressed: () async {
-                if (_formKey.currentState!.validate()) {
-                  log("Signing in..");
-                  // await signin(_email.text, _password.text);
-                }
-              },
-            ),
-          ),
+          Button(
+            "SIGN IN",
+            onClick: () async {
+              log("Signing in..");
+            },
+          )
         ],
       ),
     );
