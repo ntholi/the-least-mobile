@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ls.org.theleast">
    <application
-        android:label="theleast"
+        android:label="TheLeast"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
