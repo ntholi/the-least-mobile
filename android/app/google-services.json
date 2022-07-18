@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "848730782552",
+    "project_id": "the-least",
+    "storage_bucket": "the-least.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:848730782552:android:fb518bdbdc871e693d432d",
+        "android_client_info": {
+          "package_name": "ls.org.theleast"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "848730782552-2g98vttkak21eb6hb5djbkvv0icomj9m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCjz4F7QJdPfg7dHgQ-vrx5Qa0M4mlIDg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "848730782552-2g98vttkak21eb6hb5djbkvv0icomj9m.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "848730782552-7idfbq5dmutjk8ihpvsikcaov0c506lo.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "ls.org.theleast"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
