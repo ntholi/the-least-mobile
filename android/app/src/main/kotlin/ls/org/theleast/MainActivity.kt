@@ -1,4 +1,4 @@
-package ls.org.theleast.theleast
+package ls.org.theleast
 
 import io.flutter.embedding.android.FlutterActivity
 
