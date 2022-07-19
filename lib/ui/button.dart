@@ -2,8 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:theleast/ui/colors.dart';
 
 class Button extends StatelessWidget {
-  const Button(this.title, {required this.onClick, Key? key}) : super(key: key);
+  Button(this.title, {required this.onClick, bool? whiteBackground, Key? key})
+      : super(key: key) {
+    if (whiteBackground == null) {
+      this.whiteBackground = false;
+    } else {
+      this.whiteBackground = whiteBackground;
+    }
+  }
 
+  late final bool whiteBackground;
   final String title;
   final VoidCallback onClick;
 
@@ -14,13 +22,16 @@ class Button extends StatelessWidget {
       width: MediaQuery.of(context).size.width / 1.4,
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(Radius.circular(20)),
-        color: AppColors.primaryColor,
+        border: Border.all(color: AppColors.primaryColor),
+        color: whiteBackground ? AppColors.primaryColor : Colors.white,
       ),
       child: MaterialButton(
         onPressed: onClick,
         child: Text(
-          title,
-          style: const TextStyle(color: Colors.white),
+          title.toUpperCase(),
+          style: TextStyle(
+            color: (whiteBackground ? Colors.white : AppColors.primaryColor),
+          ),
         ),
       ),
     );
