@@ -23,14 +23,14 @@ class Button extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(Radius.circular(20)),
         border: Border.all(color: AppColors.primaryColor),
-        color: whiteBackground ? AppColors.primaryColor : Colors.white,
+        color: whiteBackground ? Colors.white : AppColors.primaryColor,
       ),
       child: MaterialButton(
         onPressed: onClick,
         child: Text(
           title.toUpperCase(),
           style: TextStyle(
-            color: (whiteBackground ? Colors.white : AppColors.primaryColor),
+            color: (whiteBackground ? AppColors.primaryColor : Colors.white),
           ),
         ),
       ),
