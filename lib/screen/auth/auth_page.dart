@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:theleast/screen/auth/signin_page.dart';
 import 'package:theleast/ui/button.dart';
 import 'package:theleast/ui/colors.dart';
+import 'package:theleast/ui/logo.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({Key? key}) : super(key: key);
@@ -10,17 +11,19 @@ class AuthPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
             flex: 4,
             child: Container(
+              width: double.maxFinite,
               decoration: BoxDecoration(
                 color: AppColors.primaryColor,
                 borderRadius: const BorderRadius.only(
-                  bottomRight: Radius.circular(100),
+                  bottomRight: Radius.circular(90),
                 ),
               ),
-              child: Image.asset("images/logo.png"),
+              child: Center(child: Logo()),
             ),
           ),
           Expanded(

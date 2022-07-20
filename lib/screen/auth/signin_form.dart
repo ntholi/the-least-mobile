@@ -20,31 +20,34 @@ class _SignInFormState extends State<SignInForm> {
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          TextFormField(
-            controller: _email,
-            validator: (value) => validateEmail(value),
-            decoration: const InputDecoration(
-              label: Text("Email"),
+      child: Container(
+        width: MediaQuery.of(context).size.width / 1.4,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextFormField(
+              controller: _email,
+              validator: (value) => validateEmail(value),
+              decoration: const InputDecoration(
+                label: Text("Email"),
+              ),
             ),
-          ),
-          TextFormField(
-            decoration: const InputDecoration(
-              label: Text("Password"),
+            TextFormField(
+              decoration: const InputDecoration(
+                label: Text("Password"),
+              ),
+              obscureText: true,
+              validator: (value) => validatePassword(value),
+              controller: _password,
             ),
-            obscureText: true,
-            validator: (value) => validatePassword(value),
-            controller: _password,
-          ),
-          Button(
-            "SIGN IN",
-            onClick: () async {
-              log("Signing in..");
-            },
-          )
-        ],
+            Button(
+              "SIGN IN",
+              onClick: () async {
+                log("Signing in..");
+              },
+            )
+          ],
+        ),
       ),
     );
   }
