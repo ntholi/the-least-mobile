@@ -20,10 +20,11 @@ class _SignInFormState extends State<SignInForm> {
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
-      child: Container(
+      child: SizedBox(
         width: MediaQuery.of(context).size.width / 1.4,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             TextFormField(
               controller: _email,

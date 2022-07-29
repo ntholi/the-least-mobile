@@ -22,7 +22,7 @@ class Button extends StatelessWidget {
       width: MediaQuery.of(context).size.width / 1.4,
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(Radius.circular(20)),
-        border: Border.all(color: AppColors.primaryColor),
+        border: Border.all(color: Colors.white),
         color: whiteBackground ? Colors.white : AppColors.primaryColor,
       ),
       child: MaterialButton(

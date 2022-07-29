@@ -16,8 +16,8 @@ class Logo extends StatelessWidget {
         fontFamily: 'Righteous',
         shadows: [
           Shadow(
-            color: Colors.black.withOpacity(0.5),
-            offset: const Offset(2, 2),
+            color: Colors.black.withOpacity(0.3),
+            offset: const Offset(1, 1),
           )
         ],
       ),
