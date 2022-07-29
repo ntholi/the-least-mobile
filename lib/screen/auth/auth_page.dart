@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:theleast/screen/auth/signin_page.dart';
+import 'package:theleast/screen/auth/signup_page.dart';
 import 'package:theleast/ui/button.dart';
 import 'package:theleast/ui/colors.dart';
 import 'package:theleast/ui/logo.dart';
@@ -15,23 +16,27 @@ class AuthPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
-            child: Container(
+            child: SizedBox(
               width: double.maxFinite,
-              decoration: BoxDecoration(
-                color: AppColors.primaryColor,
-                // borderRadius: const BorderRadius.only(
-                //   bottomRight: Radius.circular(90),
-                // ),
-              ),
               child: Center(child: Logo()),
             ),
           ),
-          SizedBox(
+          Container(
             height: 200,
+            width: MediaQuery.of(context).size.width / 1.4,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Button("Sign Up", whiteBackground: true, onClick: () {}),
+                Button("Sign Up", whiteBackground: true, onClick: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SignUpPage(),
+                    ),
+                  );
+                }),
+                const SizedBox(height: 20),
                 Button("Sign In", onClick: () {
                   Navigator.push(
                     context,

@@ -18,8 +18,6 @@ class Button extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 20),
-      width: MediaQuery.of(context).size.width / 1.4,
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(Radius.circular(20)),
         border: Border.all(color: Colors.white),
