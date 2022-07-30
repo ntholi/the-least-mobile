@@ -12,7 +12,6 @@ class User {
       'firstName': firstName,
       'lastName': lastName,
       'email': email,
-      'password': password,
     };
   }
 }
