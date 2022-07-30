@@ -1,6 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:theleast/service/user/user.dart';
+import 'package:theleast/service/user/user_service.dart';
 import 'package:theleast/ui/button.dart';
 import 'package:theleast/utils/validations.dart';
 
@@ -73,7 +75,13 @@ class _SignUpFormState extends State<SignUpForm> {
               "REGISTER",
               onClick: () async {
                 if (_formKey.currentState!.validate()) {
-                  log("Signing in..");
+                  User user = User(
+                    _firstName.text,
+                    _lastName.text,
+                    _email.text,
+                    _password.text,
+                  );
+                  createUser(user);
                 }
               },
             )
