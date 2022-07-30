@@ -12,6 +12,7 @@ class SignUpForm extends StatefulWidget {
 }
 
 class _SignUpFormState extends State<SignUpForm> {
+  final _formKey = GlobalKey<FormState>();
   final _firstName = TextEditingController();
   final _lastName = TextEditingController();
   final _email = TextEditingController();
@@ -21,53 +22,63 @@ class _SignUpFormState extends State<SignUpForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          TextFormField(
-            controller: _lastName,
-            decoration: const InputDecoration(
-              label: Text("Names"),
+      key: _formKey,
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            TextFormField(
+              controller: _firstName,
+              decoration: const InputDecoration(
+                label: Text("First Name"),
+              ),
             ),
-          ),
-          TextFormField(
-            controller: _email,
-            validator: (value) => validateEmail(value),
-            decoration: const InputDecoration(
-              label: Text("Email"),
+            TextFormField(
+              controller: _lastName,
+              decoration: const InputDecoration(
+                label: Text("Last Name"),
+              ),
             ),
-          ),
-          TextFormField(
-            decoration: const InputDecoration(
-              label: Text("Password"),
+            TextFormField(
+              controller: _email,
+              validator: (value) => validateEmail(value),
+              decoration: const InputDecoration(
+                label: Text("Email"),
+              ),
             ),
-            obscureText: true,
-            validator: (value) => validatePassword(value),
-            controller: _password,
-          ),
-          TextFormField(
-            decoration: const InputDecoration(
-              label: Text("Confirm Password"),
+            TextFormField(
+              decoration: const InputDecoration(
+                label: Text("Password"),
+              ),
+              obscureText: true,
+              validator: (value) => validatePassword(value),
+              controller: _password,
             ),
-            obscureText: true,
-            validator: (value) {
-              String? msg = validatePassword(value);
-              if (msg == null && _password.text != value) {
-                return "Passwords Must Match";
-              }
-              return msg;
-            },
-            controller: _confirmPassword,
-          ),
-          SizedBox(height: 20),
-          Button(
-            "REGISTER",
-            onClick: () async {
-              log("Signing in..");
-            },
-          )
-        ],
+            TextFormField(
+              decoration: const InputDecoration(
+                label: Text("Confirm Password"),
+              ),
+              obscureText: true,
+              validator: (value) {
+                if (_password.text != value) {
+                  return "Passwords Must Match";
+                }
+                return null;
+              },
+              controller: _confirmPassword,
+            ),
+            const SizedBox(height: 20),
+            Button(
+              "REGISTER",
+              onClick: () async {
+                if (_formKey.currentState!.validate()) {
+                  log("Signing in..");
+                }
+              },
+            )
+          ],
+        ),
       ),
     );
   }

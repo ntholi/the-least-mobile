@@ -15,7 +15,7 @@ class SignUpPage extends StatelessWidget {
             flex: 30,
             child: Container(
               color: AppColors.primaryColor,
-              child: Center(child: Logo()),
+              child: Center(child: Logo(fontSize: 50)),
             ),
           ),
           Expanded(
