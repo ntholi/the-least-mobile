@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:theleast/screen/auth/sign_up_form.dart';
+import 'package:theleast/screen/auth/signup_form.dart';
 import 'package:theleast/ui/colors.dart';
 import 'package:theleast/ui/logo.dart';
 

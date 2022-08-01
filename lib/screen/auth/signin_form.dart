@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:theleast/service/auth/auth_service.dart';
 import 'package:theleast/ui/button.dart';
 
 class SignInForm extends StatefulWidget {
@@ -17,11 +18,10 @@ class _SignInFormState extends State<SignInForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      child: SizedBox(
-        width: MediaQuery.of(context).size.width / 1.4,
+      child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             TextFormField(
               controller: _email,
@@ -36,10 +36,13 @@ class _SignInFormState extends State<SignInForm> {
               obscureText: true,
               controller: _password,
             ),
+            const SizedBox(height: 20),
             Button(
               "SIGN IN",
               onClick: () async {
-                log("Signing in..");
+                await signin(_email.text, _password.text);
+                if (!mounted) return;
+                Navigator.of(context).pop();
               },
             )
           ],

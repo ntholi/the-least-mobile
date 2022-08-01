@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:theleast/screen/auth/auth_page.dart';
+import 'package:theleast/screen/auth/signin_page.dart';
 import 'package:theleast/screen/home_page.dart';
 
 class LandingPage extends StatelessWidget {
@@ -11,11 +12,10 @@ class LandingPage extends StatelessWidget {
     return StreamBuilder<User?>(
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
-        if (snapshot.hasData &&
-            snapshot.connectionState == ConnectionState.active) {
+        if (snapshot.connectionState == ConnectionState.active) {
           User? user = snapshot.data;
           if (user == null) {
-            return const AuthPage();
+            return AuthPage();
           }
           return const HomePage();
         }

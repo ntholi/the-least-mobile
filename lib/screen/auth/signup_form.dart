@@ -81,7 +81,9 @@ class _SignUpFormState extends State<SignUpForm> {
                     _email.text,
                     _password.text,
                   );
-                  createUser(user);
+                  await createUser(user);
+                  if (!mounted) return;
+                  Navigator.of(context).pop();
                 }
               },
             )
