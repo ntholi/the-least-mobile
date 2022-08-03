@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:theleast/screen/house/house_item.dart';
+import 'package:theleast/screen/house/house_list.dart';
 import 'package:theleast/service/house/house.dart';
 import 'package:theleast/service/house/house_service.dart';
 import 'package:theleast/ui/colors.dart';
@@ -78,58 +79,13 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
               ),
-              Expanded(
-                child: FutureBuilder(
-                  builder: (ctx, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.done) {
-                      if (snapshot.hasError) {
-                        return Center(
-                          child: Text('${snapshot.error} occurred'),
-                        );
-
-                        // if we got our data
-                      } else if (snapshot.hasData) {
-                        var items = snapshot.data as List<House>;
-                        return ListView.builder(
-                            padding: const EdgeInsets.all(8),
-                            itemCount: items.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              final houseItem = HouseItem(items[index]);
-                              return ListTile(
-                                title: houseItem.buildTitle(context),
-                                subtitle: houseItem.buildSubtitle(context),
-                              );
-                            });
-                      }
-                    }
-
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  },
-                  future: getHouses(),
-                ),
+              const Expanded(
+                child: HouseList(),
               ),
             ],
           ),
         ),
       ),
-    );
-  }
-
-  Future<ListView> listBuilder() async {
-    var items = await getHouses();
-    return ListView.builder(
-      itemCount: items.length,
-      itemBuilder: (context, index) {
-        log("We are at $index with ${items[index]}");
-        final item = HouseItem(items[index]);
-
-        return ListTile(
-          title: item.buildTitle(context),
-          subtitle: item.buildSubtitle(context),
-        );
-      },
     );
   }
 }
