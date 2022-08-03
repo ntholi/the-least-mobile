@@ -2,6 +2,10 @@ import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
 
+User? getUser() {
+  return FirebaseAuth.instance.currentUser;
+}
+
 Future<void> signin(String email, String password) async {
   var auth = FirebaseAuth.instance;
   try {

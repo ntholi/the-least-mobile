@@ -1,6 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:theleast/screen/auth/auth_page.dart';
 import 'package:theleast/screen/landing_page.dart';
 import 'package:theleast/ui/colors.dart';
 import 'package:theleast/firebase_options.dart';
@@ -12,7 +11,7 @@ Future<void> main() async {
   //Changes status bar only for android
   //https://stackoverflow.com/questions/52489458/how-to-change-status-bar-color-in-flutter
   SystemChrome.setSystemUIOverlayStyle(
-    SystemUiOverlayStyle(statusBarColor: Colors.green[900]),
+    SystemUiOverlayStyle(statusBarColor: Colors.green[800]),
   );
 
   await Firebase.initializeApp(
