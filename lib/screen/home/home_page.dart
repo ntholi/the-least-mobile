@@ -1,10 +1,5 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:theleast/screen/house/house_item.dart';
 import 'package:theleast/screen/house/house_list.dart';
-import 'package:theleast/service/house/house.dart';
-import 'package:theleast/service/house/house_service.dart';
 import 'package:theleast/ui/colors.dart';
 import 'package:theleast/ui/logo.dart';
 
