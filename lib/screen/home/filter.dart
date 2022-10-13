@@ -1,0 +1,47 @@
+import 'package:flutter/material.dart';
+
+class Filter extends StatefulWidget {
+  const Filter({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<Filter> createState() => _FilterState();
+}
+
+class _FilterState extends State<Filter> {
+  final items = ["Near You", "Favorites", "Something Else"];
+  var selected = "";
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 100,
+      child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          padding: const EdgeInsets.all(8),
+          itemCount: items.length,
+          itemBuilder: (BuildContext context, int index) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 2),
+              child: FilterChip(
+                side: const BorderSide(color: Colors.grey),
+                padding: const EdgeInsets.all(13),
+                backgroundColor: Colors.white,
+                label: Text(items[index]),
+                labelStyle: TextStyle(
+                    color:
+                        items[index] == selected ? Colors.white : Colors.black),
+                selected: items[index] == selected,
+                selectedColor: Colors.black87,
+                onSelected: (bool value) {
+                  setState(() {
+                    selected = value ? items[index] : "";
+                  });
+                },
+              ),
+            );
+          }),
+    );
+  }
+}
