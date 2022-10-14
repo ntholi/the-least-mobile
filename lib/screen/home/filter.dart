@@ -18,30 +18,31 @@ class _FilterState extends State<Filter> {
     return SizedBox(
       height: 100,
       child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          padding: const EdgeInsets.all(8),
-          itemCount: items.length,
-          itemBuilder: (BuildContext context, int index) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 2),
-              child: FilterChip(
-                side: const BorderSide(color: Colors.grey),
-                padding: const EdgeInsets.all(13),
-                backgroundColor: Colors.white,
-                label: Text(items[index]),
-                labelStyle: TextStyle(
-                    color:
-                        items[index] == selected ? Colors.white : Colors.black),
-                selected: items[index] == selected,
-                selectedColor: Colors.black87,
-                onSelected: (bool value) {
-                  setState(() {
-                    selected = value ? items[index] : "";
-                  });
-                },
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.all(8),
+        itemCount: items.length,
+        itemBuilder: (BuildContext context, int index) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 2),
+            child: ChoiceChip(
+              side: const BorderSide(color: Colors.grey),
+              padding: const EdgeInsets.all(13),
+              backgroundColor: Colors.white,
+              label: Text(items[index]),
+              labelStyle: TextStyle(
+                color: items[index] == selected ? Colors.white : Colors.black,
               ),
-            );
-          }),
+              selected: items[index] == selected,
+              selectedColor: Colors.black87,
+              onSelected: (bool value) {
+                setState(() {
+                  selected = value ? items[index] : "";
+                });
+              },
+            ),
+          );
+        },
+      ),
     );
   }
 }
