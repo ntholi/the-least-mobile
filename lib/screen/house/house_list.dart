@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:theleast/screen/house/house_item.dart';
 import 'package:theleast/service/house/house.dart';
 import 'package:theleast/service/house/house_service.dart';
 
@@ -28,12 +27,9 @@ class _HouseListState extends State<HouseList> {
               padding: const EdgeInsets.all(8),
               itemCount: items.length,
               itemBuilder: (BuildContext context, int index) {
-                final houseItem = HouseItem(items[index]);
+                final item = items[index];
                 return Card(
-                  child: ListTile(
-                    title: houseItem.buildTitle(context),
-                    subtitle: houseItem.buildSubtitle(context),
-                  ),
+                  child: Text(item.name),
                 );
               },
             );
