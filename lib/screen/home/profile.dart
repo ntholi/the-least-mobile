@@ -12,6 +12,7 @@ class Profile extends StatelessWidget {
           Expanded(
             child: Text("Hello Thabo",
                 style: TextStyle(
+                  color: Colors.white,
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
                 )),

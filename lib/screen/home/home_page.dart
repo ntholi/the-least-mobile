@@ -24,6 +24,9 @@ class _HomePageState extends State<HomePage> {
               decoration: BoxDecoration(color: Colors.green[300]),
               child: const Filter(),
             ),
+            const Flexible(
+              child: HouseList(),
+            )
           ],
         ),
       ),
