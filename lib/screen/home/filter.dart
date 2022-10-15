@@ -15,15 +15,20 @@ class _FilterState extends State<Filter> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 100,
+    return Container(
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+      ),
+      height: 80,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.all(8),
         itemCount: items.length,
         itemBuilder: (BuildContext context, int index) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 2),
+          return Container(
+            margin: const EdgeInsets.only(right: 10),
             child: ChoiceChip(
               side: const BorderSide(color: Colors.grey),
               padding: const EdgeInsets.all(13),

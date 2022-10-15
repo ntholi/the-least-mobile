@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:theleast/screen/home/filter.dart';
+import 'package:theleast/screen/home/header.dart';
 import 'package:theleast/screen/house/house_list.dart';
 import 'package:theleast/ui/colors.dart';
 import 'package:theleast/ui/logo.dart';
@@ -15,70 +17,14 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                AppColors.background.withOpacity(0.8),
-                Colors.white,
-              ],
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
+        child: Column(
+          children: [
+            const Header(),
+            Container(
+              decoration: BoxDecoration(color: Colors.green[300]),
+              child: const Filter(),
             ),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                color: AppColors.primaryColor,
-                height: 90,
-                padding: const EdgeInsets.all(10),
-                child: Row(
-                  children: [
-                    Expanded(child: Logo(fontSize: 20)),
-                    CircleAvatar(
-                      backgroundColor: Colors.grey.shade100,
-                      child: const Text('AH'),
-                    )
-                  ],
-                ),
-              ),
-              Wrap(
-                alignment: WrapAlignment.spaceEvenly,
-                spacing: 10,
-                children: [
-                  const SizedBox(),
-                  ActionChip(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 11,
-                      horizontal: 15,
-                    ),
-                    label: const Text('All'),
-                    onPressed: () {},
-                  ),
-                  ActionChip(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 11,
-                      horizontal: 15,
-                    ),
-                    label: const Text('Favorite'),
-                    onPressed: () {},
-                  ),
-                  ActionChip(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 11,
-                      horizontal: 15,
-                    ),
-                    label: const Text('Near You'),
-                    onPressed: () {},
-                  ),
-                ],
-              ),
-              const Expanded(
-                child: HouseList(),
-              ),
-            ],
-          ),
+          ],
         ),
       ),
     );
