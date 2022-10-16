@@ -27,7 +27,7 @@ class _FilterState extends State<Filter> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 20),
+      padding: const EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(
         color: Colors.grey.shade50,
         borderRadius: const BorderRadius.only(
@@ -35,7 +35,6 @@ class _FilterState extends State<Filter> {
           topRight: Radius.circular(30),
         ),
       ),
-      height: 130,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: items.map((item) => FilterItem(item)).toList(),
