@@ -51,7 +51,7 @@ class HouseCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: SizedBox(
-        height: 80,
+        height: 70,
         child: Row(
           children: [
             Image.asset("assets/images/avatar.jpg"),
