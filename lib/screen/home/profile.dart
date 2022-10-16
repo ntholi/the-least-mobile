@@ -10,14 +10,16 @@ class Profile extends StatelessWidget {
       child: Row(
         children: const [
           Expanded(
-            child: Text("Hello Thabo",
+            child: Text("TheLeast",
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 18,
+                  fontFamily: 'Righteous',
+                  fontSize: 20,
                   fontWeight: FontWeight.w500,
                 )),
           ),
           CircleAvatar(
+            radius: 15,
             backgroundImage: AssetImage('assets/images/avatar.jpg'),
           ),
         ],

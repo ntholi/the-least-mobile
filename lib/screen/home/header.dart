@@ -17,7 +17,11 @@ class Header extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 20),
           child: Center(
-            child: Image.asset("assets/images/donation2.png"),
+            child: Padding(
+              //TODO: test left padding on a different screen
+              padding: const EdgeInsets.only(left: 20),
+              child: Image.asset("assets/images/donation.png"),
+            ),
           ),
         ),
       ]),
