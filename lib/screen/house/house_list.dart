@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 import 'package:theleast/service/house/house.dart';
 import 'package:theleast/service/house/house_service.dart';
+import 'package:theleast/ui/colors.dart';
 
 class HouseList extends StatefulWidget {
   const HouseList({Key? key}) : super(key: key);
@@ -13,6 +15,7 @@ class _HouseListState extends State<HouseList> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
+      future: getHouses(),
       builder: (ctx, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasError) {
@@ -27,10 +30,7 @@ class _HouseListState extends State<HouseList> {
               padding: const EdgeInsets.all(8),
               itemCount: items.length,
               itemBuilder: (BuildContext context, int index) {
-                final item = items[index];
-                return Card(
-                  child: Text(item.name),
-                );
+                return HouseCard(house: items[index]);
               },
             );
           }
@@ -39,7 +39,69 @@ class _HouseListState extends State<HouseList> {
           child: CircularProgressIndicator(),
         );
       },
-      future: getHouses(),
+    );
+  }
+}
+
+class HouseCard extends StatelessWidget {
+  final House house;
+  const HouseCard({super.key, required this.house});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: SizedBox(
+        height: 80,
+        child: Row(
+          children: [
+            Image.asset("assets/images/avatar.jpg"),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(child: Text(house.name)),
+                    percentage(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: const [
+                        Text(
+                          "Total Raised",
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 13,
+                          ),
+                        ),
+                        Text("M400")
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: Icon(
+                size: 15,
+                Icons.arrow_forward_ios_sharp,
+                color: Colors.grey.shade400,
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  LinearPercentIndicator percentage() {
+    return LinearPercentIndicator(
+      width: 140.0,
+      lineHeight: 9,
+      percent: 0.5,
+      backgroundColor: Colors.grey.shade200,
+      progressColor: AppColors.primaryColor,
+      padding: EdgeInsets.zero,
     );
   }
 }
