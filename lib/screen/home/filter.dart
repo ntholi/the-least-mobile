@@ -22,7 +22,7 @@ class _FilterState extends State<Filter> {
     Item("New", "new"),
   ];
 
-  var selected = "";
+  Item? selected;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,19 @@ class _FilterState extends State<Filter> {
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: items.map((item) => FilterItem(item)).toList(),
+        children: items
+            .map(
+              (item) => FilterItem(
+                item: item,
+                isSelected: selected == item,
+                setSelected: (item) {
+                  setState(() {
+                    selected = selected != item ? item : null;
+                  });
+                },
+              ),
+            )
+            .toList(),
       ),
     );
   }
@@ -45,21 +57,27 @@ class _FilterState extends State<Filter> {
 
 class FilterItem extends StatelessWidget {
   final Item item;
+  final bool isSelected;
+  final ValueSetter<Item> setSelected;
 
-  const FilterItem(
-    this.item, {
+  const FilterItem({
+    required this.item,
+    required this.isSelected,
+    required this.setSelected,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
+      onTap: () => setSelected(item),
       child: Container(
         width: 100,
         margin: const EdgeInsets.only(right: 10),
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 15),
         decoration: BoxDecoration(
           color: Colors.white,
+          border: Border.all(color: isSelected ? Colors.black : Colors.white),
           borderRadius: const BorderRadius.all(Radius.circular(10)),
           boxShadow: [
             BoxShadow(
@@ -89,6 +107,5 @@ class FilterItem extends StatelessWidget {
         ),
       ),
     );
-    ;
   }
 }

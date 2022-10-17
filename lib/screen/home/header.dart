@@ -12,19 +12,21 @@ class Header extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.green[300],
       ),
-      child: Stack(children: [
-        const Profile(),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20),
-          child: Center(
-            child: Padding(
-              //TODO: test left padding on a different screen
-              padding: const EdgeInsets.only(left: 20),
-              child: Image.asset("assets/images/donation.png"),
+      child: Stack(
+        children: [
+          const Profile(),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20),
+            child: Center(
+              child: Padding(
+                //TODO: test left padding on a different screen
+                padding: const EdgeInsets.only(left: 20),
+                child: Image.asset("assets/images/donation.png"),
+              ),
             ),
           ),
-        ),
-      ]),
+        ],
+      ),
     );
   }
 }

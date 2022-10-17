@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:theleast/screen/home/filter.dart';
 import 'package:theleast/screen/home/header.dart';
 import 'package:theleast/screen/house/house_list.dart';
-import 'package:theleast/ui/colors.dart';
-import 'package:theleast/ui/logo.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -22,8 +20,8 @@ class _HomePageState extends State<HomePage> {
           label: "Home",
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.ac_unit_sharp),
-          label: "Something",
+          icon: Icon(Icons.search),
+          label: "Search",
         ),
       ]),
       body: SafeArea(

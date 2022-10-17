@@ -14,7 +14,7 @@ class Profile extends StatelessWidget {
                 style: TextStyle(
                   color: Colors.white,
                   fontFamily: 'Righteous',
-                  fontSize: 20,
+                  fontSize: 23,
                   fontWeight: FontWeight.w500,
                 )),
           ),
