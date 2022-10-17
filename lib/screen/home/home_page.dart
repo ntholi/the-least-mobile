@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:theleast/screen/home/filter.dart';
 import 'package:theleast/screen/home/header.dart';
-import 'package:theleast/screen/house/house_list.dart';
+import 'package:theleast/screen/home/house_list.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
