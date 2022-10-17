@@ -61,9 +61,14 @@ class HouseCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(5),
-            child: Image.asset("assets/images/avatar.jpg"),
+          Container(
+            width: 90,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage("assets/images/avatar.jpg"),
+              ),
+            ),
           ),
           Expanded(
             child: Padding(
