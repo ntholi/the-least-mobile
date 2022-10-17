@@ -49,47 +49,56 @@ class HouseCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: SizedBox(
-        height: 70,
-        child: Row(
-          children: [
-            Image.asset("assets/images/avatar.jpg"),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(child: Text(house.name)),
-                    percentage(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text(
-                          "Total Raised",
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 13,
-                          ),
+    return Container(
+      height: 80,
+      margin: const EdgeInsets.only(bottom: 16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(5),
+        border: Border.all(
+          color: Colors.grey.shade200,
+        ),
+      ),
+      child: Row(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(5),
+            child: Image.asset("assets/images/avatar.jpg"),
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(child: Text(house.name)),
+                  percentage(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      Text(
+                        "Total Raised",
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 13,
                         ),
-                        Text("M400")
-                      ],
-                    )
-                  ],
-                ),
+                      ),
+                      Text("M400")
+                    ],
+                  )
+                ],
               ),
             ),
-            IconButton(
-              onPressed: () {},
-              icon: Icon(
-                size: 15,
-                Icons.arrow_forward_ios_sharp,
-                color: Colors.grey.shade400,
-              ),
-            )
-          ],
-        ),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(
+              size: 15,
+              Icons.arrow_forward_ios_sharp,
+              color: Colors.grey.shade400,
+            ),
+          )
+        ],
       ),
     );
   }
