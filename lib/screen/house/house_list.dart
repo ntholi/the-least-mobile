@@ -110,7 +110,6 @@ class HouseCard extends StatelessWidget {
 
   LinearPercentIndicator percentage() {
     return LinearPercentIndicator(
-      width: 140.0,
       lineHeight: 9,
       percent: 0.5,
       backgroundColor: Colors.grey.shade200,
