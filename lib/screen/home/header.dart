@@ -8,7 +8,7 @@ class Header extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height / 3.4,
+      height: MediaQuery.of(context).size.height / 4,
       decoration: BoxDecoration(
         color: Colors.green[300],
       ),

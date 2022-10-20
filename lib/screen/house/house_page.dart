@@ -7,28 +7,38 @@ class HousePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: NestedScrollView(
-        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-          return <Widget>[
-            SliverAppBar(
-              expandedHeight: 240.0,
-              floating: false,
-              pinned: true,
-              flexibleSpace: FlexibleSpaceBar(
+          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+            return [
+              SliverAppBar(
+                expandedHeight: 240.0,
+                floating: false,
+                pinned: true,
+                actions: [IconButton(onPressed: () {}, icon: Icon(Icons.star))],
+                flexibleSpace: FlexibleSpaceBar(
                   centerTitle: true,
-                  title: Text(
+                  title: const Text(
                     "App Bar",
                   ),
                   background: Image.asset(
                     "assets/images/avatar.jpg",
                     fit: BoxFit.cover,
-                  )),
+                  ),
+                ),
+              ),
+            ];
+          },
+          body: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Text(
+                  "Selimo Thabane",
+                  style: TextStyle(fontSize: 30),
+                ),
+              ],
             ),
-          ];
-        },
-        body: Center(
-          child: Text("Hello World!!!"),
-        ),
-      ),
+          )),
     );
   }
 }

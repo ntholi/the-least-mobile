@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: AppColors.primaryColor,
       ),
-      home: const HousePage(), //LandingPage(),
+      home: const LandingPage(),
     );
   }
 }
