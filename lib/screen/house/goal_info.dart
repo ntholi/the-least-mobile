@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:theleast/ui/prograss_bar.dart';
+import 'package:theleast/ui/progress_bar.dart';
 
 class GoalInfo extends StatelessWidget {
   final double donated;

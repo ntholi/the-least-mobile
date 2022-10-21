@@ -3,7 +3,7 @@ import 'package:percent_indicator/percent_indicator.dart';
 import 'package:theleast/service/house/house.dart';
 import 'package:theleast/service/house/house_service.dart';
 import 'package:theleast/ui/colors.dart';
-import 'package:theleast/ui/prograss_bar.dart';
+import 'package:theleast/ui/progress_bar.dart';
 
 class HouseList extends StatefulWidget {
   const HouseList({Key? key}) : super(key: key);
