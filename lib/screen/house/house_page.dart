@@ -11,9 +11,9 @@ class HousePage extends StatelessWidget {
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return [
             SliverAppBar(
-              expandedHeight: 280.0,
+              expandedHeight: 300.0,
               floating: false,
-              pinned: true,
+              pinned: false,
               actions: [
                 IconButton(
                   onPressed: () {},
@@ -46,19 +46,29 @@ class HousePage extends StatelessWidget {
             ),
           ];
         },
-        body: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              GoalInfo(donated: 200, target: 300),
-            ],
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                GoalInfo(donated: 200, target: 300),
+                SizedBox(height: 20),
+                Text("Description", style: TextStyle(fontSize: 20)),
+                Text(
+                    "This is a short description that describes this and that and stuff")
+              ],
+            ),
           ),
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        label: const Text("Donate"),
-        backgroundColor: Colors.grey.shade800,
+        elevation: 1,
+        label: SizedBox(
+          width: MediaQuery.of(context).size.width / 2,
+          child: const Center(child: Text("Donate")),
+        ),
+        backgroundColor: Colors.grey.shade900,
         onPressed: () {},
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
