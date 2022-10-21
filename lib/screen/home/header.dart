@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:theleast/screen/home/profile.dart';
 
 class Header extends StatelessWidget {
   const Header({super.key});
@@ -10,20 +9,14 @@ class Header extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height / 4,
       decoration: BoxDecoration(
-        color: Colors.green[300],
+        color: Colors.green.shade400,
       ),
-      child: Stack(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          const Profile(),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20),
-            child: Center(
-              child: Padding(
-                //TODO: test left padding on a different screen
-                padding: const EdgeInsets.only(left: 20),
-                child: Image.asset("assets/images/donation.png"),
-              ),
-            ),
+            padding: const EdgeInsets.only(top: 20, bottom: 20, right: 48),
+            child: Image.asset("assets/images/donation.png"),
           ),
         ],
       ),
