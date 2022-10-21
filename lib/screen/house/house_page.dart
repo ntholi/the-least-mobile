@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:theleast/screen/house/goal_info.dart';
 
 class HousePage extends StatelessWidget {
   const HousePage({super.key});
@@ -50,19 +51,17 @@ class HousePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: const [
-              Text(
-                "Selimo Thabane",
-                style: TextStyle(fontSize: 30),
-              ),
+              GoalInfo(donated: 200, target: 300),
             ],
           ),
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
         label: const Text("Donate"),
-        icon: const Icon(Icons.money_outlined),
+        backgroundColor: Colors.grey.shade800,
         onPressed: () {},
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

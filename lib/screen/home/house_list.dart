@@ -3,6 +3,7 @@ import 'package:percent_indicator/percent_indicator.dart';
 import 'package:theleast/service/house/house.dart';
 import 'package:theleast/service/house/house_service.dart';
 import 'package:theleast/ui/colors.dart';
+import 'package:theleast/ui/prograss_bar.dart';
 
 class HouseList extends StatefulWidget {
   const HouseList({Key? key}) : super(key: key);
@@ -77,7 +78,7 @@ class HouseCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(child: Text(house.name)),
-                  percentage(),
+                  const ProgressBar(1, 2),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: const [
@@ -105,16 +106,6 @@ class HouseCard extends StatelessWidget {
           )
         ],
       ),
-    );
-  }
-
-  LinearPercentIndicator percentage() {
-    return LinearPercentIndicator(
-      lineHeight: 9,
-      percent: 0.5,
-      backgroundColor: Colors.grey.shade200,
-      progressColor: AppColors.primaryColor,
-      padding: EdgeInsets.zero,
     );
   }
 }
