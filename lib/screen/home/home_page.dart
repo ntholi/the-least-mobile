@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
               SliverAppBar(
                 expandedHeight: 240.0,
                 floating: false,
-                pinned: true,
+                pinned: false,
                 title: const Logo(fontSize: 24),
                 actions: [
                   IconButton(

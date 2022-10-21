@@ -23,10 +23,11 @@ class HousePage extends StatelessWidget {
                 background: Container(
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: const AssetImage("assets/images/avatar.jpg"),
+                      image: const AssetImage(
+                          "assets/images/delete-this-image.jpg"),
                       fit: BoxFit.cover,
                       colorFilter: ColorFilter.mode(
-                          AppColors.primaryColor.withOpacity(0.4),
+                          AppColors.primaryColor.withOpacity(0.7),
                           BlendMode.darken),
                     ),
                   ),
