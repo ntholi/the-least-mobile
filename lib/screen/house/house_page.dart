@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:theleast/ui/colors.dart';
 
 class HousePage extends StatelessWidget {
   const HousePage({super.key});
@@ -11,14 +10,23 @@ class HousePage extends StatelessWidget {
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return [
             SliverAppBar(
-              expandedHeight: 240.0,
+              expandedHeight: 280.0,
               floating: false,
               pinned: true,
-              actions: [IconButton(onPressed: () {}, icon: Icon(Icons.star))],
+              actions: [
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.star_outline,
+                    size: 30,
+                    color: Colors.white,
+                  ),
+                )
+              ],
               flexibleSpace: FlexibleSpaceBar(
                 centerTitle: true,
                 title: const Text(
-                  "App Bar",
+                  "Selimo Thabane",
                 ),
                 background: Container(
                   decoration: BoxDecoration(
@@ -27,8 +35,9 @@ class HousePage extends StatelessWidget {
                           "assets/images/delete-this-image.jpg"),
                       fit: BoxFit.cover,
                       colorFilter: ColorFilter.mode(
-                          AppColors.primaryColor.withOpacity(0.7),
-                          BlendMode.darken),
+                        Colors.black.withOpacity(0.7),
+                        BlendMode.darken,
+                      ),
                     ),
                   ),
                 ),
@@ -48,6 +57,11 @@ class HousePage extends StatelessWidget {
             ],
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        label: const Text("Donate"),
+        icon: const Icon(Icons.money_outlined),
+        onPressed: () {},
       ),
     );
   }

@@ -10,9 +10,9 @@ Future<void> main() async {
 
   //Changes status bar only for android
   //https://stackoverflow.com/questions/52489458/how-to-change-status-bar-color-in-flutter
-  SystemChrome.setSystemUIOverlayStyle(
-    SystemUiOverlayStyle(statusBarColor: Colors.green[800]),
-  );
+  // SystemChrome.setSystemUIOverlayStyle(
+  //   SystemUiOverlayStyle(statusBarColor: Colors.green[800]),
+  // );
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
