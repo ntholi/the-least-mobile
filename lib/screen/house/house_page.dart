@@ -26,8 +26,13 @@ class HousePage extends StatelessWidget {
               ],
               flexibleSpace: FlexibleSpaceBar(
                 centerTitle: true,
-                title: const Text(
-                  "Selimo Thabane",
+                title: Row(
+                  children: const [
+                    Padding(
+                      padding: EdgeInsets.only(left: 12),
+                      child: Text("Selimo Thabane"),
+                    ),
+                  ],
                 ),
                 background: Container(
                   decoration: BoxDecoration(
