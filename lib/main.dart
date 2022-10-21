@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:theleast/screen/house/house_page.dart';
-import 'package:theleast/screen/landing_page.dart';
 import 'package:theleast/ui/colors.dart';
 import 'package:theleast/firebase_options.dart';
 import 'package:flutter/services.dart';
@@ -32,7 +31,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: AppColors.primaryColor,
       ),
-      home: const LandingPage(),
+      home: const HousePage(), //LandingPage(),
     );
   }
 }
