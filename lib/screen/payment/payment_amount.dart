@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:theleast/ui/selection_button.dart';
 
-const double m20 = 20;
-const double m50 = 50;
-const double m100 = 100;
-const double m300 = 300;
+const amounts = [30, 80, 200, 500];
 
 class PaymentAmount extends StatelessWidget {
   final buttonSize = 50.0;
@@ -17,49 +14,32 @@ class PaymentAmount extends StatelessWidget {
       children: [
         TextField(
           controller: amountController,
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
             labelText: "Amount",
-            border: OutlineInputBorder(),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.grey.shade300),
+            ),
+            border: const OutlineInputBorder(),
           ),
         ),
         Container(
-          height: buttonSize + 10,
+          height: buttonSize + 30,
+          padding: const EdgeInsets.symmetric(vertical: 10),
           child: ListView(
             scrollDirection: Axis.horizontal,
-            children: [
-              SelectionButton(
-                value: "$m20",
-                setValue: (value) {},
-                selected: false,
-                textAlign: TextAlign.center,
-                width: buttonSize,
-                height: buttonSize,
-              ),
-              SelectionButton(
-                value: "$m50",
-                setValue: (value) {},
-                selected: false,
-                textAlign: TextAlign.center,
-                width: buttonSize,
-                height: buttonSize,
-              ),
-              SelectionButton(
-                value: "$m100",
-                setValue: (value) {},
-                selected: false,
-                textAlign: TextAlign.center,
-                width: buttonSize,
-                height: buttonSize,
-              ),
-              SelectionButton(
-                value: "$m300",
-                setValue: (value) {},
-                selected: false,
-                textAlign: TextAlign.center,
-                width: buttonSize,
-                height: buttonSize,
-              ),
-            ],
+            children: amounts
+                .map((value) => Container(
+                      margin: const EdgeInsets.only(right: 10),
+                      child: SelectionButton(
+                        value: value,
+                        setValue: (value) {},
+                        selected: false,
+                        textAlign: TextAlign.center,
+                        width: buttonSize,
+                        height: buttonSize,
+                      ),
+                    ))
+                .toList(),
           ),
         )
       ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:theleast/ui/colors.dart';
 import 'package:theleast/ui/selection_button.dart';
 
 enum PaymentType {
@@ -30,8 +31,16 @@ class _PaymentMethodsState extends State<PaymentMethods> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          "Pay With:",
+        Padding(
+          padding: const EdgeInsets.only(left: 10),
+          child: Text(
+            "Pay With:",
+            style: TextStyle(
+              color: Colors.grey.shade500,
+              fontWeight: FontWeight.w500,
+              letterSpacing: 1,
+            ),
+          ),
         ),
         const SizedBox(height: 20),
         Center(

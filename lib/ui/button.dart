@@ -1,19 +1,21 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:theleast/ui/colors.dart';
 
 class Button extends StatelessWidget {
-  Button(this.title, {required this.onClick, bool? whiteBackground, Key? key})
-      : super(key: key) {
-    if (whiteBackground == null) {
-      this.whiteBackground = false;
-    } else {
-      this.whiteBackground = whiteBackground;
-    }
-  }
-
-  late final bool whiteBackground;
   final String title;
   final VoidCallback onClick;
+  final Color backgroundColor;
+  final Color textColor;
+
+  const Button({
+    Key? key,
+    required this.title,
+    required this.onClick,
+    this.backgroundColor = AppColors.primaryColor,
+    this.textColor = Colors.white,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +23,14 @@ class Button extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(Radius.circular(20)),
         border: Border.all(color: Colors.white),
-        color: whiteBackground ? Colors.white : AppColors.primaryColor,
+        color: backgroundColor,
       ),
-      child: MaterialButton(
+      child: TextButton(
         onPressed: onClick,
         child: Text(
           title.toUpperCase(),
           style: TextStyle(
-            color: (whiteBackground ? AppColors.primaryColor : Colors.white),
+            color: textColor,
           ),
         ),
       ),

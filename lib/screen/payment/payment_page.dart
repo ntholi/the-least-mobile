@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:theleast/screen/payment/payment_amount.dart';
 import 'package:theleast/screen/payment/payment_methods.dart';
+import 'package:theleast/ui/button.dart';
 
 class PaymentPage extends StatefulWidget {
   const PaymentPage({super.key});
@@ -17,21 +18,26 @@ class _PaymentPageState extends State<PaymentPage> {
     return Scaffold(
       appBar: AppBar(title: const Text("Payment")),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              children: [
-                PaymentAmount(),
-                PaymentMethods(
-                  setPaymentType: (value) {
-                    setState(() {
-                      paymentType = paymentType != value ? value : null;
-                    });
-                  },
-                ),
-              ],
-            ),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              PaymentAmount(),
+              PaymentMethods(
+                setPaymentType: (value) {
+                  setState(() {
+                    paymentType = paymentType != value ? value : null;
+                  });
+                },
+              ),
+              Button(
+                onClick: () {},
+                title: "Continue",
+                backgroundColor: Colors.grey.shade800,
+              )
+            ],
           ),
         ),
       ),

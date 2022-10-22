@@ -28,23 +28,29 @@ class AuthPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Button("Sign Up", whiteBackground: true, onClick: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const SignUpPage(),
-                    ),
-                  );
-                }),
+                Button(
+                    title: "Sign Up",
+                    backgroundColor: Colors.white,
+                    textColor: AppColors.primaryColor,
+                    onClick: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SignUpPage(),
+                        ),
+                      );
+                    }),
                 const SizedBox(height: 20),
-                Button("Sign In", onClick: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const SignInPage(),
-                    ),
-                  );
-                }),
+                Button(
+                    title: "Sign In",
+                    onClick: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SignInPage(),
+                        ),
+                      );
+                    }),
               ],
             ),
           )

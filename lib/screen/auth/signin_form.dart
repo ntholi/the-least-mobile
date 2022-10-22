@@ -38,7 +38,7 @@ class _SignInFormState extends State<SignInForm> {
             ),
             const SizedBox(height: 20),
             Button(
-              "SIGN IN",
+              title: "SIGN IN",
               onClick: () async {
                 await signin(_email.text, _password.text);
                 if (!mounted) return;

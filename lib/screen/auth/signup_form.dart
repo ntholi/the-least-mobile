@@ -72,7 +72,7 @@ class _SignUpFormState extends State<SignUpForm> {
             ),
             const SizedBox(height: 20),
             Button(
-              "REGISTER",
+              title: "REGISTER",
               onClick: () async {
                 if (_formKey.currentState!.validate()) {
                   User user = User(
