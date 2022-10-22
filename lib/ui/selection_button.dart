@@ -15,28 +15,29 @@ class SelectionButton<T> extends StatelessWidget {
     this.icon,
     required this.setValue,
     required this.selected,
-    this.height = 55,
+    this.height = 60,
     this.width,
     this.textAlign = TextAlign.left,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
+    return OutlinedButton(
       onPressed: () {
         setValue(value);
       },
-      child: Container(
+      style: ButtonStyle(
+        backgroundColor: selected
+            ? MaterialStateProperty.all<Color>(Colors.green.shade50)
+            : null,
+        side: selected
+            ? MaterialStateProperty.all<BorderSide>(
+                BorderSide(color: Colors.green.shade400))
+            : null,
+      ),
+      child: SizedBox(
         height: height,
         width: width,
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: selected ? Colors.green.shade400 : Colors.grey.shade300,
-          ),
-          color: selected ? Colors.green.shade50 : Colors.grey.shade100,
-          borderRadius: BorderRadius.circular(10),
-        ),
         child: Row(
           children: [
             icon == null

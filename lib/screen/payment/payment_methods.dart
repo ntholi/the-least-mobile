@@ -26,6 +26,7 @@ class _PaymentMethodsState extends State<PaymentMethods> {
 
   @override
   Widget build(BuildContext context) {
+    const double spaceHight = 13;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -48,6 +49,7 @@ class _PaymentMethodsState extends State<PaymentMethods> {
                   });
                 },
               ),
+              const SizedBox(height: spaceHight),
               SelectionButton(
                 value: PaymentType.card,
                 icon: "new.png",
@@ -59,6 +61,7 @@ class _PaymentMethodsState extends State<PaymentMethods> {
                   });
                 },
               ),
+              const SizedBox(height: spaceHight),
               SelectionButton(
                 value: PaymentType.paypal,
                 icon: "new.png",

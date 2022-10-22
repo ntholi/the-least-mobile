@@ -7,7 +7,7 @@ const double m100 = 100;
 const double m300 = 300;
 
 class PaymentAmount extends StatelessWidget {
-  final buttonSize = 70.0;
+  final buttonSize = 50.0;
   final amountController = TextEditingController();
   PaymentAmount({super.key});
 
@@ -22,7 +22,7 @@ class PaymentAmount extends StatelessWidget {
             border: OutlineInputBorder(),
           ),
         ),
-        SizedBox(
+        Container(
           height: buttonSize + 10,
           child: ListView(
             scrollDirection: Axis.horizontal,
