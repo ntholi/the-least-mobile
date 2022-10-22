@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:theleast/screen/payment/payment_page.dart';
+import 'package:theleast/screen/payment/confirm_payment_method_page.dart';
 import 'package:theleast/ui/colors.dart';
 import 'package:theleast/firebase_options.dart';
 
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: AppColors.primaryColor,
       ),
-      home: PaymentPage(), //LandingPage(),
+      home: ConfirmPaymentMethodPage(), //LandingPage(),
     );
   }
 }
