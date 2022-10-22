@@ -51,6 +51,7 @@ class _PaymentMethodsState extends State<PaymentMethods> {
                 value: PaymentType.mpesa,
                 icon: "new.png",
                 selected: paymentType == PaymentType.mpesa,
+                showCheckMark: true,
                 setValue: (value) {
                   setState(() {
                     paymentType = value;
@@ -63,6 +64,7 @@ class _PaymentMethodsState extends State<PaymentMethods> {
                 value: PaymentType.card,
                 icon: "new.png",
                 selected: paymentType == PaymentType.card,
+                showCheckMark: true,
                 setValue: (value) {
                   setState(() {
                     paymentType = value;
@@ -75,6 +77,7 @@ class _PaymentMethodsState extends State<PaymentMethods> {
                 value: PaymentType.paypal,
                 icon: "new.png",
                 selected: paymentType == PaymentType.paypal,
+                showCheckMark: true,
                 setValue: (value) {
                   setState(() {
                     paymentType = value;

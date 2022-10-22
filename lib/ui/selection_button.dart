@@ -8,6 +8,7 @@ class SelectionButton<T> extends StatelessWidget {
   final double height;
   final double? width;
   final TextAlign textAlign;
+  final bool showCheckMark;
 
   const SelectionButton({
     Key? key,
@@ -18,6 +19,7 @@ class SelectionButton<T> extends StatelessWidget {
     this.height = 60,
     this.width,
     this.textAlign = TextAlign.left,
+    this.showCheckMark = false,
   }) : super(key: key);
 
   @override
@@ -53,7 +55,9 @@ class SelectionButton<T> extends StatelessWidget {
                 ),
               ),
             ),
-            selected ? const Icon(Icons.check) : const SizedBox.shrink()
+            selected && showCheckMark
+                ? const Icon(Icons.check)
+                : const SizedBox.shrink()
           ],
         ),
       ),

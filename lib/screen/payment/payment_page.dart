@@ -12,6 +12,7 @@ class PaymentPage extends StatefulWidget {
 
 class _PaymentPageState extends State<PaymentPage> {
   PaymentType? paymentType;
+  final amountKey = GlobalKey<FormFieldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class _PaymentPageState extends State<PaymentPage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              PaymentAmount(),
+              PaymentAmount(amountKey: amountKey),
               PaymentMethods(
                 setPaymentType: (value) {
                   setState(() {
@@ -33,7 +34,9 @@ class _PaymentPageState extends State<PaymentPage> {
                 },
               ),
               Button(
-                onClick: () {},
+                onClick: () {
+                  print(amountKey.currentState?.value);
+                },
                 title: "Continue",
                 backgroundColor: Colors.grey.shade800,
               )
