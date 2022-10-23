@@ -116,7 +116,7 @@ class PaymentMethodCard extends StatelessWidget {
           alignment: Alignment.topRight,
           child: OutlinedButton.icon(
             onPressed: () {},
-            icon: const Icon(Icons.edit_note),
+            icon: Icon(Icons.edit_note, color: Colors.grey.shade800),
             label: Text(
               "Update",
               style: TextStyle(color: Colors.grey.shade800),
