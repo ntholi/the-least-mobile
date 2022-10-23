@@ -30,14 +30,18 @@ class _DonationAmountPageState extends State<DonationAmountPage> {
             children: [
               Row(
                 children: [
-                  const Icon(Icons.house),
-                  const SizedBox(width: 5),
+                  Icon(
+                    Icons.house,
+                    color: Colors.grey.shade700,
+                  ),
+                  const SizedBox(width: 2),
                   Text(
                     widget.house.name,
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
-                      color: Colors.grey.shade900,
+                      color: Colors.grey.shade700,
+                      letterSpacing: 2,
                     ),
                   ),
                 ],
