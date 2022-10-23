@@ -44,23 +44,25 @@ class _PaymentAmountState extends State<PaymentAmount> {
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: amounts
-                .map((value) => Container(
-                      margin: const EdgeInsets.only(right: 10),
-                      child: SelectionButton(
-                        value: value,
-                        setValue: (value) {
-                          setState(() {
-                            widget._amountController.text = value.toString();
-                          });
-                        },
-                        selected:
-                            double.tryParse(widget._amountController.text) ==
-                                value,
-                        textAlign: TextAlign.center,
-                        width: buttonSize,
-                        height: buttonSize,
-                      ),
-                    ))
+                .map(
+                  (value) => Container(
+                    margin: const EdgeInsets.only(right: 10),
+                    child: SelectionButton(
+                      value: value,
+                      setValue: (value) {
+                        setState(() {
+                          widget._amountController.text = value.toString();
+                        });
+                      },
+                      selected:
+                          double.tryParse(widget._amountController.text) ==
+                              value,
+                      textAlign: TextAlign.center,
+                      width: buttonSize,
+                      height: buttonSize,
+                    ),
+                  ),
+                )
                 .toList(),
           ),
         )

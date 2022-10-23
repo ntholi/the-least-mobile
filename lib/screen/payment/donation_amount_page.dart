@@ -15,7 +15,7 @@ class DonationAmountPage extends StatefulWidget {
 }
 
 class _DonationAmountPageState extends State<DonationAmountPage> {
-  PaymentType? paymentType;
+  PaymentType? _paymentType;
   final _amountController = TextEditingController();
 
   @override
@@ -30,26 +30,25 @@ class _DonationAmountPageState extends State<DonationAmountPage> {
             children: [
               Row(
                 children: [
-                  const Text(
-                    "Donate to ",
-                    style: TextStyle(fontSize: 16),
-                  ),
+                  const Icon(Icons.house),
+                  const SizedBox(width: 5),
                   Text(
                     widget.house.name,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.grey.shade900,
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 40),
+              const SizedBox(height: 20),
               PaymentAmount(amountController: _amountController),
               const SizedBox(height: 20),
               PaymentMethods(
                 setPaymentType: (value) {
                   setState(() {
-                    paymentType = paymentType != value ? value : null;
+                    _paymentType = value;
                   });
                 },
               ),
@@ -57,7 +56,8 @@ class _DonationAmountPageState extends State<DonationAmountPage> {
               ValueListenableBuilder<TextEditingValue>(
                 valueListenable: _amountController,
                 builder: (context, value, child) => Button(
-                  disabled: double.tryParse(_amountController.text) == null,
+                  disabled: double.tryParse(_amountController.text) == null ||
+                      _paymentType == null,
                   onClick: () {
                     Navigator.of(context).push(
                       MaterialPageRoute<void>(

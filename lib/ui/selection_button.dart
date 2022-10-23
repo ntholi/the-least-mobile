@@ -9,6 +9,7 @@ class SelectionButton<T> extends StatelessWidget {
   final double? width;
   final TextAlign textAlign;
   final bool showCheckMark;
+  final Color? backgroundColor;
 
   const SelectionButton({
     Key? key,
@@ -20,6 +21,7 @@ class SelectionButton<T> extends StatelessWidget {
     this.width,
     this.textAlign = TextAlign.left,
     this.showCheckMark = false,
+    this.backgroundColor,
   }) : super(key: key);
 
   @override
@@ -31,11 +33,13 @@ class SelectionButton<T> extends StatelessWidget {
       style: ButtonStyle(
         backgroundColor: selected
             ? MaterialStateProperty.all<Color>(Colors.green.shade50)
-            : null,
+            : MaterialStateProperty.all<Color>(
+                backgroundColor ?? Colors.grey.shade50),
         side: selected
             ? MaterialStateProperty.all<BorderSide>(
                 BorderSide(color: Colors.green.shade400))
-            : null,
+            : MaterialStateProperty.all<BorderSide>(
+                BorderSide(color: Colors.grey.shade400)),
       ),
       child: SizedBox(
         height: height,
