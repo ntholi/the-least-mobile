@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:theleast/service/house/house.dart';
 import 'package:theleast/ui/button.dart';
+import 'package:theleast/ui/colors.dart';
 
-class ConfirmPaymentMethodPage extends StatelessWidget {
-  const ConfirmPaymentMethodPage({super.key});
+class PaymentAmountPage extends StatelessWidget {
+  final House house;
+  const PaymentAmountPage(this.house, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Confirm Payment Method"),
+        title: const Text("Payment"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -45,7 +48,7 @@ class ConfirmPaymentMethodPage extends StatelessWidget {
                 Button(
                   onClick: () {},
                   title: "Confirm Payment",
-                  backgroundColor: Colors.grey.shade800,
+                  backgroundColor: AppColors.darkButton,
                 )
               ],
             )

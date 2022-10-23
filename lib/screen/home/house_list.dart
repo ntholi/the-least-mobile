@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:theleast/screen/payment/payment_page.dart';
+import 'package:theleast/screen/house/house_page.dart';
 import 'package:theleast/service/house/house.dart';
 import 'package:theleast/service/house/house_service.dart';
 import 'package:theleast/ui/progress_bar.dart';
@@ -45,6 +45,7 @@ class _HouseListState extends State<HouseList> {
 
 class HouseCard extends StatelessWidget {
   final House house;
+  final double borderRadius = 5;
   const HouseCard({super.key, required this.house});
 
   @override
@@ -54,7 +55,7 @@ class HouseCard extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute<void>(
-            builder: (BuildContext context) => PaymentPage(house),
+            builder: (BuildContext context) => HousePage(house),
           ),
         );
       },
@@ -63,7 +64,7 @@ class HouseCard extends StatelessWidget {
         margin: const EdgeInsets.only(bottom: 16),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(5),
+          borderRadius: BorderRadius.circular(borderRadius),
           border: Border.all(
             color: Colors.grey.shade200,
           ),
@@ -72,8 +73,12 @@ class HouseCard extends StatelessWidget {
           children: [
             Container(
               width: 90,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(borderRadius),
+                  bottomLeft: Radius.circular(borderRadius),
+                ),
+                image: const DecorationImage(
                   fit: BoxFit.cover,
                   image: AssetImage("assets/images/avatar.jpg"),
                 ),
@@ -87,6 +92,7 @@ class HouseCard extends StatelessWidget {
                   children: [
                     Expanded(child: Text(house.name)),
                     ProgressBar(house.donated, house.target),
+                    const SizedBox(height: 5),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [

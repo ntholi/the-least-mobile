@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:theleast/screen/payment/payment_amount_page.dart';
 import 'package:theleast/screen/payment/payment_amount.dart';
 import 'package:theleast/screen/payment/payment_methods.dart';
 import 'package:theleast/service/house/house.dart';
 import 'package:theleast/ui/button.dart';
+import 'package:theleast/ui/colors.dart';
 
 class PaymentPage extends StatefulWidget {
   final House house;
@@ -37,10 +39,15 @@ class _PaymentPageState extends State<PaymentPage> {
               ),
               Button(
                 onClick: () {
-                  print(amountKey.currentState?.value);
+                  Navigator.of(context).push(
+                    MaterialPageRoute<void>(
+                      builder: (BuildContext context) =>
+                          PaymentAmountPage(widget.house),
+                    ),
+                  );
                 },
                 title: "Continue",
-                backgroundColor: Colors.grey.shade800,
+                backgroundColor: AppColors.darkButton,
               )
             ],
           ),

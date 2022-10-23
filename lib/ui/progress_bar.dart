@@ -19,8 +19,8 @@ class ProgressBar extends StatelessWidget {
     return LinearPercentIndicator(
       lineHeight: lineHeight,
       percent: percent,
-      backgroundColor: Colors.grey.shade200,
-      progressColor: AppColors.primaryColor,
+      backgroundColor: Colors.grey.shade100,
+      progressColor: AppColors.primaryColor.shade400,
       padding: EdgeInsets.zero,
     );
   }

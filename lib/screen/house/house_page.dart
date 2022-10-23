@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:theleast/screen/house/goal_info.dart';
+import 'package:theleast/screen/payment/payment_page.dart';
+import 'package:theleast/service/house/house.dart';
+import 'package:theleast/ui/button.dart';
+import 'package:theleast/ui/colors.dart';
 
 class HousePage extends StatelessWidget {
-  const HousePage({super.key});
+  final House house;
+  const HousePage(this.house, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +32,10 @@ class HousePage extends StatelessWidget {
               flexibleSpace: FlexibleSpaceBar(
                 centerTitle: true,
                 title: Row(
-                  children: const [
+                  children: [
                     Padding(
-                      padding: EdgeInsets.only(left: 12),
-                      child: Text("Selimo Thabane"),
+                      padding: const EdgeInsets.only(left: 12),
+                      child: Text(house.name),
                     ),
                   ],
                 ),
@@ -53,30 +58,32 @@ class HousePage extends StatelessWidget {
         },
         body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                GoalInfo(donated: 200, target: 300),
-                SizedBox(height: 20),
-                Text("Description", style: TextStyle(fontSize: 20)),
-                Text(
-                    "This is a short description that describes this and that and stuff")
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const GoalInfo(donated: 200, target: 300),
+                const SizedBox(height: 20),
+                const Text("Description", style: TextStyle(fontSize: 20)),
+                const Text(
+                    "This is a short description that describes this and that and stuff"),
+                const Spacer(),
+                Button(
+                  onClick: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute<void>(
+                        builder: (BuildContext context) => PaymentPage(house),
+                      ),
+                    );
+                  },
+                  title: "Donate",
+                  backgroundColor: AppColors.darkButton,
+                )
               ],
             ),
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        elevation: 1,
-        label: SizedBox(
-          width: MediaQuery.of(context).size.width / 2,
-          child: const Center(child: Text("Donate")),
-        ),
-        backgroundColor: Colors.grey.shade900,
-        onPressed: () {},
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
