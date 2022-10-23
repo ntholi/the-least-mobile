@@ -62,7 +62,8 @@ class _DonationAmountPageState extends State<DonationAmountPage> {
                     Navigator.of(context).push(
                       MaterialPageRoute<void>(
                         builder: (BuildContext context) => ConfirmPaymentPage(
-                          widget.house,
+                          house: widget.house,
+                          amount: double.parse(value.text),
                         ),
                       ),
                     );

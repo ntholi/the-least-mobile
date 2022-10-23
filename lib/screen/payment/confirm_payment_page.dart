@@ -4,8 +4,11 @@ import 'package:theleast/ui/button.dart';
 import 'package:theleast/ui/colors.dart';
 
 class ConfirmPaymentPage extends StatelessWidget {
-  final House house;
-  const ConfirmPaymentPage(this.house, {super.key});
+  final House _house;
+  final double amount;
+  const ConfirmPaymentPage(
+      {super.key, required House house, required this.amount})
+      : _house = house;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +38,7 @@ class ConfirmPaymentPage extends StatelessWidget {
                             color: Colors.grey.shade900),
                       ),
                       Text(
-                        "M200",
+                        "M$amount",
                         style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
