@@ -48,11 +48,7 @@ class ConfirmPaymentPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 30),
-                Button(
-                  onClick: () {},
-                  title: "Confirm Payment",
-                  backgroundColor: AppColors.darkButton,
-                )
+                Button(onClick: () {}, title: "Confirm Payment")
               ],
             )
           ],
