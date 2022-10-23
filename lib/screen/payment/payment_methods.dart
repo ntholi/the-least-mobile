@@ -49,7 +49,7 @@ class _PaymentMethodsState extends State<PaymentMethods> {
             children: [
               SelectionButton(
                 value: PaymentType.mpesa,
-                icon: "new.png",
+                icon: "mpesa.png",
                 selected: paymentType == PaymentType.mpesa,
                 showCheckMark: true,
                 setValue: (value) {
@@ -62,7 +62,7 @@ class _PaymentMethodsState extends State<PaymentMethods> {
               const SizedBox(height: spaceHight),
               SelectionButton(
                 value: PaymentType.card,
-                icon: "new.png",
+                icon: "credit-card.png",
                 selected: paymentType == PaymentType.card,
                 showCheckMark: true,
                 setValue: (value) {
@@ -75,7 +75,7 @@ class _PaymentMethodsState extends State<PaymentMethods> {
               const SizedBox(height: spaceHight),
               SelectionButton(
                 value: PaymentType.paypal,
-                icon: "new.png",
+                icon: "paypal.png",
                 selected: paymentType == PaymentType.paypal,
                 showCheckMark: true,
                 setValue: (value) {

@@ -23,12 +23,12 @@ class _PaymentAmountState extends State<PaymentAmount> {
         TextFormField(
           key: widget.amountKey,
           controller: amountController,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             labelText: "Amount",
             enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey.shade300),
+              borderSide: BorderSide(color: Colors.grey),
             ),
-            border: const OutlineInputBorder(),
+            border: OutlineInputBorder(),
           ),
           validator: (value) {
             if (value == null || double.tryParse(value) == null) {

@@ -27,9 +27,25 @@ class _DonationAmountPageState extends State<DonationAmountPage> {
           padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              Row(
+                children: [
+                  const Text(
+                    "Donate to ",
+                    style: TextStyle(fontSize: 16),
+                  ),
+                  Text(
+                    widget.house.name,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 40),
               PaymentAmount(amountKey: amountKey),
+              const SizedBox(height: 20),
               PaymentMethods(
                 setPaymentType: (value) {
                   setState(() {
@@ -37,6 +53,7 @@ class _DonationAmountPageState extends State<DonationAmountPage> {
                   });
                 },
               ),
+              const Spacer(),
               Button(
                 onClick: () {
                   Navigator.of(context).push(
