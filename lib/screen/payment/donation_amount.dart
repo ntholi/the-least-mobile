@@ -4,16 +4,17 @@ import 'package:theleast/ui/selection_button.dart';
 const amounts = [20, 50, 100, 300, 500, 900];
 
 class PaymentAmount extends StatefulWidget {
-  final GlobalKey<FormFieldState> amountKey;
-  const PaymentAmount({super.key, required this.amountKey});
+  final TextEditingController _amountController;
+  const PaymentAmount(
+      {super.key, required TextEditingController amountController})
+      : _amountController = amountController;
 
   @override
   State<PaymentAmount> createState() => _PaymentAmountState();
 }
 
 class _PaymentAmountState extends State<PaymentAmount> {
-  final amountController = TextEditingController();
-
+  final amountKey = GlobalKey<FormFieldState>();
   final buttonSize = 50.0;
 
   @override
@@ -21,8 +22,8 @@ class _PaymentAmountState extends State<PaymentAmount> {
     return Column(
       children: [
         TextFormField(
-          key: widget.amountKey,
-          controller: amountController,
+          key: amountKey,
+          controller: widget._amountController,
           decoration: const InputDecoration(
             labelText: "Amount",
             enabledBorder: OutlineInputBorder(
@@ -49,11 +50,12 @@ class _PaymentAmountState extends State<PaymentAmount> {
                         value: value,
                         setValue: (value) {
                           setState(() {
-                            amountController.text = value.toString();
+                            widget._amountController.text = value.toString();
                           });
                         },
                         selected:
-                            double.tryParse(amountController.text) == value,
+                            double.tryParse(widget._amountController.text) ==
+                                value,
                         textAlign: TextAlign.center,
                         width: buttonSize,
                         height: buttonSize,
