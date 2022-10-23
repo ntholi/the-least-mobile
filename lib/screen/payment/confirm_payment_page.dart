@@ -3,15 +3,15 @@ import 'package:theleast/service/house/house.dart';
 import 'package:theleast/ui/button.dart';
 import 'package:theleast/ui/colors.dart';
 
-class PaymentAmountPage extends StatelessWidget {
+class ConfirmPaymentPage extends StatelessWidget {
   final House house;
-  const PaymentAmountPage(this.house, {super.key});
+  const ConfirmPaymentPage(this.house, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Payment"),
+        title: const Text("Confirm Payment"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),

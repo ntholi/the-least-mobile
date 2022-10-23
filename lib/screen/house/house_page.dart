@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:theleast/screen/house/goal_info.dart';
-import 'package:theleast/screen/payment/payment_page.dart';
+import 'package:theleast/screen/payment/donation_amount_page.dart';
 import 'package:theleast/service/house/house.dart';
 import 'package:theleast/ui/button.dart';
 import 'package:theleast/ui/colors.dart';
@@ -72,7 +72,8 @@ class HousePage extends StatelessWidget {
                   onClick: () {
                     Navigator.of(context).push(
                       MaterialPageRoute<void>(
-                        builder: (BuildContext context) => PaymentPage(house),
+                        builder: (BuildContext context) =>
+                            DonationAmountPage(house),
                       ),
                     );
                   },
