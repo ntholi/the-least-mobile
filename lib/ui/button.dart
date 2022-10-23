@@ -21,21 +21,36 @@ class Button extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: const BorderRadius.all(Radius.circular(20)),
-        border: Border.all(color: Colors.white),
-        color: backgroundColor,
+    return ElevatedButton(
+      onPressed: disabled ? null : onClick,
+      style: ButtonStyle(
+        backgroundColor: ButtonColor(backgroundColor),
+        padding: MaterialStateProperty.all<EdgeInsets>(
+          const EdgeInsets.symmetric(vertical: 16),
+        ),
       ),
-      child: TextButton(
-        onPressed: disabled ? null : onClick,
-        child: Text(
-          title.toUpperCase(),
-          style: TextStyle(
-            color: textColor,
-          ),
+      child: Text(
+        title.toUpperCase(),
+        style: TextStyle(
+          color: textColor,
         ),
       ),
     );
+  }
+}
+
+class ButtonColor extends MaterialStateColor {
+  final Color _defaultColor;
+  ButtonColor(this._defaultColor) : super(_defaultColor.value);
+
+  @override
+  Color resolve(Set<MaterialState> states) {
+    if (states.contains(MaterialState.pressed)) {
+      return _defaultColor.withAlpha(200);
+    }
+    if (states.contains(MaterialState.disabled)) {
+      return Colors.grey;
+    }
+    return _defaultColor;
   }
 }
