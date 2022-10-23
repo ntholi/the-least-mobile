@@ -16,7 +16,7 @@ class DonationAmountPage extends StatefulWidget {
 
 class _DonationAmountPageState extends State<DonationAmountPage> {
   PaymentType? paymentType;
-  final amountKey = GlobalKey<FormFieldState>();
+  final _amountController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class _DonationAmountPageState extends State<DonationAmountPage> {
                 ],
               ),
               const SizedBox(height: 40),
-              PaymentAmount(amountKey: amountKey),
+              PaymentAmount(amountController: _amountController),
               const SizedBox(height: 20),
               PaymentMethods(
                 setPaymentType: (value) {
@@ -54,18 +54,23 @@ class _DonationAmountPageState extends State<DonationAmountPage> {
                 },
               ),
               const Spacer(),
-              Button(
-                onClick: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute<void>(
-                      builder: (BuildContext context) =>
-                          ConfirmPaymentPage(widget.house),
-                    ),
-                  );
-                },
-                title: "Continue",
-                backgroundColor: AppColors.darkButton,
-              )
+              ValueListenableBuilder<TextEditingValue>(
+                valueListenable: _amountController,
+                builder: (context, value, child) => Button(
+                  disabled: double.tryParse(_amountController.text) == null,
+                  onClick: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute<void>(
+                        builder: (BuildContext context) => ConfirmPaymentPage(
+                          widget.house,
+                        ),
+                      ),
+                    );
+                  },
+                  title: "Continue",
+                  backgroundColor: AppColors.primaryColor,
+                ),
+              ),
             ],
           ),
         ),

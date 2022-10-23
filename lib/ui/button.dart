@@ -8,6 +8,7 @@ class Button extends StatelessWidget {
   final VoidCallback onClick;
   final Color backgroundColor;
   final Color textColor;
+  final bool disabled;
 
   const Button({
     Key? key,
@@ -15,6 +16,7 @@ class Button extends StatelessWidget {
     required this.onClick,
     this.backgroundColor = AppColors.primaryColor,
     this.textColor = Colors.white,
+    this.disabled = false,
   }) : super(key: key);
 
   @override
@@ -26,7 +28,7 @@ class Button extends StatelessWidget {
         color: backgroundColor,
       ),
       child: TextButton(
-        onPressed: onClick,
+        onPressed: disabled ? null : onClick,
         child: Text(
           title.toUpperCase(),
           style: TextStyle(
