@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:theleast/screen/home/filter.dart';
 import 'package:theleast/screen/home/header.dart';
 import 'package:theleast/screen/home/house_list.dart';
+import 'package:theleast/ui/colors.dart';
 import 'package:theleast/ui/logo.dart';
 
 class HomePage extends StatefulWidget {
@@ -43,7 +44,8 @@ class _HomePageState extends State<HomePage> {
           body: Column(
             children: [
               Container(
-                decoration: BoxDecoration(color: Colors.green.shade400),
+                decoration:
+                    BoxDecoration(color: AppColors.primaryColor.shade400),
                 child: const Filter(),
               ),
               const Flexible(

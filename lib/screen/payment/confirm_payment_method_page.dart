@@ -27,14 +27,14 @@ class ConfirmPaymentMethodPage extends StatelessWidget {
                       Text(
                         "Amount",
                         style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 18,
                             fontWeight: FontWeight.w400,
                             color: Colors.grey.shade900),
                       ),
                       Text(
                         "M200",
                         style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 18,
                             fontWeight: FontWeight.w500,
                             color: Colors.grey.shade900),
                       ),
@@ -111,7 +111,10 @@ class PaymentMethodCard extends StatelessWidget {
           child: OutlinedButton.icon(
             onPressed: () {},
             icon: const Icon(Icons.edit_note),
-            label: const Text("Update"),
+            label: Text(
+              "Update",
+              style: TextStyle(color: Colors.grey.shade800),
+            ),
           ),
         )
       ],

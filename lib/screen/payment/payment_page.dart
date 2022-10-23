@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:theleast/screen/payment/payment_amount.dart';
 import 'package:theleast/screen/payment/payment_methods.dart';
+import 'package:theleast/service/house/house.dart';
 import 'package:theleast/ui/button.dart';
 
 class PaymentPage extends StatefulWidget {
-  const PaymentPage({super.key});
+  final House house;
+  const PaymentPage(this.house, {super.key});
 
   @override
   State<PaymentPage> createState() => _PaymentPageState();

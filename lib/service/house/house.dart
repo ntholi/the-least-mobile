@@ -5,9 +5,9 @@ class House {
   String name;
   String address;
   String? district;
-  double? target;
-  double? donated;
-  DateTime? dateCreated;
+  num? target;
+  num? donated;
+  Timestamp? dateCreated;
 
   House({
     this.id,
@@ -26,10 +26,10 @@ class House {
       id: snapshot.id,
       name: data?['name'],
       address: data?['address'],
-      // district: data?['district'],
-      // target: data?['target'],
-      // donated: data?['donated'],
-      // dateCreated: data?['dateCreated'],
+      district: data?['district'],
+      target: data?['target'],
+      donated: data?['donated'],
+      dateCreated: data?['dateCreated'],
     );
   }
 
