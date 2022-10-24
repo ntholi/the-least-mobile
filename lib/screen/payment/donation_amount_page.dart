@@ -41,7 +41,6 @@ class _DonationAmountPageState extends State<DonationAmountPage> {
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
                       color: Colors.grey.shade700,
-                      letterSpacing: 2,
                     ),
                   ),
                 ],
