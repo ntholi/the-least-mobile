@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class SelectionButton<T> extends StatelessWidget {
   final T value;
-  final String? icon;
+  final IconData? icon;
   final bool selected;
   final ValueSetter setValue;
   final double height;
@@ -46,9 +46,7 @@ class SelectionButton<T> extends StatelessWidget {
         width: width,
         child: Row(
           children: [
-            icon == null
-                ? const SizedBox.shrink()
-                : Image.asset('assets/images/$icon', height: 20),
+            if (icon != null) Icon(icon) else const SizedBox.shrink(),
             SizedBox(width: icon == null ? 0 : 10),
             Expanded(
               child: Text(
