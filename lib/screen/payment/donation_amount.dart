@@ -15,7 +15,7 @@ class PaymentAmount extends StatefulWidget {
 
 class _PaymentAmountState extends State<PaymentAmount> {
   final amountKey = GlobalKey<FormFieldState>();
-  final buttonSize = 50.0;
+  final double buttonSize = 40;
 
   @override
   Widget build(BuildContext context) {

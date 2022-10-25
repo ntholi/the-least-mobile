@@ -21,42 +21,53 @@ class _DonationAmountPageState extends State<DonationAmountPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Donation Amount")),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Row(
-                children: [
-                  Icon(
-                    Icons.house,
-                    color: Colors.grey.shade700,
+      backgroundColor: Colors.grey.shade100,
+      body: Stack(
+        children: [
+          SizedBox(
+            height: 180,
+            child: AppBar(
+              title: const Text("Donation Amount"),
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(25),
+                  bottomRight: Radius.circular(25),
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 100, 16, 0),
+            child: Column(
+              children: [
+                Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: PaymentAmount(amountController: _amountController),
                   ),
-                  const SizedBox(width: 2),
-                  Text(
-                    widget.house.name,
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.grey.shade700,
+                ),
+                const SizedBox(height: 10),
+                Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: PaymentMethods(
+                      setPaymentType: (value) {
+                        setState(() {
+                          _paymentType = value;
+                        });
+                      },
                     ),
                   ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              PaymentAmount(amountController: _amountController),
-              const SizedBox(height: 20),
-              PaymentMethods(
-                setPaymentType: (value) {
-                  setState(() {
-                    _paymentType = value;
-                  });
-                },
-              ),
-              const Spacer(),
-              ValueListenableBuilder<TextEditingValue>(
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            bottom: 0,
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              padding: const EdgeInsets.all(16),
+              child: ValueListenableBuilder<TextEditingValue>(
                 valueListenable: _amountController,
                 builder: (context, value, child) => Button(
                   disabled: double.tryParse(_amountController.text) == null ||
@@ -75,9 +86,9 @@ class _DonationAmountPageState extends State<DonationAmountPage> {
                   backgroundColor: AppColors.primaryColor,
                 ),
               ),
-            ],
-          ),
-        ),
+            ),
+          )
+        ],
       ),
     );
   }
