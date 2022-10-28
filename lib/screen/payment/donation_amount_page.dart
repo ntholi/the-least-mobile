@@ -37,9 +37,25 @@ class _DonationAmountPageState extends State<DonationAmountPage> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(16, 100, 16, 0),
+            padding: const EdgeInsets.fromLTRB(16, 80, 16, 0),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Row(
+                  children: [
+                    const Icon(
+                      Icons.house,
+                      color: Colors.white,
+                      size: 18,
+                    ),
+                    const SizedBox(width: 3),
+                    Text(
+                      widget.house.name,
+                      style: const TextStyle(color: Colors.white, fontSize: 16),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
                 Card(
                   child: Padding(
                     padding: const EdgeInsets.all(16),
