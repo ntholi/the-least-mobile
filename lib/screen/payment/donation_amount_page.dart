@@ -7,8 +7,8 @@ import 'package:theleast/ui/button.dart';
 import 'package:theleast/ui/colors.dart';
 
 class DonationAmountPage extends StatefulWidget {
-  final House house;
-  const DonationAmountPage(this.house, {super.key});
+  final House _house;
+  const DonationAmountPage(this._house, {super.key});
 
   @override
   State<DonationAmountPage> createState() => _DonationAmountPageState();
@@ -50,7 +50,7 @@ class _DonationAmountPageState extends State<DonationAmountPage> {
                     ),
                     const SizedBox(width: 3),
                     Text(
-                      widget.house.name,
+                      widget._house.name,
                       style: const TextStyle(color: Colors.white, fontSize: 16),
                     ),
                   ],
@@ -92,7 +92,7 @@ class _DonationAmountPageState extends State<DonationAmountPage> {
                     Navigator.of(context).push(
                       MaterialPageRoute<void>(
                         builder: (BuildContext context) => ConfirmPaymentPage(
-                          house: widget.house,
+                          house: widget._house,
                           amount: double.parse(value.text),
                         ),
                       ),

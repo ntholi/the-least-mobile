@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:theleast/screen/payment/payment_method_card.dart';
 import 'package:theleast/service/house/house.dart';
 import 'package:theleast/ui/button.dart';
-import 'package:theleast/ui/colors.dart';
 
 class ConfirmPaymentPage extends StatelessWidget {
   final House _house;
@@ -13,113 +13,55 @@ class ConfirmPaymentPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Confirm Payment"),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const PaymentMethodCard(),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 5),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Amount",
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.grey.shade900),
-                      ),
-                      Text(
-                        "M$amount",
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.grey.shade900),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 30),
-                Button(onClick: () {}, title: "Confirm Payment")
-              ],
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class PaymentMethodCard extends StatelessWidget {
-  const PaymentMethodCard({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          padding: const EdgeInsets.all(16),
-          height: 100,
-          decoration: BoxDecoration(
-            color: Colors.blueGrey.shade50,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Row(
-            children: [
-              ClipRRect(
-                borderRadius: const BorderRadius.all(Radius.circular(10)),
-                child: Image.asset(
-                  'assets/images/mpesa.png',
+      backgroundColor: Colors.grey.shade100,
+      body: Stack(
+        children: [
+          SizedBox(
+            height: 180,
+            child: AppBar(
+              title: const Text("Confirm Payment"),
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(25),
+                  bottomRight: Radius.circular(25),
                 ),
               ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 80, 16, 0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
                   children: [
-                    const Text(
-                      "M-Pesa",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                      ),
+                    const Icon(
+                      Icons.house,
+                      color: Colors.white,
+                      size: 18,
                     ),
-                    const Spacer(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text("Number"),
-                        Text("****763"),
-                      ],
+                    const SizedBox(width: 3),
+                    Text(
+                      _house.name,
+                      style: const TextStyle(color: Colors.white, fontSize: 16),
                     ),
                   ],
                 ),
-              )
-            ],
-          ),
-        ),
-        Align(
-          alignment: Alignment.topRight,
-          child: OutlinedButton.icon(
-            onPressed: () {},
-            icon: Icon(Icons.edit_note, color: Colors.grey.shade900),
-            label: Text(
-              "Update",
-              style: TextStyle(color: Colors.grey.shade900),
+                const SizedBox(height: 10),
+                const PaymentMethodCard(),
+              ],
             ),
           ),
-        )
-      ],
+          Positioned(
+            bottom: 0,
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              padding: const EdgeInsets.all(16),
+              child: Button(onClick: () {}, title: "Confirm Payment"),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
