@@ -44,18 +44,18 @@ class _HouseListState extends State<HouseList> {
 }
 
 class HouseCard extends StatelessWidget {
-  final House house;
-  final double borderRadius = 5;
-  const HouseCard({super.key, required this.house});
+  final House _house;
+  final double _borderRadius = 5;
+  const HouseCard({super.key, required House house}) : _house = house;
 
   @override
   Widget build(BuildContext context) {
-    final donated = house.donated ?? 0;
+    final donated = _house.donated ?? 0;
     return InkWell(
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute<void>(
-            builder: (BuildContext context) => HousePage(house),
+            builder: (BuildContext context) => HousePage(_house),
           ),
         );
       },
@@ -64,7 +64,7 @@ class HouseCard extends StatelessWidget {
         margin: const EdgeInsets.only(bottom: 16),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(borderRadius),
+          borderRadius: BorderRadius.circular(_borderRadius),
           border: Border.all(
             color: Colors.grey.shade200,
           ),
@@ -75,12 +75,16 @@ class HouseCard extends StatelessWidget {
               width: 90,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(borderRadius),
-                  bottomLeft: Radius.circular(borderRadius),
+                  topLeft: Radius.circular(_borderRadius),
+                  bottomLeft: Radius.circular(_borderRadius),
                 ),
-                image: const DecorationImage(
+                image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: AssetImage("assets/images/avatar.jpg"),
+                  image: NetworkImage(_house.image ?? ''),
+                  colorFilter: ColorFilter.mode(
+                    Colors.grey.shade400.withOpacity(0.9),
+                    BlendMode.darken,
+                  ),
                 ),
               ),
             ),
@@ -90,8 +94,8 @@ class HouseCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Expanded(child: Text(house.name)),
-                    ProgressBar(house.donated, house.target),
+                    Expanded(child: Text(_house.name)),
+                    ProgressBar(_house.donated, _house.target),
                     const SizedBox(height: 5),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

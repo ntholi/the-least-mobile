@@ -8,6 +8,7 @@ class House {
   num? target;
   num? donated;
   Timestamp? dateCreated;
+  String? image;
 
   House({
     this.id,
@@ -17,6 +18,7 @@ class House {
     this.target,
     this.donated,
     this.dateCreated,
+    this.image,
   });
 
   factory House.fromFirestore(DocumentSnapshot<Map<String, dynamic>> snapshot,
@@ -30,6 +32,7 @@ class House {
       target: data?['target'],
       donated: data?['donated'],
       dateCreated: data?['dateCreated'],
+      image: data?['image'],
     );
   }
 
@@ -41,6 +44,7 @@ class House {
       if (target != null) "target": target,
       if (donated != null) "donated": donated,
       if (dateCreated != null) "dateCreated": dateCreated,
+      if (image != null) "image": dateCreated,
     };
   }
 }

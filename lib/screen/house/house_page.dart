@@ -6,8 +6,8 @@ import 'package:theleast/ui/button.dart';
 import 'package:theleast/ui/colors.dart';
 
 class HousePage extends StatelessWidget {
-  final House house;
-  const HousePage(this.house, {super.key});
+  final House _house;
+  const HousePage(this._house, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,15 +35,14 @@ class HousePage extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(left: 12),
-                      child: Text(house.name),
+                      child: Text(_house.name),
                     ),
                   ],
                 ),
                 background: Container(
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: const AssetImage(
-                          "assets/images/delete-this-image.jpg"),
+                      image: NetworkImage(_house.image ?? ''),
                       fit: BoxFit.cover,
                       colorFilter: ColorFilter.mode(
                         Colors.black.withOpacity(0.7),
@@ -73,7 +72,7 @@ class HousePage extends StatelessWidget {
                     Navigator.of(context).push(
                       MaterialPageRoute<void>(
                         builder: (BuildContext context) =>
-                            DonationAmountPage(house),
+                            DonationAmountPage(_house),
                       ),
                     );
                   },
