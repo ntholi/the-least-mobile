@@ -29,7 +29,7 @@ class ConfirmPaymentPage extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(16, 80, 16, 0),
+            padding: const EdgeInsets.fromLTRB(16, 80, 16, 16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -49,15 +49,36 @@ class ConfirmPaymentPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 const PaymentMethodCard(),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 5),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Amount",
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.grey.shade900),
+                          ),
+                          Text(
+                            "M$amount",
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.grey.shade900),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 30),
+                    Button(onClick: () {}, title: "Confirm Payment")
+                  ],
+                )
               ],
-            ),
-          ),
-          Positioned(
-            bottom: 0,
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              padding: const EdgeInsets.all(16),
-              child: Button(onClick: () {}, title: "Confirm Payment"),
             ),
           ),
         ],
