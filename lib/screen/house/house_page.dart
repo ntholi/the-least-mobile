@@ -14,9 +14,8 @@ class HousePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final backgroundImage = CachedNetworkImage(
       imageUrl: _house.image ?? "",
-      placeholder: (context, url) => Image.asset(
-        'assets/images/blank.jpg',
-        fit: BoxFit.cover,
+      placeholder: (context, url) => Container(
+        color: Colors.grey.shade700,
       ),
       errorWidget: (context, url, error) => const Icon(Icons.error),
       imageBuilder: (context, imageProvider) {
