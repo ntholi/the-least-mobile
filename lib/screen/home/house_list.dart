@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:theleast/screen/house/house_page.dart';
 import 'package:theleast/service/house/house.dart';
@@ -60,7 +61,8 @@ class HouseCard extends StatelessWidget {
         );
       },
       child: Container(
-        height: 80,
+        height: 90,
+        padding: const EdgeInsets.symmetric(vertical: 4),
         margin: const EdgeInsets.only(bottom: 16),
         decoration: BoxDecoration(
           color: Colors.white,
@@ -71,22 +73,10 @@ class HouseCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Container(
-              width: 90,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(_borderRadius),
-                  bottomLeft: Radius.circular(_borderRadius),
-                ),
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(_house.image ?? ''),
-                  colorFilter: ColorFilter.mode(
-                    Colors.grey.shade400.withOpacity(0.9),
-                    BlendMode.darken,
-                  ),
-                ),
-              ),
+            CircleAvatar(
+              backgroundImage: CachedNetworkImageProvider(_house.image ?? ''),
+              backgroundColor: Colors.grey,
+              radius: 45,
             ),
             Expanded(
               child: Padding(
