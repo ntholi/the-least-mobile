@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:theleast/screen/house/goal_info.dart';
 import 'package:theleast/screen/payment/donation_amount_page.dart';
@@ -11,6 +12,29 @@ class HousePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final backgroundImage = CachedNetworkImage(
+      imageUrl: _house.image ?? "",
+      placeholder: (context, url) => Image.asset(
+        'assets/images/blank.jpg',
+        fit: BoxFit.cover,
+      ),
+      errorWidget: (context, url, error) => const Icon(Icons.error),
+      imageBuilder: (context, imageProvider) {
+        return Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: imageProvider,
+              fit: BoxFit.cover,
+              colorFilter: ColorFilter.mode(
+                Colors.black.withOpacity(0.7),
+                BlendMode.darken,
+              ),
+            ),
+          ),
+        );
+      },
+    );
+
     return Scaffold(
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
@@ -39,18 +63,7 @@ class HousePage extends StatelessWidget {
                     ),
                   ],
                 ),
-                background: Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: NetworkImage(_house.image ?? ''),
-                      fit: BoxFit.cover,
-                      colorFilter: ColorFilter.mode(
-                        Colors.black.withOpacity(0.7),
-                        BlendMode.darken,
-                      ),
-                    ),
-                  ),
-                ),
+                background: backgroundImage,
               ),
             ),
           ];
