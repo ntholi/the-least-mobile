@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:theleast/service/payment/payment_method.dart';
 import 'package:theleast/ui/selection_button.dart';
 
-enum PaymentType {
-  mpesa("M-Pesa", "mpesa.png", Icons.phone_android),
-  card("Card", "card.png", Icons.credit_card),
-  paypal("PayPal", "paypal.png", Icons.paypal);
+enum PaymentMethodIcons {
+  mpesa(PaymentMethodNames.mpesa, "mpesa.png", Icons.phone_android),
+  card(PaymentMethodNames.card, "card.png", Icons.credit_card),
+  paypal(PaymentMethodNames.payPall, "paypal.png", Icons.paypal);
 
-  const PaymentType(this.name, this.image, this.icon);
+  const PaymentMethodIcons(this.name, this.image, this.icon);
   final String name;
   final String image;
   final IconData icon;
@@ -24,7 +25,7 @@ class PaymentMethods extends StatefulWidget {
 }
 
 class _PaymentMethodsState extends State<PaymentMethods> {
-  PaymentType? paymentType;
+  PaymentMethodIcons? paymentType;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +47,7 @@ class _PaymentMethodsState extends State<PaymentMethods> {
         Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: PaymentType.values
+            children: PaymentMethodIcons.values
                 .map(
                   (type) => Container(
                     margin: const EdgeInsets.only(bottom: 16),
