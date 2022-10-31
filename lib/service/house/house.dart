@@ -44,7 +44,7 @@ class House {
       if (target != null) "target": target,
       if (donated != null) "donated": donated,
       if (dateCreated != null) "dateCreated": dateCreated,
-      if (image != null) "image": dateCreated,
+      if (image != null) "image": image,
     };
   }
 }

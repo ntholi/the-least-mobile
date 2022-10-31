@@ -89,7 +89,6 @@ class HousePage extends StatelessWidget {
                     );
                   },
                   title: "Donate",
-                  backgroundColor: AppColors.darkButton,
                 )
               ],
             ),
