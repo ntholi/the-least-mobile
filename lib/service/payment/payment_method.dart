@@ -7,4 +7,7 @@ class PaymentMethod with _$PaymentMethod {
     required String name,
     required String id,
   }) = _PaymentMethod;
+
+  factory PaymentMethod.fromJson(Map<String, Object?> json) =>
+      _$PaymentMethodFromJson(json);
 }

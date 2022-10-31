@@ -45,24 +45,27 @@ class _PaymentMethodsState extends State<PaymentMethods> {
         const SizedBox(height: 20),
         Center(
           child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: PaymentType.values
-                  .map((type) => Container(
-                        margin: const EdgeInsets.only(bottom: 16),
-                        child: SelectionButton(
-                          value: type,
-                          icon: type.icon,
-                          selected: type.name == paymentType?.name,
-                          showCheckMark: true,
-                          setValue: (value) {
-                            setState(() {
-                              paymentType = value;
-                              widget.setPaymentType(value);
-                            });
-                          },
-                        ),
-                      ))
-                  .toList()),
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: PaymentType.values
+                .map(
+                  (type) => Container(
+                    margin: const EdgeInsets.only(bottom: 16),
+                    child: SelectionButton(
+                      value: type,
+                      icon: type.icon,
+                      selected: type.name == paymentType?.name,
+                      showCheckMark: true,
+                      setValue: (value) {
+                        setState(() {
+                          paymentType = value;
+                          widget.setPaymentType(value);
+                        });
+                      },
+                    ),
+                  ),
+                )
+                .toList(),
+          ),
         ),
       ],
     );

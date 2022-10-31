@@ -11,7 +11,8 @@ _$_Payment _$$_PaymentFromJson(Map<String, dynamic> json) => _$_Payment(
       amount: (json['amount'] as num).toDouble(),
       houseId: json['houseId'] as String,
       userId: json['userId'] as String,
-      paymentType: $enumDecode(_$PaymentTypeEnumMap, json['paymentType']),
+      paymentMethod:
+          PaymentMethod.fromJson(json['paymentMethod'] as Map<String, dynamic>),
       dateCreated: _$JsonConverterFromJson<DateTime, Timestamp>(
           json['dateCreated'], const TimestampConverter().fromJson),
     );
@@ -22,16 +23,10 @@ Map<String, dynamic> _$$_PaymentToJson(_$_Payment instance) =>
       'amount': instance.amount,
       'houseId': instance.houseId,
       'userId': instance.userId,
-      'paymentType': _$PaymentTypeEnumMap[instance.paymentType]!,
+      'paymentMethod': instance.paymentMethod,
       'dateCreated': _$JsonConverterToJson<DateTime, Timestamp>(
           instance.dateCreated, const TimestampConverter().toJson),
     };
-
-const _$PaymentTypeEnumMap = {
-  PaymentType.mpesa: 'mpesa',
-  PaymentType.card: 'card',
-  PaymentType.paypal: 'paypal',
-};
 
 Value? _$JsonConverterFromJson<Json, Value>(
   Object? json,

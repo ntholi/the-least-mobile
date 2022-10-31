@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theleast/screen/payment/payment_methods.dart';
+import 'package:theleast/service/payment/payment_method.dart';
 import 'package:theleast/utils/json_converters.dart';
 part 'payment.freezed.dart';
 part 'payment.g.dart';
@@ -12,7 +12,7 @@ class Payment with _$Payment {
     required double amount,
     required String houseId,
     required String userId,
-    required PaymentType paymentType,
+    required PaymentMethod paymentMethod,
     @TimestampConverter() Timestamp? dateCreated,
   }) = _Payment;
 

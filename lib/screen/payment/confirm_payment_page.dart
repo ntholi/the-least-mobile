@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:theleast/screen/payment/payment_method_card.dart';
 import 'package:theleast/service/house/house.dart';
+import 'package:theleast/service/payment/payment_method.dart';
+import 'package:theleast/service/payment/payment_service.dart';
 import 'package:theleast/ui/button.dart';
 
 class ConfirmPaymentPage extends StatelessWidget {
+  final _isProcessing = ValueNotifier<bool>(false);
   final House _house;
-  final double amount;
-  const ConfirmPaymentPage(
-      {super.key, required House house, required this.amount})
-      : _house = house;
+  final double _amount;
+  ConfirmPaymentPage({
+    super.key,
+    required House house,
+    required double amount,
+  })  : _house = house,
+        _amount = amount;
 
   @override
   Widget build(BuildContext context) {
@@ -65,17 +71,33 @@ class ConfirmPaymentPage extends StatelessWidget {
                                 color: Colors.grey.shade900),
                           ),
                           Text(
-                            "M$amount",
+                            "M$_amount",
                             style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.grey.shade900),
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.grey.shade900,
+                            ),
                           ),
                         ],
                       ),
                     ),
                     const SizedBox(height: 30),
-                    Button(onClick: () {}, title: "Confirm Payment")
+                    ValueListenableBuilder<bool>(
+                      valueListenable: _isProcessing,
+                      builder: (context, value, child) {
+                        if (_isProcessing.value) {
+                          return const Text("Processing");
+                        }
+                        return Button(
+                          onClick: () async {
+                            _isProcessing.value = true;
+                            await onConfirmPayment(context);
+                            _isProcessing.value = false;
+                          },
+                          title: "Confirm Payment",
+                        );
+                      },
+                    ),
                   ],
                 )
               ],
@@ -84,5 +106,21 @@ class ConfirmPaymentPage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future<void> onConfirmPayment(BuildContext context) async {
+    try {
+      await makePayment(
+        _house,
+        _amount,
+        const PaymentMethod(name: "M-Pesa", id: '5029342'),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Error ${e.toString()}"),
+        ),
+      );
+    }
   }
 }

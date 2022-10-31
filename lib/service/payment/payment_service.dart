@@ -1,19 +1,22 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:theleast/screen/payment/payment_methods.dart';
 import 'package:theleast/service/house/house.dart';
 import 'package:theleast/service/payment/payment.dart';
+import 'package:theleast/service/payment/payment_method.dart';
 
 final db = FirebaseFirestore.instance;
 
 Future<void> makePayment(
-    House house, PaymentType paymentType, double amount) async {
+  House house,
+  double amount,
+  PaymentMethod paymentMethod,
+) async {
   String userId = "";
 
   final payment = Payment(
     amount: amount,
     houseId: house.id!,
     userId: userId,
-    paymentType: paymentType,
+    paymentMethod: paymentMethod,
   );
 
   final houseRef = db.collection("houses").doc(house.id);
