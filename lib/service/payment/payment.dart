@@ -12,10 +12,24 @@ class Payment with _$Payment {
     required double amount,
     required String houseId,
     required String userId,
-    required PaymentMethod paymentMethod,
+    @_PaymentMethodConverter() required PaymentMethod paymentMethod,
     @TimestampConverter() Timestamp? dateCreated,
   }) = _Payment;
 
   factory Payment.fromJson(Map<String, Object?> json) =>
       _$PaymentFromJson(json);
+}
+
+class _PaymentMethodConverter
+    extends JsonConverter<PaymentMethod, Map<String, dynamic>> {
+  const _PaymentMethodConverter();
+  @override
+  PaymentMethod fromJson(Map<String, dynamic> json) {
+    return PaymentMethod.fromJson(json);
+  }
+
+  @override
+  Map<String, dynamic> toJson(PaymentMethod object) {
+    return object.toJson();
+  }
 }

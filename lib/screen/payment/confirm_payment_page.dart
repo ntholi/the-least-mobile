@@ -116,9 +116,19 @@ class ConfirmPaymentPage extends StatelessWidget {
         const PaymentMethod(name: "M-Pesa", id: '5029342'),
       );
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: const Text("Error!"),
           content: Text("Error ${e.toString()}"),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(ctx).pop();
+              },
+              child: const Text("Close"),
+            ),
+          ],
         ),
       );
     }
