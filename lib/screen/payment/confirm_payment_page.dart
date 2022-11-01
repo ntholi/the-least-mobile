@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:theleast/screen/payment/payment_method_card.dart';
+import 'package:theleast/screen/payment/payment_successful_page.dart';
 import 'package:theleast/service/house/house.dart';
 import 'package:theleast/service/payment/payment_method.dart';
 import 'package:theleast/service/payment/payment_service.dart';
@@ -85,16 +86,22 @@ class ConfirmPaymentPage extends StatelessWidget {
                     ValueListenableBuilder<bool>(
                       valueListenable: _isProcessing,
                       builder: (context, value, child) {
-                        if (_isProcessing.value) {
-                          return const Text("Processing");
-                        }
                         return Button(
-                          onClick: () async {
+                          onClick: ([bool mounted = true]) async {
                             _isProcessing.value = true;
                             await onConfirmPayment(context);
                             _isProcessing.value = false;
+                            if (!mounted) return;
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    PaymentSuccessfulPage(house: _house),
+                              ),
+                            );
                           },
                           title: "Confirm Payment",
+                          isProcessing: _isProcessing.value,
                         );
                       },
                     ),

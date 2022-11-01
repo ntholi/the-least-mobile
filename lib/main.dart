@@ -1,6 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:theleast/screen/landing_page.dart';
+import 'package:theleast/screen/payment/confirm_payment_page.dart';
+import 'package:theleast/screen/payment/payment_successful_page.dart';
+import 'package:theleast/service/house/house.dart';
 import 'package:theleast/ui/colors.dart';
 import 'package:theleast/firebase_options.dart';
 
@@ -10,11 +13,17 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
+
+  final house = //TODO: TO BE DELETED
+      House(
+          id: "ifjcAYF9NKYHFfygTjue",
+          name: "Holima Sekolo",
+          address: "address");
 
   @override
   Widget build(BuildContext context) {
