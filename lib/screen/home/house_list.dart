@@ -74,7 +74,8 @@ class HouseCard extends StatelessWidget {
         child: Row(
           children: [
             CircleAvatar(
-              backgroundImage: CachedNetworkImageProvider(_house.image ?? ''),
+              backgroundImage:
+                  CachedNetworkImageProvider(_house.imageUrl ?? ''),
               backgroundColor: Colors.grey,
               radius: 45,
             ),

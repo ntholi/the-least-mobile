@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:theleast/ui/progress_bar.dart';
 
 class GoalInfo extends StatelessWidget {
-  final double donated;
-  final double target;
+  final num? donated;
+  final num? target;
 
   const GoalInfo({super.key, required this.donated, required this.target});
 

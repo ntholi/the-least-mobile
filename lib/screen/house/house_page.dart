@@ -13,7 +13,7 @@ class HousePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final backgroundImage = CachedNetworkImage(
-      imageUrl: _house.image ?? "",
+      imageUrl: _house.imageUrl ?? "",
       placeholder: (context, url) => Container(
         color: Colors.grey.shade700,
       ),
@@ -73,11 +73,10 @@ class HousePage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const GoalInfo(donated: 200, target: 300),
+                GoalInfo(donated: _house.donated, target: _house.target),
                 const SizedBox(height: 20),
                 const Text("Description", style: TextStyle(fontSize: 20)),
-                const Text(
-                    "This is a short description that describes this and that and stuff"),
+                Text(_house.description ?? ""),
                 const Spacer(),
                 Button(
                   onClick: () {

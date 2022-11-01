@@ -1,25 +1,24 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class House {
-  String? id;
-  String name;
-  String address;
-  String? district;
-  num? target;
-  num? donated;
-  Timestamp? dateCreated;
-  String? image;
+import '../../utils/json_converters.dart';
 
-  House({
-    this.id,
-    required this.name,
-    required this.address,
-    this.district,
-    this.target,
-    this.donated,
-    this.dateCreated,
-    this.image,
-  });
+part 'house.freezed.dart';
+part 'house.g.dart';
+
+@freezed
+class House with _$House {
+  const factory House({
+    String? id,
+    required String name,
+    String? description,
+    String? address,
+    String? district,
+    num? target,
+    num? donated,
+    String? imageUrl,
+    @TimestampConverter() Timestamp? dateCreated,
+  }) = _House;
 
   factory House.fromFirestore(DocumentSnapshot<Map<String, dynamic>> snapshot,
       SnapshotOptions? options) {
@@ -27,24 +26,14 @@ class House {
     return House(
       id: snapshot.id,
       name: data?['name'],
+      description: data?['description'],
       address: data?['address'],
       district: data?['district'],
       target: data?['target'],
       donated: data?['donated'],
       dateCreated: data?['dateCreated'],
-      image: data?['image'],
+      imageUrl: data?['imageUrl'],
     );
   }
-
-  Map<String, dynamic> toFirestore() {
-    return {
-      "name": name,
-      if (address != null) "address": address,
-      if (district != null) "district": district,
-      if (target != null) "target": target,
-      if (donated != null) "donated": donated,
-      if (dateCreated != null) "dateCreated": dateCreated,
-      if (image != null) "image": image,
-    };
-  }
+  factory House.fromJson(Map<String, dynamic> json) => _$HouseFromJson(json);
 }

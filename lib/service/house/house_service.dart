@@ -6,7 +6,7 @@ Future<List<House>> getHouses() async {
 
   final ref = db.collection("houses").withConverter(
         fromFirestore: House.fromFirestore,
-        toFirestore: (House house, _) => house.toFirestore(),
+        toFirestore: (House house, _) => house.toJson(),
       );
   final snapshot = await ref.get();
   return snapshot.docs.map((e) => e.data()).toList();
