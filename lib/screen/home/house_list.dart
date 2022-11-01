@@ -23,8 +23,6 @@ class _HouseListState extends State<HouseList> {
             return Center(
               child: Text('${snapshot.error} occurred'),
             );
-
-            // if we got our data
           } else if (snapshot.hasData) {
             var items = snapshot.data as List<House>;
             return ListView.builder(
@@ -54,11 +52,7 @@ class HouseCard extends StatelessWidget {
     final donated = _house.donated ?? 0;
     return InkWell(
       onTap: () {
-        Navigator.of(context).push(
-          MaterialPageRoute<void>(
-            builder: (BuildContext context) => HousePage(_house),
-          ),
-        );
+        gotoHouse(context, _house);
       },
       child: Container(
         height: 90,
@@ -100,7 +94,8 @@ class HouseCard extends StatelessWidget {
                         Text(
                           "M$donated",
                           style: TextStyle(
-                              color: donated > 0 ? Colors.black : Colors.red),
+                            color: donated > 0 ? Colors.black : Colors.red,
+                          ),
                         )
                       ],
                     )
@@ -109,7 +104,9 @@ class HouseCard extends StatelessWidget {
               ),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                gotoHouse(context, _house);
+              },
               icon: Icon(
                 size: 15,
                 Icons.arrow_forward_ios_sharp,
@@ -121,4 +118,12 @@ class HouseCard extends StatelessWidget {
       ),
     );
   }
+}
+
+void gotoHouse(BuildContext context, House house) {
+  Navigator.of(context).push(
+    MaterialPageRoute<void>(
+      builder: (BuildContext context) => HousePage(house),
+    ),
+  );
 }
