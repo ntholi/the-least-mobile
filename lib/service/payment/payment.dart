@@ -7,7 +7,7 @@ part 'payment.g.dart';
 
 @freezed
 class Payment with _$Payment {
-  const factory Payment({
+  factory Payment({
     String? id,
     required double amount,
     required String houseId,

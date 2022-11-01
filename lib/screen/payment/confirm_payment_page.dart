@@ -115,12 +115,13 @@ class ConfirmPaymentPage extends StatelessWidget {
         _amount,
         const PaymentMethod(name: "M-Pesa", id: '5029342'),
       );
-    } catch (e) {
+    } catch (error, stack) {
+      print(stack);
       showDialog(
         context: context,
         builder: (ctx) => AlertDialog(
           title: const Text("Error!"),
-          content: Text("Error ${e.toString()}"),
+          content: Text("Error ${error.toString()}"),
           actions: <Widget>[
             TextButton(
               onPressed: () {

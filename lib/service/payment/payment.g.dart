@@ -13,7 +13,7 @@ _$_Payment _$$_PaymentFromJson(Map<String, dynamic> json) => _$_Payment(
       userId: json['userId'] as String,
       paymentMethod: const _PaymentMethodConverter()
           .fromJson(json['paymentMethod'] as Map<String, dynamic>),
-      dateCreated: _$JsonConverterFromJson<DateTime, Timestamp>(
+      dateCreated: _$JsonConverterFromJson<Object, Timestamp?>(
           json['dateCreated'], const TimestampConverter().fromJson),
     );
 
@@ -25,8 +25,7 @@ Map<String, dynamic> _$$_PaymentToJson(_$_Payment instance) =>
       'userId': instance.userId,
       'paymentMethod':
           const _PaymentMethodConverter().toJson(instance.paymentMethod),
-      'dateCreated': _$JsonConverterToJson<DateTime, Timestamp>(
-          instance.dateCreated, const TimestampConverter().toJson),
+      'dateCreated': const TimestampConverter().toJson(instance.dateCreated),
     };
 
 Value? _$JsonConverterFromJson<Json, Value>(
@@ -34,9 +33,3 @@ Value? _$JsonConverterFromJson<Json, Value>(
   Value? Function(Json json) fromJson,
 ) =>
     json == null ? null : fromJson(json as Json);
-
-Json? _$JsonConverterToJson<Json, Value>(
-  Value? value,
-  Json? Function(Value value) toJson,
-) =>
-    value == null ? null : toJson(value);

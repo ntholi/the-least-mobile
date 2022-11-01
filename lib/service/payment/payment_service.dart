@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:theleast/service/house/house.dart';
 import 'package:theleast/service/payment/payment.dart';
 import 'package:theleast/service/payment/payment_method.dart';
@@ -10,7 +11,10 @@ Future<void> makePayment(
   double amount,
   PaymentMethod paymentMethod,
 ) async {
-  String userId = "";
+  String? userId = FirebaseAuth.instance.currentUser?.uid;
+  if (userId == null) {
+    throw StateError("Unable to get logged-in user details");
+  }
 
   final payment = Payment(
     amount: amount,
