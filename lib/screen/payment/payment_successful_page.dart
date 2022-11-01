@@ -41,12 +41,10 @@ class PaymentSuccessfulPage extends StatelessWidget {
               width: MediaQuery.of(context).size.width / 1.5,
               child: Button(
                 onClick: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const LandingPage(),
-                    ),
-                  );
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (_) => const LandingPage()),
+                      (route) => false);
                 },
                 title: "Done",
                 textColor: AppColors.primaryColor,
