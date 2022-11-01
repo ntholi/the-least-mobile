@@ -12,13 +12,13 @@ class HouseList extends StatefulWidget {
 
 class _HouseListState extends State<HouseList> {
   final _refreshIndicatorKey = GlobalKey<RefreshIndicatorState>();
-  late List<House> _items;
+  late List<House> _houses;
   late Future<void> _initData;
 
   @override
   void initState() {
     super.initState();
-    _initData = _initHouses();
+    _initData = _loadInitData();
   }
 
   @override
@@ -37,9 +37,9 @@ class _HouseListState extends State<HouseList> {
               onRefresh: _refreshHouses,
               child: ListView.builder(
                 padding: const EdgeInsets.all(8),
-                itemCount: _items.length,
+                itemCount: _houses.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return HouseCard(house: _items[index]);
+                  return HouseCard(house: _houses[index]);
                 },
               ),
             );
@@ -52,14 +52,14 @@ class _HouseListState extends State<HouseList> {
     );
   }
 
-  Future<void> _initHouses() async {
-    _items = await getHouses();
+  Future<void> _loadInitData() async {
+    _houses = await getHouses();
   }
 
   Future<void> _refreshHouses() async {
     final photos = await getHouses();
     setState(() {
-      _items = photos;
+      _houses = photos;
     });
   }
 }
