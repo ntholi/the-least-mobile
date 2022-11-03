@@ -1,8 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:theleast/screen/landing_page.dart';
-import 'package:theleast/screen/payment/confirm_payment_page.dart';
-import 'package:theleast/screen/payment/payment_successful_page.dart';
 import 'package:theleast/service/house/house.dart';
 import 'package:theleast/ui/colors.dart';
 import 'package:theleast/firebase_options.dart';

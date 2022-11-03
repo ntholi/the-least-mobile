@@ -76,12 +76,11 @@ class _SignUpFormState extends State<SignUpForm> {
               onClick: () async {
                 if (_formKey.currentState!.validate()) {
                   User user = User(
-                    _firstName.text,
-                    _lastName.text,
-                    _email.text,
-                    _password.text,
+                    firstName: _firstName.text,
+                    lastName: _lastName.text,
+                    email: _email.text,
                   );
-                  await createUser(user);
+                  await createUser(user, _password.text);
                   if (!mounted) return;
                   Navigator.of(context).pop();
                 }

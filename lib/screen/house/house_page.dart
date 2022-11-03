@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:theleast/screen/house/goal_info.dart';
 import 'package:theleast/screen/payment/donation_amount_page.dart';
 import 'package:theleast/service/house/house.dart';
+import 'package:theleast/service/user/user_service.dart';
 import 'package:theleast/ui/button.dart';
 import 'package:theleast/ui/colors.dart';
 
@@ -44,7 +45,9 @@ class HousePage extends StatelessWidget {
               pinned: false,
               actions: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    await addToFavorites(_house);
+                  },
                   icon: const Icon(
                     Icons.star_outline,
                     size: 30,
