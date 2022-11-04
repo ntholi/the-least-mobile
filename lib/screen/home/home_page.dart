@@ -10,7 +10,9 @@ import 'package:theleast/ui/logo.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 
 class HomePage extends ConsumerStatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  FilterMode filterMode = FilterMode.none;
+
+  HomePage({Key? key}) : super(key: key);
 
   @override
   HomePageState createState() => HomePageState();
@@ -44,7 +46,7 @@ class HomePageState extends ConsumerState<HomePage> {
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return [
               SliverAppBar(
-                expandedHeight: 240.0,
+                expandedHeight: 220.0,
                 floating: false,
                 pinned: false,
                 title: const Logo(fontSize: 24),
@@ -67,12 +69,22 @@ class HomePageState extends ConsumerState<HomePage> {
           body: Column(
             children: [
               Container(
-                decoration:
-                    BoxDecoration(color: AppColors.primaryColor.shade400),
-                child: const Filter(),
+                decoration: BoxDecoration(
+                  color: AppColors.primaryColor.shade400,
+                ),
+                child: Filter(
+                  setFilterMode: (value) {
+                    setState(
+                      () => widget.filterMode = value,
+                    );
+                  },
+                ),
               ),
-              const Flexible(
-                child: HouseList(),
+              Flexible(
+                child: HouseList(
+                  filterMode: widget.filterMode,
+                  user: ref.read(userProvider),
+                ),
               )
             ],
           ),

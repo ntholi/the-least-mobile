@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:theleast/screen/home/filter.dart';
 import 'package:theleast/screen/home/house_card.dart';
 import 'package:theleast/service/house/house.dart';
 import 'package:theleast/service/house/house_service.dart';
+import 'package:theleast/service/user/user.dart';
 
 class HouseList extends StatefulWidget {
-  const HouseList({Key? key}) : super(key: key);
+  final FilterMode filterMode;
+  final User? user;
+  const HouseList({
+    required this.filterMode,
+    required this.user,
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<HouseList> createState() => _HouseListState();
@@ -53,13 +61,20 @@ class _HouseListState extends State<HouseList> {
   }
 
   Future<void> _loadInitData() async {
-    _houses = await getHouses();
+    _houses = await _filteredHouses();
   }
 
   Future<void> _refreshHouses() async {
-    final photos = await getHouses();
+    final photos = await _filteredHouses();
     setState(() {
       _houses = photos;
     });
+  }
+
+  Future<List<House>> _filteredHouses() async {
+    if (widget.filterMode == FilterMode.favorite) {
+      return getFavoriteHouses(widget.user);
+    }
+    return getHouses();
   }
 }

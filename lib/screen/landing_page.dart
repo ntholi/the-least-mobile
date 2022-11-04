@@ -16,7 +16,7 @@ class LandingPage extends StatelessWidget {
           if (user == null) {
             return const AuthPage();
           }
-          return const HomePage();
+          return HomePage();
         }
         return const Scaffold(
           body: Center(

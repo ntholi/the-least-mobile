@@ -1,7 +1,29 @@
 import 'package:flutter/material.dart';
 
+enum FilterMode {
+  none("None"),
+  recentlyAdded("New"),
+  favorite("Favorites"),
+  near("Near You");
+
+  final String value;
+
+  const FilterMode(this.value);
+
+  @override
+  String toString() => value;
+}
+
+class Item {
+  final FilterMode mode;
+  final String icon;
+  Item(this.mode, this.icon);
+}
+
 class Filter extends StatefulWidget {
+  final ValueSetter setFilterMode;
   const Filter({
+    required this.setFilterMode,
     Key? key,
   }) : super(key: key);
 
@@ -9,17 +31,11 @@ class Filter extends StatefulWidget {
   State<Filter> createState() => _FilterState();
 }
 
-class Item {
-  final String label;
-  final String icon;
-  Item(this.label, this.icon);
-}
-
 class _FilterState extends State<Filter> {
   final items = [
-    Item("Near You", "address"),
-    Item("Favorites", "star"),
-    Item("New", "new"),
+    Item(FilterMode.near, "address"),
+    Item(FilterMode.favorite, "star"),
+    Item(FilterMode.recentlyAdded, "new"),
   ];
 
   Item? selected;
@@ -45,6 +61,7 @@ class _FilterState extends State<Filter> {
                 setSelected: (item) {
                   setState(() {
                     selected = selected != item ? item : null;
+                    widget.setFilterMode(selected?.mode ?? FilterMode.none);
                   });
                 },
               ),
@@ -96,7 +113,7 @@ class FilterItem extends StatelessWidget {
               child: Image.asset('assets/images/${item.icon}.png'),
             ),
             Text(
-              item.label,
+              item.mode.value,
               style: TextStyle(
                 fontSize: 12,
                 color: Colors.grey.shade500,
