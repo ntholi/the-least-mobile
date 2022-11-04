@@ -28,8 +28,6 @@ class HomePageState extends ConsumerState<HomePage> {
 
     getUser(userId).then((user) {
       ref.read(userProvider.notifier).setUser(user);
-    }).onError((error, stackTrace) {
-      print(stackTrace);
     });
   }
 

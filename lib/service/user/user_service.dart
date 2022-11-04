@@ -31,25 +31,33 @@ Future<User?> getUser(String userId) async {
   return snapshot.data();
 }
 
-Future<void> addFavorite(House house) async {
+Future<bool> addFavorite(House house) async {
   final list = await _getFavorites();
   if (!list.contains(house.id)) {
-    _updateFavorite([...list, house.id]);
+    return await _updateFavorite([...list, house.id]);
   }
+  return false;
 }
 
-Future<void> removeFavorite(House house) async {
+Future<bool> removeFavorite(House house) async {
   final list = List.from(await _getFavorites());
   list.remove(house.id);
-  _updateFavorite(list);
+  return _updateFavorite(list);
 }
 
-Future<void> _updateFavorite(List<dynamic>? favorites) async {
+Future<bool> _updateFavorite(List<dynamic>? favorites) async {
   String? userId = firebaseAuth.FirebaseAuth.instance.currentUser?.uid;
-  await db.collection("users").doc(userId).set(
-    {"favoriteHouses": favorites},
-    SetOptions(merge: true),
-  );
+
+  try {
+    await db.collection("users").doc(userId).set(
+      {"favoriteHouses": favorites},
+      SetOptions(merge: true),
+    );
+    return true;
+  } catch (error, stack) {
+    print(stack);
+  }
+  return false;
 }
 
 Future<List> _getFavorites() async {
