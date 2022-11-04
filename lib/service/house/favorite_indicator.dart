@@ -1,36 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:theleast/service/house/house.dart';
 import 'package:theleast/service/user/user.dart';
+import 'package:theleast/service/user/user_provider.dart';
 import 'package:theleast/service/user/user_service.dart';
 
-class FavoriteIndicator extends StatefulWidget {
+class FavoriteIndicator extends ConsumerWidget {
   final House house;
-  const FavoriteIndicator(this.house, {super.key});
+  bool isLoading = false;
+  FavoriteIndicator(this.house, {super.key});
 
   @override
-  State<FavoriteIndicator> createState() => FavoriteStateIndicator();
-}
-
-class FavoriteStateIndicator extends State<FavoriteIndicator> {
-  @override
-  Widget build(BuildContext context) {
-    if (_isFavorite(widget.house, null)) {
-      return IconButton(
-        onPressed: () async {
-          await addToFavorites(widget.house);
-        },
-        icon: const Icon(
-          Icons.star_outline,
-          size: 30,
-          color: Colors.white,
-        ),
-      );
-    } else {
-      return CircularProgressIndicator();
+  Widget build(BuildContext context, WidgetRef ref) {
+    bool isFav = _isFavorite(house, ref.watch(userProvider));
+    if (isLoading) {
+      return const CircularProgressIndicator();
     }
+    return IconButton(
+      onPressed: () async {
+        isFav ? await removeFavorite(house) : await addFavorite(house);
+      },
+      icon: Icon(
+        isFav ? Icons.star : Icons.star_outline,
+        size: 30,
+        color: isFav ? Colors.yellow : Colors.white,
+      ),
+    );
   }
 
   bool _isFavorite(House house, User? user) {
-    return true;
+    if (user == null || user.favoriteHouses == null) {
+      return false;
+    }
+    return user.favoriteHouses!.contains(house.id);
   }
 }

@@ -3,9 +3,8 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebaseAuth;
 import 'package:theleast/service/auth/auth_service.dart';
+import 'package:theleast/service/house/house.dart';
 import 'package:theleast/service/user/user.dart';
-
-import '../house/house.dart';
 
 final db = FirebaseFirestore.instance;
 
@@ -32,25 +31,32 @@ Future<User?> getUser(String userId) async {
   return snapshot.data();
 }
 
-Future<void> addToFavorites(House house) async {
+Future<void> addFavorite(House house) async {
+  final list = await _getFavorites();
+  if (!list.contains(house.id)) {
+    _updateFavorite([...list, house.id]);
+  }
+}
+
+Future<void> removeFavorite(House house) async {
+  final list = List.from(await _getFavorites());
+  list.remove(house.id);
+  _updateFavorite(list);
+}
+
+Future<void> _updateFavorite(List<dynamic>? favorites) async {
+  String? userId = firebaseAuth.FirebaseAuth.instance.currentUser?.uid;
+  await db.collection("users").doc(userId).set(
+    {"favoriteHouses": favorites},
+    SetOptions(merge: true),
+  );
+}
+
+Future<List> _getFavorites() async {
   String? userId = firebaseAuth.FirebaseAuth.instance.currentUser?.uid;
   if (userId == null) {
-    throw StateError("Unable to get logged-in user details");
+    return [];
   }
-  String? houseId = house.id;
-  if (houseId == null) {
-    throw StateError("House id cannot be null");
-  }
-  final ref = db.collection("users").doc(userId);
-  final user = await getUser(userId);
-  List<String> favoriteHouses = [];
-  if (user != null) {
-    if (user.favoriteHouses != null) {
-      favoriteHouses = user.favoriteHouses!;
-    }
-    if (!favoriteHouses.contains(house.id)) {
-      favoriteHouses.add(houseId);
-    }
-  }
-  ref.set({"favoriteHouses": favoriteHouses}, SetOptions(merge: true));
+
+  return (await getUser(userId))?.favoriteHouses ?? [];
 }

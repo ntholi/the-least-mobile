@@ -11,7 +11,7 @@ class User with _$User {
     required String firstName,
     required String lastName,
     required String email,
-    List<String>? favoriteHouses,
+    List<dynamic>? favoriteHouses,
   }) = _User;
 
   factory User.fromFirestore(DocumentSnapshot<Map<String, dynamic>> snapshot,

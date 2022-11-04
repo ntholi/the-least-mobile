@@ -1,18 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:theleast/screen/home/filter.dart';
 import 'package:theleast/screen/home/header.dart';
 import 'package:theleast/screen/home/house_list.dart';
+import 'package:theleast/service/user/user_provider.dart';
+import 'package:theleast/service/user/user_service.dart';
 import 'package:theleast/ui/colors.dart';
 import 'package:theleast/ui/logo.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 
-class HomePage extends StatefulWidget {
+class HomePage extends ConsumerStatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  HomePageState createState() => HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class HomePageState extends ConsumerState<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+
+    String? userId = firebase_auth.FirebaseAuth.instance.currentUser?.uid;
+    if (userId == null) {
+      throw StateError("Unable to get logged-in user details");
+    }
+
+    getUser(userId).then((user) {
+      ref.read(userProvider.notifier).setUser(user);
+    }).onError((error, stackTrace) {
+      print(stackTrace);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
