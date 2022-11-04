@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:theleast/screen/house/goal_info.dart';
 import 'package:theleast/screen/payment/donation_amount_page.dart';
+import 'package:theleast/service/house/favorite_indicator.dart';
 import 'package:theleast/service/house/house.dart';
 import 'package:theleast/service/user/user_service.dart';
 import 'package:theleast/ui/button.dart';
@@ -44,16 +45,7 @@ class HousePage extends StatelessWidget {
               floating: false,
               pinned: false,
               actions: [
-                IconButton(
-                  onPressed: () async {
-                    await addToFavorites(_house);
-                  },
-                  icon: const Icon(
-                    Icons.star_outline,
-                    size: 30,
-                    color: Colors.white,
-                  ),
-                )
+                FavoriteIndicator(_house),
               ],
               flexibleSpace: FlexibleSpaceBar(
                 centerTitle: true,
