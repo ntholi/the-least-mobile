@@ -21,18 +21,11 @@ class HouseList extends StatefulWidget {
 class _HouseListState extends State<HouseList> {
   final _refreshIndicatorKey = GlobalKey<RefreshIndicatorState>();
   late List<House> _houses;
-  late Future<void> _initData;
-
-  @override
-  void initState() {
-    super.initState();
-    _initData = _loadInitData();
-  }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: _initData,
+      future: _loadData(),
       builder: (ctx, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasError) {
@@ -42,7 +35,7 @@ class _HouseListState extends State<HouseList> {
           } else {
             return RefreshIndicator(
               key: _refreshIndicatorKey,
-              onRefresh: _refreshHouses,
+              onRefresh: _refresh,
               child: ListView.builder(
                 padding: const EdgeInsets.all(8),
                 itemCount: _houses.length,
@@ -60,14 +53,14 @@ class _HouseListState extends State<HouseList> {
     );
   }
 
-  Future<void> _loadInitData() async {
+  Future<void> _loadData() async {
     _houses = await _filteredHouses();
   }
 
-  Future<void> _refreshHouses() async {
-    final photos = await _filteredHouses();
+  Future<void> _refresh() async {
+    final list = await _filteredHouses();
     setState(() {
-      _houses = photos;
+      _houses = list;
     });
   }
 

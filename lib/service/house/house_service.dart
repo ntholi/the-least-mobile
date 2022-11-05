@@ -5,12 +5,14 @@ import 'package:theleast/service/user/user.dart';
 final db = FirebaseFirestore.instance;
 
 Future<List<House>> getFavoriteHouses(User? user) async {
+  var filter = user?.favoriteHouses;
   final ref = db
       .collection("houses")
-      .where("id", whereIn: [user?.favoriteHouses]).withConverter(
-    fromFirestore: House.fromFirestore,
-    toFirestore: (House house, _) => house.toJson(),
-  );
+      .where(FieldPath.documentId, whereIn: filter)
+      .withConverter(
+        fromFirestore: House.fromFirestore,
+        toFirestore: (House house, _) => house.toJson(),
+      );
 
   final snapshot = await ref.get();
   return snapshot.docs.map((e) => e.data()).toList();
