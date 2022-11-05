@@ -68,7 +68,7 @@ class _FilterState extends State<Filter> {
                 isSelected: selected == item,
                 setSelected: (item) {
                   setState(() {
-                    selected = selected != item ? item : null;
+                    selected = item;
                     widget.setFilterMode(selected?.mode ?? FilterMode.all);
                   });
                 },

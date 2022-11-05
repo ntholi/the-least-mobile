@@ -36,7 +36,9 @@ class FilterItemView extends StatelessWidget {
                 ),
               ],
               border: Border.all(
-                  color: isSelected ? AppColors.primaryColor : Colors.white),
+                  color: isSelected
+                      ? AppColors.primaryColor.shade700
+                      : Colors.white),
             ),
             child: SizedBox(
               height: 40,
