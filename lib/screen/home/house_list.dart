@@ -67,9 +67,10 @@ class _HouseListState extends State<HouseList> {
   Future<List<House>> _filteredHouses() async {
     if (widget.filterMode == FilterMode.all) {
       return getHouses();
-    }
-    if (widget.filterMode == FilterMode.favorite) {
+    } else if (widget.filterMode == FilterMode.favorite) {
       return getFavoriteHouses(widget.user);
+    } else if (widget.filterMode == FilterMode.recentlyAdded) {
+      return getHousesByNewest();
     }
     return [];
   }
