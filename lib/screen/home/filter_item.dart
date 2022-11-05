@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:theleast/screen/home/filter.dart';
+import 'package:theleast/ui/colors.dart';
 
 class FilterItemView extends StatelessWidget {
   final FilterItem item;
@@ -18,16 +19,14 @@ class FilterItemView extends StatelessWidget {
     return GestureDetector(
       onTap: () => setSelected(item),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            width: 100,
-            margin: const EdgeInsets.only(right: 10),
-            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 15),
+            padding: const EdgeInsets.all(10),
+            margin: const EdgeInsets.symmetric(horizontal: 10),
             decoration: BoxDecoration(
-              color: Colors.white,
-              border:
-                  Border.all(color: isSelected ? Colors.black : Colors.white),
-              borderRadius: const BorderRadius.all(Radius.circular(10)),
+              color: isSelected ? AppColors.primaryColor.shade50 : Colors.white,
+              shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
                   color: Colors.grey.withOpacity(0.2),
@@ -36,25 +35,24 @@ class FilterItemView extends StatelessWidget {
                   offset: const Offset(0, 1),
                 ),
               ],
+              border: Border.all(
+                  color: isSelected ? AppColors.primaryColor : Colors.white),
             ),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 50,
-                  width: 50,
-                  child: Image.asset('assets/images/${item.icon}.png'),
-                ),
-                Text(
-                  item.mode.value,
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.grey.shade500,
-                    fontWeight: FontWeight.w500,
-                  ),
-                )
-              ],
+            child: SizedBox(
+              height: 40,
+              width: 40,
+              child: Image.asset('assets/images/${item.icon}.png'),
             ),
           ),
+          const SizedBox(height: 8),
+          Text(
+            item.mode.value,
+            style: TextStyle(
+              fontSize: 12,
+              color: isSelected ? Colors.grey.shade700 : Colors.grey.shade400,
+              fontWeight: FontWeight.w500,
+            ),
+          )
         ],
       ),
     );

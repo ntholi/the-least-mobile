@@ -10,7 +10,7 @@ import 'package:theleast/ui/logo.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 
 class HomePage extends ConsumerStatefulWidget {
-  FilterMode filterMode = FilterMode.none;
+  FilterMode filterMode = FilterMode.all;
 
   HomePage({Key? key}) : super(key: key);
 

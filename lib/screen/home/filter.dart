@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:theleast/screen/home/filter_item.dart';
 
 enum FilterMode {
-  none("None"),
+  all("All"),
   recentlyAdded("New"),
   favorite("Favorites"),
   near("Near You");
@@ -34,12 +34,19 @@ class Filter extends StatefulWidget {
 
 class _FilterState extends State<Filter> {
   final items = [
+    FilterItem(FilterMode.all, "new"),
     FilterItem(FilterMode.near, "address"),
     FilterItem(FilterMode.favorite, "star"),
     FilterItem(FilterMode.recentlyAdded, "new"),
   ];
 
   FilterItem? selected;
+
+  @override
+  void initState() {
+    super.initState();
+    selected = items[0];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +60,7 @@ class _FilterState extends State<Filter> {
         ),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: items
             .map(
               (item) => FilterItemView(
@@ -62,7 +69,7 @@ class _FilterState extends State<Filter> {
                 setSelected: (item) {
                   setState(() {
                     selected = selected != item ? item : null;
-                    widget.setFilterMode(selected?.mode ?? FilterMode.none);
+                    widget.setFilterMode(selected?.mode ?? FilterMode.all);
                   });
                 },
               ),
