@@ -120,7 +120,7 @@ class ConfirmPaymentPage extends StatelessWidget {
       await makePayment(
         _house,
         _amount,
-        const PaymentMethod(name: "M-Pesa", id: '5029342'),
+        const PaymentMethod(type: PaymentType.mpesa, id: '5029342'),
       );
     } catch (error, stack) {
       print(stack);

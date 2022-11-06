@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:theleast/service/payment/payment_method.dart';
 import 'package:theleast/ui/selection_button.dart';
 
-enum PaymentMethodIcons {
-  mpesa(PaymentMethodNames.mpesa, "mpesa.png", Icons.phone_android),
-  card(PaymentMethodNames.card, "card.png", Icons.credit_card),
-  paypal(PaymentMethodNames.payPall, "paypal.png", Icons.paypal);
+enum PaymentTypeIcon {
+  mpesa(PaymentType.mpesa, "mpesa.png", Icons.phone_android),
+  card(PaymentType.card, "card.png", Icons.credit_card),
+  paypal(PaymentType.payPall, "paypal.png", Icons.paypal);
 
-  const PaymentMethodIcons(this.name, this.image, this.icon);
-  final String name;
+  const PaymentTypeIcon(this.paymentType, this.image, this.icon);
+  final PaymentType paymentType;
   final String image;
   final IconData icon;
 
   @override
-  String toString() => name;
+  String toString() => paymentType.value;
 }
 
 class PaymentMethods extends StatefulWidget {
@@ -25,7 +25,7 @@ class PaymentMethods extends StatefulWidget {
 }
 
 class _PaymentMethodsState extends State<PaymentMethods> {
-  PaymentMethodIcons? paymentType;
+  PaymentTypeIcon? paymentType;
 
   @override
   Widget build(BuildContext context) {
@@ -47,14 +47,14 @@ class _PaymentMethodsState extends State<PaymentMethods> {
         Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: PaymentMethodIcons.values
+            children: PaymentTypeIcon.values
                 .map(
                   (type) => Container(
                     margin: const EdgeInsets.only(bottom: 16),
                     child: SelectionButton(
                       value: type,
                       icon: type.icon,
-                      selected: type.name == paymentType?.name,
+                      selected: type.paymentType == paymentType?.paymentType,
                       showCheckMark: true,
                       setValue: (value) {
                         setState(() {

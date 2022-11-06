@@ -15,7 +15,7 @@ class DonationAmountPage extends StatefulWidget {
 }
 
 class _DonationAmountPageState extends State<DonationAmountPage> {
-  PaymentMethodIcons? _paymentType;
+  PaymentTypeIcon? _paymentType;
   final _amountController = TextEditingController();
 
   @override
