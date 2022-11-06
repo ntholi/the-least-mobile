@@ -14,15 +14,16 @@ class UserState extends StateNotifier<User?> {
   }
 
   void addFavorite(House house) {
-    final list = List.from(state?.favoriteHouses ?? []);
-    if (!list.contains(house.id)) {
-      list.add(house.id);
+    final List<String> list = List.from(state?.favoriteHouses ?? []);
+    String? houseId = house.id;
+    if (houseId != null && !list.contains(houseId)) {
+      list.add(houseId);
     }
     state = state?.copyWith(favoriteHouses: list);
   }
 
   void removeFavorite(House house) {
-    final list = List.from(state?.favoriteHouses ?? []);
+    final List<String> list = List.from(state?.favoriteHouses ?? []);
     list.remove(house.id);
     state = state?.copyWith(favoriteHouses: list);
   }
