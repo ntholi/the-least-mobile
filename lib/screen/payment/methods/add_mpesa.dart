@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:theleast/service/payment/payment_method.dart';
+import 'package:theleast/service/payment/payment_service.dart';
+import 'package:theleast/service/user/user.dart';
+import 'package:theleast/service/user/user_provider.dart';
 import 'package:theleast/ui/button.dart';
 import 'package:theleast/ui/colors.dart';
 
-class AddMpesaPage extends StatelessWidget {
-  const AddMpesaPage({super.key});
+class AddMpesaPage extends ConsumerWidget {
+  final formKey = GlobalKey<FormState>();
+  final User user;
+  late String _phoneNumber;
+  late String _password;
+  AddMpesaPage(this.user, {super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -14,7 +23,7 @@ class AddMpesaPage extends StatelessWidget {
           Stack(
             children: [
               SizedBox(
-                height: 250,
+                height: 140,
                 child: AppBar(
                   title: const Text("M-Pesa"),
                   elevation: 0,
@@ -22,12 +31,11 @@ class AddMpesaPage extends StatelessWidget {
               ),
               Container(
                 height: 70,
-                margin: const EdgeInsets.only(top: 80),
+                margin: const EdgeInsets.only(top: 70),
                 child: const Center(
                   child: SizedBox(
                     // child: Image.asset('assets/images/mpesa.png'),
                     child: Icon(
-                      size: 130,
                       Icons.phone_android,
                       color: Colors.white,
                     ),
@@ -50,9 +58,11 @@ class AddMpesaPage extends StatelessWidget {
                 ),
                 child: SingleChildScrollView(
                   child: Form(
+                    key: formKey,
                     child: Column(
                       children: [
                         TextFormField(
+                          onSaved: (value) => _phoneNumber = value ?? "",
                           decoration: const InputDecoration(
                             labelText: "Phone Number",
                             border: OutlineInputBorder(),
@@ -60,6 +70,7 @@ class AddMpesaPage extends StatelessWidget {
                         ),
                         const SizedBox(height: 20),
                         TextFormField(
+                          onSaved: (value) => _password = value ?? "",
                           obscureText: true,
                           decoration: const InputDecoration(
                             labelText: "Password",
@@ -79,7 +90,21 @@ class AddMpesaPage extends StatelessWidget {
               horizontal: 30,
               vertical: 16,
             ),
-            child: Button(title: "Save", onClick: () {}),
+            child: Button(
+              title: "Save",
+              onClick: () {
+                formKey.currentState?.save();
+                Map<String, dynamic> fields = {
+                  "password": _password,
+                };
+                final method = PaymentMethod(
+                  id: _phoneNumber,
+                  type: PaymentType.mpesa,
+                  fields: fields,
+                );
+                addPaymentMethod(method, user);
+              },
+            ),
           )
         ],
       ),

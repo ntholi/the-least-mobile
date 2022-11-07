@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart' as firebaseAuth;
+import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:theleast/service/auth/auth_service.dart';
 import 'package:theleast/service/house/house.dart';
 import 'package:theleast/service/user/user.dart';
@@ -46,7 +46,7 @@ Future<bool> removeFavorite(House house) async {
 }
 
 Future<bool> _updateFavorite(List<dynamic>? favorites) async {
-  String? userId = firebaseAuth.FirebaseAuth.instance.currentUser?.uid;
+  String? userId = firebase_auth.FirebaseAuth.instance.currentUser?.uid;
 
   try {
     await db.collection("users").doc(userId).set(
@@ -61,7 +61,7 @@ Future<bool> _updateFavorite(List<dynamic>? favorites) async {
 }
 
 Future<List> _getFavorites() async {
-  String? userId = firebaseAuth.FirebaseAuth.instance.currentUser?.uid;
+  String? userId = firebase_auth.FirebaseAuth.instance.currentUser?.uid;
   if (userId == null) {
     return [];
   }

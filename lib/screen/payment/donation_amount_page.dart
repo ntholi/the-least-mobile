@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:theleast/screen/payment/confirm_payment_page.dart';
 import 'package:theleast/screen/payment/donation_amount.dart';
+import 'package:theleast/screen/payment/methods/add_mpesa.dart';
 import 'package:theleast/screen/payment/payment_methods.dart';
 import 'package:theleast/service/house/house.dart';
 import 'package:theleast/ui/button.dart';
@@ -89,14 +90,15 @@ class _DonationAmountPageState extends State<DonationAmountPage> {
                   disabled: double.tryParse(_amountController.text) == null ||
                       _paymentType == null,
                   onClick: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute<void>(
-                        builder: (BuildContext context) => ConfirmPaymentPage(
-                          house: widget._house,
-                          amount: double.parse(value.text),
-                        ),
-                      ),
-                    );
+                    // Navigator.of(context).push(
+                    // MaterialPageRoute<void>(
+                    // builder: (BuildContext context) => AddMpesaPage(),
+                    // ConfirmPaymentPage(
+                    //   house: widget._house,
+                    //   amount: double.parse(value.text),
+                    // ),
+                    // ),
+                    // );
                   },
                   title: "Continue",
                   backgroundColor: AppColors.primaryColor,
