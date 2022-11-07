@@ -9,6 +9,9 @@ enum PaymentType {
 
   final String value;
   const PaymentType(this.value);
+
+  @override
+  String toString() => value;
 }
 
 PaymentType paymentTypeFromString(String type) {

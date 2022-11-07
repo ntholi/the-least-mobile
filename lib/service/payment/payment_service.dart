@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:theleast/service/house/house.dart';
 import 'package:theleast/service/payment/payment.dart';
@@ -7,8 +9,9 @@ import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 
 final db = FirebaseFirestore.instance;
 
-Future<void> addPaymentMethod(PaymentMethod paymentMethod, User? user) async {
+Future<void> addPaymentMethod(User? user, PaymentMethod paymentMethod) async {
   String? userId = user?.id;
+  log("user $user");
   if (user == null || userId == null) {
     throw StateError("Unable to get logged-in user details");
   }

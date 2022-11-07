@@ -37,8 +37,10 @@ class User with _$User {
   factory User.fromJson(Map<String, Object?> json) => _$UserFromJson(json);
 }
 
-List<PaymentMethod> _readPaymentMethods(List<dynamic> data) {
+List<PaymentMethod> _readPaymentMethods(List<dynamic>? data) {
   List<PaymentMethod> result = [];
+
+  if (data == null) return result;
 
   for (final it in List<Map<String, dynamic>>.from(data)) {
     String? id;

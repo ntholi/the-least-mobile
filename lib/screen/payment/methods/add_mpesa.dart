@@ -90,7 +90,7 @@ class AddMpesaPage extends ConsumerWidget {
                     type: PaymentType.mpesa,
                     // fields: fields,
                   );
-                  await addPaymentMethod(method, user);
+                  await addPaymentMethod(user, method);
                   if (nextPage != null) {
                     if (!mounted) return;
                     Navigator.of(context).push(
