@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:theleast/service/payment/payment_method.dart';
@@ -11,8 +13,8 @@ class User with _$User {
 
   const factory User({
     String? id,
-    required String firstName,
-    required String lastName,
+    String? firstName,
+    String? lastName,
     required String email,
     List<PaymentMethod>? paymentMethods,
     List<String>? favoriteHouses,
@@ -21,14 +23,47 @@ class User with _$User {
   factory User.fromFirestore(DocumentSnapshot<Map<String, dynamic>> snapshot,
       SnapshotOptions? options) {
     final data = snapshot.data();
+
     return User(
       id: snapshot.id,
       firstName: data?['firstName'],
       lastName: data?['lastName'],
       email: data?['email'],
+      paymentMethods: _readPaymentMethods(data?['paymentMethods']),
       favoriteHouses: List<String>.from(data?['favoriteHouses']),
     );
   }
 
   factory User.fromJson(Map<String, Object?> json) => _$UserFromJson(json);
+}
+
+List<PaymentMethod> _readPaymentMethods(List<dynamic> data) {
+  List<PaymentMethod> result = [];
+
+  for (final it in List<Map<String, dynamic>>.from(data)) {
+    String? id;
+    PaymentType? type;
+    Map<String, dynamic>? fields;
+
+    for (final entry in it.entries) {
+      final key = entry.key;
+      final value = entry.value;
+      if (key == "id") {
+        id = value;
+      } else if (key == "type") {
+        type = paymentTypeFromString(value as String);
+      } else if (key == "fields") {
+        fields = value;
+      }
+    }
+    if (id != null && type != null) {
+      PaymentMethod paymentMethod = PaymentMethod(
+        id: id,
+        type: type,
+        fields: fields,
+      );
+      result.add(paymentMethod);
+    }
+  }
+  return result;
 }

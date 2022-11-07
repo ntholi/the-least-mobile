@@ -16,8 +16,6 @@ Future<void> addPaymentMethod(PaymentMethod paymentMethod, User? user) async {
   List<PaymentMethod> methods = List.from(user.paymentMethods?.toList() ?? []);
   methods.add(paymentMethod);
 
-  print("****** methods: $methods");
-
   await db.collection("users").doc(userId).set(
     {"paymentMethods": methods.map((it) => it.toJson()).toList()},
     SetOptions(merge: true),

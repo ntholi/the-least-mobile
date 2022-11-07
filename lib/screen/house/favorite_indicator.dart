@@ -65,5 +65,7 @@ bool _isFavorite(House house, User? user) {
   if (user == null || user.favoriteHouses == null) {
     return false;
   }
+
+  //TODO: favoriteHouses!. somethimes gives error whey?
   return user.favoriteHouses!.contains(house.id);
 }

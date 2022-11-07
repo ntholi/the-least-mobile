@@ -11,6 +11,17 @@ enum PaymentType {
   const PaymentType(this.value);
 }
 
+PaymentType paymentTypeFromString(String type) {
+  if (type == PaymentType.mpesa.value) {
+    return PaymentType.mpesa;
+  }
+  if (type == PaymentType.card.value) {
+    return PaymentType.card;
+  } else {
+    return PaymentType.payPall;
+  }
+}
+
 @freezed
 class PaymentMethod with _$PaymentMethod {
   const factory PaymentMethod({
