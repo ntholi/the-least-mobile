@@ -1,7 +1,24 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-
 import 'package:theleast/ui/colors.dart';
+
+class CustomFloatingButton extends Button {
+  const CustomFloatingButton({
+    Key? key,
+    super.isProcessing,
+    required super.title,
+    required super.onClick,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      constraints: const BoxConstraints.expand(height: 48),
+      child: super.build(context),
+    );
+  }
+}
 
 class Button extends StatelessWidget {
   final String title;

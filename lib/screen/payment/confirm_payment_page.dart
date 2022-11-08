@@ -91,7 +91,6 @@ class ConfirmPaymentPage extends StatelessWidget {
                           onClick: ([bool mounted = true]) async {
                             _isProcessing.value = true;
                             await onConfirmPayment(context, paymentMethod);
-                            _isProcessing.value = false;
                             if (!mounted) return;
                             Navigator.push(
                               context,

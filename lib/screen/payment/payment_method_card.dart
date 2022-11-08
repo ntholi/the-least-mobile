@@ -71,5 +71,8 @@ class PaymentMethodCard extends StatelessWidget {
 }
 
 String obscured(String str) {
-  return str.substring(str.length - 3);
+  if (str.length > 3) {
+    return str.substring(str.length - 3);
+  }
+  return str;
 }

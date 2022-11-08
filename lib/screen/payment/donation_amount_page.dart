@@ -108,7 +108,10 @@ class DonationAmountPageState extends ConsumerState<DonationAmountPage> {
                             paymentMethod: paymentMethod,
                           );
                         }
-                        return AddMpesaPage(user);
+                        return AddMpesaPage(
+                            user: user,
+                            house: widget._house,
+                            amount: double.parse(value.text));
                       }),
                     );
                   },
