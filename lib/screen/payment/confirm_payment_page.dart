@@ -90,7 +90,7 @@ class ConfirmPaymentPage extends StatelessWidget {
                         return Button(
                           onClick: ([bool mounted = true]) async {
                             _isProcessing.value = true;
-                            await onConfirmPayment(context);
+                            await onConfirmPayment(context, paymentMethod);
                             _isProcessing.value = false;
                             if (!mounted) return;
                             Navigator.push(
@@ -116,13 +116,10 @@ class ConfirmPaymentPage extends StatelessWidget {
     );
   }
 
-  Future<void> onConfirmPayment(BuildContext context) async {
+  Future<void> onConfirmPayment(
+      BuildContext context, PaymentMethod paymentMethod) async {
     try {
-      await makePayment(
-        house,
-        _amount,
-        const PaymentMethod(type: PaymentType.mpesa, id: '5029342'),
-      );
+      await makePayment(house, _amount, paymentMethod);
     } catch (error, stack) {
       print(stack);
       showDialog(
