@@ -62,45 +62,40 @@ class AddMpesaPage extends ConsumerWidget {
                       key: formKey,
                       child: TextFormField(
                         onSaved: (value) => _phoneNumber = value ?? "",
+                        keyboardType: TextInputType.phone,
                         decoration: const InputDecoration(
                           labelText: "Phone Number",
                           border: OutlineInputBorder(),
                         ),
                       ),
                     ),
+                    const SizedBox(height: 30),
+                    Button(
+                      title: "Save",
+                      onClick: ([bool mounted = true]) async {
+                        formKey.currentState?.save();
+                        // Map<String, dynamic> fields = {
+                        //   "password": _password,
+                        // };
+                        final method = PaymentMethod(
+                          id: _phoneNumber.trim(),
+                          type: PaymentType.mpesa,
+                          // fields: fields,
+                        );
+                        await addPaymentMethod(user, method);
+                        if (!mounted) return;
+                        if (nextPage != null) {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(builder: (context) => nextPage!),
+                          );
+                        }
+                      },
+                    ),
                   ],
                 ),
               ),
             ),
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              margin: const EdgeInsets.all(16),
-              child: Button(
-                title: "Save",
-                onClick: ([bool mounted = true]) async {
-                  formKey.currentState?.save();
-                  // Map<String, dynamic> fields = {
-                  //   "password": _password,
-                  // };
-                  final method = PaymentMethod(
-                    id: _phoneNumber,
-                    type: PaymentType.mpesa,
-                    // fields: fields,
-                  );
-                  await addPaymentMethod(user, method);
-                  if (nextPage != null) {
-                    if (!mounted) return;
-                    Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => nextPage!),
-                    );
-                  }
-                },
-              ),
-            ),
-          )
         ],
       ),
     );
