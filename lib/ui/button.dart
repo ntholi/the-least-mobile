@@ -5,9 +5,12 @@ import 'package:theleast/ui/colors.dart';
 class CustomFloatingButton extends Button {
   const CustomFloatingButton({
     Key? key,
-    super.isProcessing,
     required super.title,
     required super.onClick,
+    super.backgroundColor,
+    super.textColor,
+    super.disabled,
+    super.isProcessing,
   }) : super(key: key);
 
   @override

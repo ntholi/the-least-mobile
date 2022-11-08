@@ -86,42 +86,35 @@ class DonationAmountPageState extends ConsumerState<DonationAmountPage> {
               ],
             ),
           ),
-          Positioned(
-            bottom: 0,
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              padding: const EdgeInsets.all(16),
-              child: ValueListenableBuilder<TextEditingValue>(
-                valueListenable: _amountController,
-                builder: (context, value, child) => Button(
-                  disabled: double.tryParse(_amountController.text) == null ||
-                      _paymentType == null,
-                  onClick: () {
-                    PaymentMethod? paymentMethod =
-                        _getPaymentMethod(user, PaymentType.mpesa);
-                    Navigator.of(context).push(
-                      MaterialPageRoute<void>(builder: (BuildContext context) {
-                        if (paymentMethod != null) {
-                          return ConfirmPaymentPage(
-                            house: widget._house,
-                            amount: double.parse(value.text),
-                            paymentMethod: paymentMethod,
-                          );
-                        }
-                        return AddMpesaPage(
-                            user: user,
-                            house: widget._house,
-                            amount: double.parse(value.text));
-                      }),
-                    );
-                  },
-                  title: "Continue",
-                  backgroundColor: AppColors.primaryColor,
-                ),
-              ),
-            ),
-          )
         ],
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: ValueListenableBuilder<TextEditingValue>(
+        valueListenable: _amountController,
+        builder: (context, value, child) => CustomFloatingButton(
+          disabled: double.tryParse(_amountController.text) == null ||
+              _paymentType == null,
+          onClick: () {
+            PaymentMethod? paymentMethod =
+                _getPaymentMethod(user, PaymentType.mpesa);
+            Navigator.of(context).push(
+              MaterialPageRoute<void>(builder: (BuildContext context) {
+                if (paymentMethod != null) {
+                  return ConfirmPaymentPage(
+                    house: widget._house,
+                    amount: double.parse(value.text),
+                    paymentMethod: paymentMethod,
+                  );
+                }
+                return AddMpesaPage(
+                    user: user,
+                    house: widget._house,
+                    amount: double.parse(value.text));
+              }),
+            );
+          },
+          title: "Continue",
+        ),
       ),
     );
   }

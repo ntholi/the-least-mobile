@@ -11,7 +11,6 @@ final db = FirebaseFirestore.instance;
 
 Future<void> addPaymentMethod(User? user, PaymentMethod paymentMethod) async {
   String? userId = user?.id;
-  log("user $user");
   if (user == null || userId == null) {
     throw StateError("Unable to get logged-in user details");
   }

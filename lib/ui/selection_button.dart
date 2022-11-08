@@ -46,7 +46,13 @@ class SelectionButton<T> extends StatelessWidget {
         width: width,
         child: Row(
           children: [
-            if (icon != null) Icon(icon) else const SizedBox.shrink(),
+            if (icon != null)
+              Icon(
+                icon,
+                color: Colors.blueGrey,
+              )
+            else
+              const SizedBox.shrink(),
             SizedBox(width: icon == null ? 0 : 10),
             Expanded(
               child: Text(
