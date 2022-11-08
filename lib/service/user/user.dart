@@ -3,14 +3,13 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:theleast/service/payment/payment_method.dart';
+import 'package:theleast/utils/json_converters.dart';
 
 part 'user.freezed.dart';
 part 'user.g.dart';
 
 @freezed
 class User with _$User {
-  //TODO: add createdDate field
-
   const factory User({
     String? id,
     String? firstName,
@@ -18,6 +17,7 @@ class User with _$User {
     required String email,
     List<PaymentMethod>? paymentMethods,
     List<String>? favoriteHouses,
+    @TimestampConverter() Timestamp? dateCreated,
   }) = _User;
 
   factory User.fromFirestore(DocumentSnapshot<Map<String, dynamic>> snapshot,
@@ -30,11 +30,16 @@ class User with _$User {
       lastName: data?['lastName'],
       email: data?['email'],
       paymentMethods: _readPaymentMethods(data?['paymentMethods']),
-      favoriteHouses: List<String>.from(data?['favoriteHouses']),
+      favoriteHouses: _readFavoriteHouses(data?["favoriteHouses"]),
     );
   }
 
   factory User.fromJson(Map<String, Object?> json) => _$UserFromJson(json);
+}
+
+List<String> _readFavoriteHouses(List<dynamic>? data) {
+  if (data == null) return [];
+  return List<String>.from(data);
 }
 
 List<PaymentMethod> _readPaymentMethods(List<dynamic>? data) {
