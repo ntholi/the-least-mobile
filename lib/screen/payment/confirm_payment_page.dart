@@ -8,14 +8,15 @@ import 'package:theleast/ui/button.dart';
 
 class ConfirmPaymentPage extends StatelessWidget {
   final _isProcessing = ValueNotifier<bool>(false);
-  final House _house;
+  final House house;
   final double _amount;
+  final PaymentMethod paymentMethod;
   ConfirmPaymentPage({
     super.key,
-    required House house,
+    required this.house,
     required double amount,
-  })  : _house = house,
-        _amount = amount;
+    required this.paymentMethod,
+  }) : _amount = amount;
 
   @override
   Widget build(BuildContext context) {
@@ -49,13 +50,13 @@ class ConfirmPaymentPage extends StatelessWidget {
                     ),
                     const SizedBox(width: 3),
                     Text(
-                      _house.name,
+                      house.name,
                       style: const TextStyle(color: Colors.white, fontSize: 16),
                     ),
                   ],
                 ),
                 const SizedBox(height: 10),
-                const PaymentMethodCard(),
+                PaymentMethodCard(paymentMethod),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -96,7 +97,7 @@ class ConfirmPaymentPage extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                 builder: (context) =>
-                                    PaymentSuccessfulPage(house: _house),
+                                    PaymentSuccessfulPage(house: house),
                               ),
                             );
                           },
@@ -118,7 +119,7 @@ class ConfirmPaymentPage extends StatelessWidget {
   Future<void> onConfirmPayment(BuildContext context) async {
     try {
       await makePayment(
-        _house,
+        house,
         _amount,
         const PaymentMethod(type: PaymentType.mpesa, id: '5029342'),
       );

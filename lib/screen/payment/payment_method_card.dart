@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:theleast/service/payment/payment_method.dart';
 
 class PaymentMethodCard extends StatelessWidget {
-  const PaymentMethodCard({
+  final PaymentMethod paymentMethod;
+  const PaymentMethodCard(
+    this.paymentMethod, {
     Key? key,
   }) : super(key: key);
 
@@ -38,9 +41,9 @@ class PaymentMethodCard extends StatelessWidget {
                         const Spacer(),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
-                            Text("Number"),
-                            Text("****763"),
+                          children: [
+                            const Text("Number"),
+                            Text("****${obscured(paymentMethod.id)}"),
                           ],
                         ),
                       ],
@@ -65,4 +68,8 @@ class PaymentMethodCard extends StatelessWidget {
       ),
     );
   }
+}
+
+String obscured(String str) {
+  return str.substring(str.length - 3);
 }

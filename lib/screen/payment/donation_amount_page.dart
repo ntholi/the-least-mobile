@@ -27,7 +27,7 @@ class DonationAmountPageState extends ConsumerState<DonationAmountPage> {
 
   @override
   Widget build(BuildContext context) {
-    final user = ref.read(userProvider.notifier).state;
+    final user = ref.read(userProvider);
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
       body: Stack(
@@ -97,16 +97,18 @@ class DonationAmountPageState extends ConsumerState<DonationAmountPage> {
                   disabled: double.tryParse(_amountController.text) == null ||
                       _paymentType == null,
                   onClick: () {
+                    PaymentMethod? paymentMethod =
+                        _getPaymentMethod(user, PaymentType.mpesa);
                     Navigator.of(context).push(
                       MaterialPageRoute<void>(builder: (BuildContext context) {
-                        final confirmPage = ConfirmPaymentPage(
-                          house: widget._house,
-                          amount: double.parse(value.text),
-                        );
-                        if (hasPaymentMethod(user, PaymentType.mpesa)) {
-                          return confirmPage;
+                        if (paymentMethod != null) {
+                          return ConfirmPaymentPage(
+                            house: widget._house,
+                            amount: double.parse(value.text),
+                            paymentMethod: paymentMethod,
+                          );
                         }
-                        return AddMpesaPage(user, nextPage: confirmPage);
+                        return AddMpesaPage(user);
                       }),
                     );
                   },
@@ -122,12 +124,12 @@ class DonationAmountPageState extends ConsumerState<DonationAmountPage> {
   }
 }
 
-bool hasPaymentMethod(User? user, PaymentType type) {
+PaymentMethod? _getPaymentMethod(User? user, PaymentType type) {
   final methods = user?.paymentMethods ?? [];
   for (final it in methods) {
     if (it.type == type) {
-      return true;
+      return it;
     }
   }
-  return false;
+  return null;
 }

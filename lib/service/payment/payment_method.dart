@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'payment_method.freezed.dart';
 part 'payment_method.g.dart';
@@ -15,10 +17,14 @@ enum PaymentType {
 }
 
 PaymentType paymentTypeFromString(String type) {
-  if (type == PaymentType.mpesa.value) {
+  String name(PaymentType type) => type.name.toLowerCase();
+  String value(PaymentType type) => type.value.toLowerCase();
+
+  type = type.toLowerCase();
+  if (type == name(PaymentType.mpesa) || type == value(PaymentType.mpesa)) {
     return PaymentType.mpesa;
   }
-  if (type == PaymentType.card.value) {
+  if (type == name(PaymentType.card) || type == value(PaymentType.card)) {
     return PaymentType.card;
   } else {
     return PaymentType.payPall;
