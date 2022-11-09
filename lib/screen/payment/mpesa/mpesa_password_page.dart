@@ -5,7 +5,7 @@ import 'package:theleast/service/house/house.dart';
 import 'package:theleast/service/payment/payment_method.dart';
 import 'package:theleast/service/payment/payment_service.dart';
 import 'package:theleast/ui/colors.dart';
-import 'package:numeric_keyboard/numeric_keyboard.dart';
+import 'package:theleast/ui/numeric_keyboard.dart';
 
 class MpesaPasswordPage extends StatefulWidget {
   final PaymentMethod paymentMethod;
@@ -25,7 +25,6 @@ class MpesaPasswordPage extends StatefulWidget {
 
 class _MpesaPasswordPageState extends State<MpesaPasswordPage> {
   final _passwordController = TextEditingController();
-  bool _isProcessing = false;
 
   late String _password;
   String text = "";
