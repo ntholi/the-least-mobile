@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:theleast/screen/payment/confirm_payment_page.dart';
 import 'package:theleast/screen/payment/donation_amount.dart';
-import 'package:theleast/screen/payment/methods/add_mpesa.dart';
+import 'package:theleast/screen/payment/methods/add_mpesa_page.dart';
 import 'package:theleast/screen/payment/payment_methods.dart';
 import 'package:theleast/service/house/house.dart';
 import 'package:theleast/service/payment/payment_method.dart';
