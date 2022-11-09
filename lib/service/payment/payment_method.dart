@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'payment_method.freezed.dart';
 part 'payment_method.g.dart';
@@ -41,4 +39,12 @@ class PaymentMethod with _$PaymentMethod {
 
   factory PaymentMethod.fromJson(Map<String, Object?> json) =>
       _$PaymentMethodFromJson(json);
+}
+
+String obscured(String str) {
+  String res = "***";
+  if (str.length > 3) {
+    return res + str.substring(str.length - 3);
+  }
+  return res + str;
 }

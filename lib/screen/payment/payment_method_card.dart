@@ -43,7 +43,7 @@ class PaymentMethodCard extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             const Text("Number"),
-                            Text("****${obscured(paymentMethod.id)}"),
+                            Text(obscured(paymentMethod.id)),
                           ],
                         ),
                       ],
@@ -68,11 +68,4 @@ class PaymentMethodCard extends StatelessWidget {
       ),
     );
   }
-}
-
-String obscured(String str) {
-  if (str.length > 3) {
-    return str.substring(str.length - 3);
-  }
-  return str;
 }
