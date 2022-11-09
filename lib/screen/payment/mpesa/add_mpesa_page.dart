@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:theleast/screen/payment/confirm_payment_page.dart';
-import 'package:theleast/screen/payment/methods/add_mpesa_form.dart';
+import 'package:theleast/screen/payment/mpesa/add_mpesa_form.dart';
 import 'package:theleast/service/house/house.dart';
 import 'package:theleast/service/payment/payment_method.dart';
 import 'package:theleast/service/payment/payment_service.dart';
