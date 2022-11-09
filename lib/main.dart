@@ -2,9 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:theleast/screen/landing_page.dart';
-import 'package:theleast/screen/payment/mpesa/mpesa_password_page.dart';
 import 'package:theleast/service/house/house.dart';
-import 'package:theleast/service/payment/payment_method.dart';
 import 'package:theleast/service/user/user.dart';
 import 'package:theleast/ui/colors.dart';
 import 'package:theleast/firebase_options.dart';
@@ -41,10 +39,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: AppColors.primaryColor,
         ),
-        home: MpesaPasswordPage(
-          paymentMethod:
-              const PaymentMethod(id: "59074892", type: PaymentType.mpesa),
-        ),
+        home: const LandingPage(),
       ),
     );
   }

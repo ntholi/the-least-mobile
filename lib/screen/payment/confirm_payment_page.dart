@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:theleast/screen/payment/mpesa/mpesa_password_page.dart';
 import 'package:theleast/screen/payment/payment_method_card.dart';
 import 'package:theleast/screen/payment/payment_successful_page.dart';
 import 'package:theleast/service/house/house.dart';
@@ -9,14 +10,15 @@ import 'package:theleast/ui/button.dart';
 class ConfirmPaymentPage extends StatelessWidget {
   final _isProcessing = ValueNotifier<bool>(false);
   final House house;
-  final double _amount;
+  final double amount;
   final PaymentMethod paymentMethod;
+
   ConfirmPaymentPage({
     super.key,
     required this.house,
-    required double amount,
+    required this.amount,
     required this.paymentMethod,
-  }) : _amount = amount;
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +75,7 @@ class ConfirmPaymentPage extends StatelessWidget {
                                 color: Colors.grey.shade900),
                           ),
                           Text(
-                            "M$_amount",
+                            "M$amount",
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w500,
@@ -90,13 +92,15 @@ class ConfirmPaymentPage extends StatelessWidget {
                         return Button(
                           onClick: ([bool mounted = true]) async {
                             _isProcessing.value = true;
-                            await onConfirmPayment(context, paymentMethod);
                             if (!mounted) return;
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) =>
-                                    PaymentSuccessfulPage(house: house),
+                                builder: (context) => MpesaPasswordPage(
+                                  house: house,
+                                  amount: amount,
+                                  paymentMethod: paymentMethod,
+                                ),
                               ),
                             );
                           },
@@ -113,29 +117,5 @@ class ConfirmPaymentPage extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  Future<void> onConfirmPayment(
-      BuildContext context, PaymentMethod paymentMethod) async {
-    try {
-      await makePayment(house, _amount, paymentMethod);
-    } catch (error, stack) {
-      print(stack);
-      showDialog(
-        context: context,
-        builder: (ctx) => AlertDialog(
-          title: const Text("Error!"),
-          content: Text("Error ${error.toString()}"),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(ctx).pop();
-              },
-              child: const Text("Close"),
-            ),
-          ],
-        ),
-      );
-    }
   }
 }
