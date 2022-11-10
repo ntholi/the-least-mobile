@@ -7,7 +7,7 @@ class NumericKeyboard extends StatefulWidget {
   final Color textColor;
 
   /// Display a custom right icon
-  final Icon? rightIcon;
+  final Icon rightIcon;
 
   /// Action to trigger when right button is pressed
   final Function()? rightButtonFn;
@@ -24,12 +24,12 @@ class NumericKeyboard extends StatefulWidget {
   /// Main axis alignment [default = MainAxisAlignment.spaceEvenly]
   final MainAxisAlignment mainAxisAlignment;
 
-  NumericKeyboard(
+  const NumericKeyboard(
       {Key? key,
       required this.onKeyboardTap,
       this.textColor = Colors.black,
       this.rightButtonFn,
-      this.rightIcon,
+      required this.rightIcon,
       this.leftButtonFn,
       this.leftIcon,
       this.mainAxisAlignment = MainAxisAlignment.spaceEvenly})
@@ -76,23 +76,25 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
           ButtonBar(
             alignment: widget.mainAxisAlignment,
             children: <Widget>[
-              InkWell(
-                  borderRadius: BorderRadius.circular(45),
-                  onTap: widget.leftButtonFn,
-                  child: Container(
-                      alignment: Alignment.center,
-                      width: 50,
-                      height: 50,
-                      child: widget.leftIcon)),
+              TextButton(
+                onPressed: widget.leftButtonFn,
+                child: Container(
+                  alignment: Alignment.center,
+                  width: 50,
+                  height: 50,
+                  child: widget.leftIcon,
+                ),
+              ),
               _calcButton('0'),
-              InkWell(
-                  borderRadius: BorderRadius.circular(45),
-                  onTap: widget.rightButtonFn,
-                  child: Container(
-                      alignment: Alignment.center,
-                      width: 50,
-                      height: 50,
-                      child: widget.rightIcon))
+              TextButton(
+                onPressed: widget.rightButtonFn,
+                child: Container(
+                  alignment: Alignment.center,
+                  width: 50,
+                  height: 50,
+                  child: widget.rightIcon,
+                ),
+              )
             ],
           ),
         ],
@@ -101,22 +103,22 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
   }
 
   Widget _calcButton(String value) {
-    return InkWell(
-        borderRadius: BorderRadius.circular(45),
-        onTap: () {
-          widget.onKeyboardTap(value);
-        },
-        child: Container(
-          alignment: Alignment.center,
-          width: 50,
-          height: 50,
-          child: Text(
-            value,
-            style: TextStyle(
-                fontSize: 26,
-                fontWeight: FontWeight.bold,
-                color: widget.textColor),
-          ),
-        ));
+    return TextButton(
+      onPressed: () {
+        widget.onKeyboardTap(value);
+      },
+      child: Container(
+        alignment: Alignment.center,
+        width: 50,
+        height: 50,
+        child: Text(
+          value,
+          style: TextStyle(
+              fontSize: 26,
+              fontWeight: FontWeight.bold,
+              color: widget.textColor),
+        ),
+      ),
+    );
   }
 }
